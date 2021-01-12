@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: PingFang TC;
+    font-style: normal;
+    font-weight: normal;
+    // font-family: 'PingFang TC';
+    // font-weight: normal;
+    // font-stretch: normal;
+    // font-style: normal;
+    // line-height: normal;
+    // letter-spacing: normal;
+}
+
+#__nuxt {
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+.object-fit {
+    width: 100%;
+}
