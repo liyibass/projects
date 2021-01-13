@@ -145,6 +145,9 @@
             </div>
 
             <!-- Iframe -->
+            <ArticleIframe
+                iframeUrl="https://public.flourish.studio/visualisation/4620597/"
+            />
         </div>
 
         <ArticleCarousel :images="slides2" />
@@ -222,6 +225,7 @@ import ArticleSubTitle from '~/components/Article/ArticleSubTitle'
 import ArticleImage from '~/components/Article/ArticleImage'
 import ArticleCarousel from '~/components/Article/ArticleCarousel'
 import ArticleFullImage from '~/components/Article/ArticleFullImage'
+import ArticleIframe from '~/components/Article/ArticleIframe'
 
 import image11 from '~/assets/images/11.jpg'
 import image14 from '~/assets/images/14.jpg'
@@ -242,6 +246,7 @@ export default {
         ArticleImage,
         ArticleCarousel,
         ArticleFullImage,
+        ArticleIframe,
     },
 
     data() {
