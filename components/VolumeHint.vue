@@ -9,6 +9,8 @@
                 獲得最佳閱讀體驗
             </div>
         </div>
+
+        <div class="VolumeHint__anchor" />
     </div>
 </template>
 
@@ -37,7 +39,32 @@ export default {
 
         // .addIndicators({ name: 'volumeHintScene' })
 
-        this.$scrollmagic.addScene(volumeHintScene)
+        // After trigger leaving anchor, disable content's fix
+        const volumeHintFixScene = this.$scrollmagic
+            .scene({
+                triggerElement: '.VolumeHint__anchor',
+                offset: 100,
+                triggerHook: 0,
+                duration: 5,
+            })
+            .on('enter', (e) => {
+                switch (e.scrollDirection) {
+                    case 'FORWARD':
+                        volumeHintContentDOM.style.position = 'relative'
+                        break
+
+                    case 'REVERSE':
+                        volumeHintContentDOM.style.position = 'fixed'
+
+                        break
+
+                    default:
+                        break
+                }
+            })
+        // .addIndicators({ name: 'volumeHintFixScene' })
+
+        this.$scrollmagic.addScene([volumeHintScene, volumeHintFixScene])
     },
 }
 </script>
@@ -73,6 +100,14 @@ export default {
         &_text {
             margin-top: 8px;
         }
+    }
+
+    &__anchor {
+        // background: gold;
+        width: 100%;
+        height: 10px;
+        position: absolute;
+        bottom: 0;
     }
 }
 </style>

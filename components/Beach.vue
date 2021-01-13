@@ -1,5 +1,5 @@
 <template>
-    <div class="Beach" id="Beach">
+    <div class="Beach" id="Beach" ref="beachRef">
         <div class="Beach__background">
             <picture>
                 <source
@@ -11,8 +11,7 @@
                     media="(min-width:480px)"
                     srcset="
                         ../assets/images/pad/3@1x.png 1x,
-                        ../assets/images/pad/3@2x.png 2x,
-                        ../assets/images/pad/3@2x.png 3x
+                        ../assets/images/pad/3@2x.png 2x
                     "
                     alt="ocean"
                 />
@@ -21,7 +20,7 @@
                     srcset="
                         ../assets/images/mobile/3@1x.png 1x,
                         ../assets/images/mobile/3@2x.png 2x,
-                        ../assets/images/mobile/3@2x.png 3x
+                        ../assets/images/mobile/3@3x.png 3x
                     "
                     alt="ocean"
                 />
@@ -44,6 +43,11 @@
 
 <script>
 export default {
+    data() {
+        return {
+            isPlayed: false,
+        }
+    },
     mounted() {
         const beachText1DOM = document.querySelector('.Beach__text1')
         const beachText2DOM = document.querySelector('.Beach__text2')
@@ -57,13 +61,22 @@ export default {
             })
             .on('progress', (e) => {
                 beachText1DOM.style.opacity = e.progress
+
+                if (e.progress < 1) {
+                    if (this.isPlayed === false) return
+                    console.log('stop music')
+                    this.isPlayed = false
+                } else {
+                    console.log('play music')
+                    this.isPlayed = true
+                }
             })
         // .addIndicators({ name: 'beachScene' })
 
         const beachText2Scene = this.$scrollmagic
             .scene({
                 triggerElement: '#Beach',
-                offset: 140,
+                offset: 300,
                 triggerHook: 0,
                 duration: 50,
             })
@@ -72,14 +85,14 @@ export default {
             })
         // .addIndicators({ name: 'beachScene' })
 
-        this.$scrollmagic.addScene(beachText1Scene)
-        this.$scrollmagic.addScene(beachText2Scene)
+        this.$scrollmagic.addScene([beachText1Scene, beachText2Scene])
     },
 }
 </script>
 
 <style lang="scss" scoped>
 .Beach {
+    z-index: 1;
     position: relative;
     background: white;
 

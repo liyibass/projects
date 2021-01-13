@@ -11,8 +11,7 @@
                     media="(min-width:480px)"
                     srcset="
                         ../assets/images/pad/1@1x.png 1x,
-                        ../assets/images/pad/1@2x.png 2x,
-                        ../assets/images/pad/1@2x.png 3x
+                        ../assets/images/pad/1@2x.png 2x
                     "
                     alt="ocean"
                 />
@@ -21,7 +20,7 @@
                     srcset="
                         ../assets/images/mobile/1@1x.png 1x,
                         ../assets/images/mobile/1@2x.png 2x,
-                        ../assets/images/mobile/1@2x.png 3x
+                        ../assets/images/mobile/1@3x.png 3x
                     "
                     alt="ocean"
                 />
@@ -78,8 +77,7 @@ export default {
             })
         // .addIndicators({ name: 'titleFadeScene' })
 
-        this.$scrollmagic.addScene(backgroundDarkScene)
-        this.$scrollmagic.addScene(titleFadeScene)
+        this.$scrollmagic.addScene([backgroundDarkScene, titleFadeScene])
     },
 }
 </script>
