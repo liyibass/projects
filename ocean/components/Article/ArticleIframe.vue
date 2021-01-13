@@ -26,6 +26,7 @@ export default {
     },
 
     mounted() {
+        // set iframe height by width
         const iframeWidth = this.$refs.iframeRef.clientWidth
         this.iframeHeight = iframeWidth > 450 ? iframeWidth / 2 : iframeWidth
     },

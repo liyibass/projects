@@ -13,9 +13,11 @@
     "@nuxtjs/style-resources": "^1.0.0",
     "core-js": "^3.6.5",
     "gsap": "^3.5.1",
+    "intersection-observer": "^0.12.0",
     "node-sass": "^5.0.0",
     "nuxt": "^2.14.6",
     "sass-loader": "^10.1.0",
+    "scrollama": "^2.2.1",
     "vue-scrollmagic": "^1.2.0",
     "vueperslides": "^2.12.1"
   },

@@ -1,5 +1,10 @@
 <template>
-    <div class="Story">
+    <div class="Story" id="Story" ref="storyRef">
+        <!-- <div class="audioIndex">
+            {{ currentAudioIndex }}
+        </div> -->
+        <DegreeRuler :audioIndex="currentAudioIndex" />
+
         <div class="Story__wrapper">
             <ArticleSubTitle title="我是小標題唷" />
 
@@ -221,11 +226,16 @@
 </template>
 
 <script>
+import 'intersection-observer'
+import scrollama from 'scrollama'
+
 import ArticleSubTitle from '~/components/Article/ArticleSubTitle'
 import ArticleImage from '~/components/Article/ArticleImage'
 import ArticleCarousel from '~/components/Article/ArticleCarousel'
 import ArticleFullImage from '~/components/Article/ArticleFullImage'
 import ArticleIframe from '~/components/Article/ArticleIframe'
+
+import DegreeRuler from '~/components/DegreeRuler'
 
 import image11 from '~/assets/images/11.jpg'
 import image14 from '~/assets/images/14.jpg'
@@ -247,10 +257,15 @@ export default {
         ArticleCarousel,
         ArticleFullImage,
         ArticleIframe,
+        DegreeRuler,
     },
 
     data() {
         return {
+            storyHeight: 7000,
+            currentAudioIndex: 0,
+            audioList: ['audio1', 'audio2', 'audio3', 'audio4', 'audio5'],
+
             image11,
             image14,
             image15,
@@ -305,6 +320,50 @@ export default {
             ],
         }
     },
+
+    async mounted() {
+        const degreeRulerDOM = document.querySelector('.DegreeRuler')
+        function fetchHeight(storyDOM) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(storyDOM.$refs.storyRef.clientHeight)
+                    // resolve(5000)
+                }, 3000)
+            })
+        }
+        const storyHeight = await fetchHeight(this)
+        const audioCount = this.audioList.length
+        const interval = 1 / audioCount
+        // ex: if there's 5 audio, interval = 0.2
+        // and current progress is 0.3
+        // then audio index = 0.3 / 0.2 = 1 (2nd audio)
+
+        const yearAudioScene = this.$scrollmagic
+            .scene({
+                triggerElement: '#Story',
+                offset: 0,
+                triggerHook: 0,
+                duration: storyHeight,
+            })
+            .on('progress', (e) => {
+                const audioIndex = Math.round(e.progress / interval)
+                if (audioIndex === this.currentAudioIndex) return
+
+                // set to max if overflow
+                this.currentAudioIndex =
+                    audioIndex < audioCount ? audioIndex : audioCount - 1
+            })
+            .on('enter', (e) => {
+                degreeRulerDOM.style.position = 'fixed'
+            })
+            .on('leave', (e) => {
+                degreeRulerDOM.style.position = 'absolute'
+            })
+
+        // .addIndicators({ name: 'yearAudioScene' })
+
+        this.$scrollmagic.addScene(yearAudioScene)
+    },
 }
 </script>
 
@@ -323,6 +382,14 @@ export default {
             max-width: 1196px;
             margin: auto;
         }
+    }
+
+    padding-top: 77px;
+    @include atSmall {
+        padding-top: 60px;
+    }
+    @include atMedium {
+        padding-top: 120px;
     }
 }
 
@@ -363,4 +430,17 @@ export default {
         // max-width: 640px;
     }
 }
+
+// .audioIndex {
+//     width: 20px;
+//     height: 20px;
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+//     z-index: 100;
+//     background: white;
+//     border: 1px solid red;
+//     line-height: 20px;
+//     text-align: center;
+// }
 </style>

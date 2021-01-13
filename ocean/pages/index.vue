@@ -5,6 +5,7 @@
         <Beach />
         <Stage />
         <Story />
+        <Beach />
     </div>
 </template>
 
