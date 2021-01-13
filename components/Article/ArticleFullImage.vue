@@ -44,6 +44,7 @@ export default {
 <style lang="scss" scoped>
 .ArticleImage {
     position: relative;
+    margin-bottom: 24px;
     &__image {
         img {
             width: 100%;
@@ -70,6 +71,8 @@ export default {
     }
 
     @include atSmall {
+        margin-bottom: 40px;
+
         &__comment {
             top: 7.813%;
             left: 5.495%;
