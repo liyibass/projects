@@ -1,0 +1,208 @@
+<template>
+    <div class="Diving" id="Diving">
+        <div class="Diving__wrapper">
+            <div class="Diving__wrapper_background">
+                <picture>
+                    <source
+                        media="(min-width:760px)"
+                        srcset="../assets/images/20.jpg"
+                        alt="ocean"
+                    />
+                    <source
+                        media="(min-width:480px)"
+                        srcset="
+                            ../assets/images/pad/20@1x.png 1x,
+                            ../assets/images/pad/20@2x.png 2x
+                        "
+                        alt="ocean"
+                    />
+
+                    <img
+                        srcset="
+                            ../assets/images/mobile/20@1x.png 1x,
+                            ../assets/images/mobile/20@2x.png 2x,
+                            ../assets/images/mobile/20@3x.png 3x
+                        "
+                        alt="ocean"
+                    />
+                </picture>
+            </div>
+
+            <div class="Diving__wrapper_text">
+                「因為有光，所以我們能看見東西。聲音是光。我所聽的是『聲音』——在聲音裡我聽到孩子玩耍、聽到冰箱馬達震動、兔子奔跑。聲音是光。我不是在聽這個東西的『聲音』。我是在聲音裡面聆聽。」
+            </div>
+        </div>
+        <div class="Diving__mask" />
+
+        <div class="Diving__wrapper2">
+            <div class="Diving__wrapper2_text">
+                珊瑚礁正在哀唱，如煤礦坑裡的金絲雀。牠的衰弱不僅是牠生命的頹敗，更是海洋連結大氣變化的警示。當珊瑚礁完全死去，牠不再鮮豔、被藻類附生，如發霉腐爛的石塊，化為見證海洋受難的墓碑。但目前，牠們正正掙扎。艱困活著，等待聆聽。
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import { TweenMax } from 'gsap'
+
+export default {
+    data() {
+        return {}
+    },
+    mounted() {
+        const DivingMaskDOM = document.querySelector('.Diving__mask')
+        const DivingWrapperDOM = document.querySelector('.Diving__wrapper')
+        const DivingText2DOM = document.querySelector('.Diving__wrapper2_text')
+
+        // Declare Scene
+        const backgroundDarkScene = this.$scrollmagic
+            .scene({
+                // ID of element where animation starts
+                triggerElement: '#Diving',
+                // Where to start trigger from element top
+                offset: 0,
+                // {0,0.5,1} - animations starts from {top,center,end} of window
+                triggerHook: 0,
+                // Duration of animation
+                duration: 500,
+            })
+            .setPin(DivingWrapperDOM)
+
+            .on('progress', (e) => {
+                // this.maskOpacity = e.progress
+                DivingMaskDOM.style.opacity = e.progress
+
+                if (e.progress > 0.9) {
+                    DivingText2DOM.style.opacity = 1
+                } else {
+                    DivingText2DOM.style.opacity = 0
+                }
+            })
+        // .addIndicators({ name: 'backgroundDarkScene' })
+
+        this.$scrollmagic.addScene(backgroundDarkScene)
+    },
+}
+</script>
+
+<style lang="scss" scoped>
+.Diving {
+    position: relative;
+    background: black;
+
+    &__background {
+        // width: 100vw;
+        // height: 180vh;
+        overflow: hidden;
+        height: 100vh;
+        width: 100%;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 50% 50%;
+        }
+    }
+
+    &__mask {
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        right: 0;
+        position: absolute;
+        background: black;
+        opacity: 0;
+    }
+
+    &__wrapper {
+        &_text {
+            opacity: 1;
+            color: #fdffff;
+
+            font-size: 16px;
+            line-height: 180%;
+            /* or 29px */
+            text-align: justify;
+
+            position: absolute;
+            top: 4.82%;
+            left: 6.25%;
+
+            border-left: 1px solid white;
+            padding-left: 16px;
+
+            width: 240px;
+        }
+    }
+
+    &__wrapper2 {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &_text {
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            color: #fdffff;
+
+            font-size: 16px;
+            line-height: 180%;
+            /* or 29px */
+            text-align: justify;
+
+            max-width: 280px;
+            margin: 0 20px;
+        }
+    }
+
+    @include atSmall {
+        &__wrapper {
+            &_text {
+                top: 11.352%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 400px;
+
+                border-left: none;
+                padding-left: 0;
+                border-top: 1px solid white;
+                padding-top: 16px;
+            }
+        }
+
+        &__wrapper2 {
+            &_text {
+                max-width: none;
+                width: 402px;
+            }
+        }
+    }
+
+    @include atMedium {
+        &__wrapper {
+            &_text {
+                top: 28.571%;
+                left: 9.091%;
+
+                width: 427px;
+
+                border-top: none;
+                padding-top: 0;
+                transform: none;
+
+                border-left: 1px solid white;
+                padding-left: 16px;
+            }
+        }
+    }
+}
+</style>
