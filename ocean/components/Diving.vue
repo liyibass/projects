@@ -33,12 +33,6 @@
             </div>
         </div>
         <div class="Diving__mask" />
-
-        <div class="Diving__wrapper2">
-            <div class="Diving__wrapper2_text">
-                珊瑚礁正在哀唱，如煤礦坑裡的金絲雀。牠的衰弱不僅是牠生命的頹敗，更是海洋連結大氣變化的警示。當珊瑚礁完全死去，牠不再鮮豔、被藻類附生，如發霉腐爛的石塊，化為見證海洋受難的墓碑。但目前，牠們正正掙扎。艱困活著，等待聆聽。
-            </div>
-        </div>
     </div>
 </template>
 
@@ -52,8 +46,6 @@ export default {
     mounted() {
         const DivingMaskDOM = document.querySelector('.Diving__mask')
         const DivingWrapperDOM = document.querySelector('.Diving__wrapper')
-        const DivingWrapper2DOM = document.querySelector('.Diving__wrapper2')
-        const DivingText2DOM = document.querySelector('.Diving__wrapper2_text')
 
         // Declare Scene
         const backgroundDarkScene = this.$scrollmagic
@@ -65,34 +57,11 @@ export default {
                 // {0,0.5,1} - animations starts from {top,center,end} of window
                 triggerHook: 0,
                 // Duration of animation
-                duration: 500,
+                duration: 800,
             })
             .setPin(DivingWrapperDOM)
-            .on('enter', () => {
-                console.log('diving enter')
-            })
-            .on('leave', () => {
-                console.log('diving leave')
-            })
             .on('progress', (e) => {
-                // this.maskOpacity = e.progress
                 DivingMaskDOM.style.opacity = e.progress
-
-                // display!==none && opacity == 1 wont trigger transition
-                // need to seperate them
-                if (e.progress < 0.1) {
-                    DivingWrapper2DOM.style.display = 'none'
-                } else {
-                    DivingWrapper2DOM.style.display = 'flex'
-                }
-
-                if (e.progress > 0.9) {
-                    DivingWrapper2DOM.style.opacity = 1
-                } else {
-                    console.log(DivingWrapper2DOM.style.opacity)
-
-                    DivingWrapper2DOM.style.opacity = 0
-                }
             })
         // .addIndicators({ name: 'backgroundDarkScene' })
 
@@ -148,35 +117,6 @@ export default {
             padding-left: 16px;
 
             width: 240px;
-        }
-    }
-
-    &__wrapper2 {
-        opacity: 0;
-        transition: opacity 0.4s ease;
-
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-
-        display: none;
-        // display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-
-        &_text {
-            color: #fdffff;
-
-            font-size: 16px;
-            line-height: 180%;
-            /* or 29px */
-            text-align: justify;
-
-            max-width: 280px;
-            margin: 0 20px;
         }
     }
 

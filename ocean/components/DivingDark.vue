@@ -1,0 +1,92 @@
+<template>
+    <div class="DivingDark" id="DivingDark">
+        <div class="DivingDark__wrapper">
+            <div class="DivingDark__wrapper_text">
+                珊瑚礁正在哀唱，如煤礦坑裡的金絲雀。牠的衰弱不僅是牠生命的頹敗，更是海洋連結大氣變化的警示。當珊瑚礁完全死去，牠不再鮮豔、被藻類附生，如發霉腐爛的石塊，化為見證海洋受難的墓碑。但目前，牠們正正掙扎。艱困活著，等待聆聽。
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    mounted() {
+        const DivingDarkWrapperDOM = document.querySelector(
+            '.DivingDark__wrapper'
+        )
+
+        const DivingDarkTextScene = this.$scrollmagic
+            .scene({
+                // ID of element where animation starts
+                triggerElement: '#DivingDark',
+                // Where to start trigger from element top
+                offset: 0,
+                // {0,0.5,1} - animations starts from {top,center,end} of window
+                triggerHook: 0,
+                // Duration of animation
+                duration: 1000,
+            })
+            .on('enter', (e) => {
+                // this.maskOpacity = e.progress
+                DivingDarkWrapperDOM.style.opacity = 1
+            })
+            .on('leave', (e) => {
+                // this.maskOpacity = e.progress
+                DivingDarkWrapperDOM.style.opacity = 0
+            })
+            .on('leave', (e) => {
+                // this.maskOpacity = e.progress
+            })
+        // .addIndicators({ name: 'DivingDarkTextScene' })
+
+        this.$scrollmagic.addScene(DivingDarkTextScene)
+    },
+}
+</script>
+
+<style lang="scss" scoped>
+.DivingDark {
+    z-index: 107;
+    position: relative;
+    width: 100%;
+    height: 1000px;
+    background: black;
+
+    &__wrapper {
+        opacity: 0;
+        transition: opacity 0.4s ease;
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &_text {
+            color: #fdffff;
+
+            font-size: 16px;
+            line-height: 180%;
+            /* or 29px */
+            text-align: justify;
+
+            max-width: 280px;
+            margin: 0 20px;
+        }
+    }
+
+    @include atSmall {
+        &__wrapper2 {
+            &_text {
+                max-width: none;
+                width: 402px;
+            }
+        }
+    }
+}
+</style>

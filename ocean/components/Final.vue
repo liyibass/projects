@@ -78,6 +78,7 @@ export default {
 
 <style lang="scss" scoped>
 .Final {
+    z-index: 109;
     position: relative;
     background: black;
 

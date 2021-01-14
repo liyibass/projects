@@ -11,6 +11,7 @@
         <Stage />
         <Story />
         <Diving />
+        <DivingDark />
         <Video />
         <Final />
     </div>
@@ -23,6 +24,7 @@ import Beach from '~/components/Beach'
 import Stage from '~/components/Stage'
 import Story from '~/components/Story'
 import Diving from '~/components/Diving'
+import DivingDark from '~/components/DivingDark'
 import Video from '~/components/Video'
 import Final from '~/components/Final'
 export default {
@@ -33,6 +35,7 @@ export default {
         Stage,
         Story,
         Diving,
+        DivingDark,
         Video,
         Final,
     },

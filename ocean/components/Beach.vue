@@ -3,7 +3,7 @@
         class="Beach"
         id="Beach"
         ref="beachRef"
-        :style="{ height: `${BeachHeight}px` }"
+        :style="{ height: `${wrapperHeight}px` }"
     >
         <div class="Beach__fix_wrapper">
             <div class="Beach__background">
@@ -53,21 +53,12 @@ export default {
     data() {
         return {
             isPlayed: false,
-            BeachHeight: 'none',
+            wrapperHeight: 'none',
         }
     },
     async mounted() {
-        function fetchBeachHeight(beachThis) {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve(beachThis.$el.clientHeight)
-                }, 2000)
-            })
-        }
-
         const beachText1DOM = document.querySelector('.Beach__text1')
         const beachText2DOM = document.querySelector('.Beach__text2')
-        const beachFixWrapperDOM = document.querySelector('.Beach__fix_wrapper')
 
         const beachText1Scene = this.$scrollmagic
             .scene({
@@ -102,35 +93,43 @@ export default {
             })
         // .addIndicators({ name: 'beachScene' })
 
-        // record Beach's height, when fix wrapper is fixed,
-        // Beach can still maintain its original height
-        this.BeachHeight = await fetchBeachHeight(this)
+        // -------------------------------------------------------
+        // Handle fix component,hover by next component
+        // need to define data.wrapperHeight
+        // and assign it to parent's height
+        let fixWrapperDOM
+        const nextComponentClass = '.Stage'
+        const currentComponentWrapperClass = '.Beach__fix_wrapper'
 
-        const fixBeachScene = this.$scrollmagic
+        const fixAndHoverScene = this.$scrollmagic
             .scene({
-                triggerElement: '#Stage',
+                triggerElement: nextComponentClass,
                 offset: 0,
                 triggerHook: 1,
                 duration: 1000,
             })
             .on('enter', (e) => {
-                console.log('Beach fixed')
-                console.log(this.BeachHeight)
-                beachFixWrapperDOM.style.position = 'fixed'
-                beachFixWrapperDOM.style.bottom = '0px'
+                fixWrapperDOM = document.querySelector(
+                    currentComponentWrapperClass
+                )
+                // get wrapper's height,then assign to parient
+                this.wrapperHeight = fixWrapperDOM.clientHeight
+                // fix css
+                fixWrapperDOM.style.position = 'fixed'
+                fixWrapperDOM.style.bottom = '0px'
             })
-
             .on('leave', (e) => {
-                console.log('Beach unfixed')
-                console.log(this.BeachHeight)
-                beachFixWrapperDOM.style.position = 'relative'
+                // unfix css
+                fixWrapperDOM.style.position = 'relative'
             })
-        // .addIndicators({ name: 'fixBeachScene' })
+        // .addIndicators({ name: 'fixStoryScene' })
+
+        // -------------------------------------------------------
 
         this.$scrollmagic.addScene([
             beachText1Scene,
             beachText2Scene,
-            fixBeachScene,
+            fixAndHoverScene,
         ])
     },
 }
