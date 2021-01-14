@@ -21,15 +21,15 @@ export default {
 
     padding-left: 1rem;
     border-left: 1px solid #b3b3b3;
-    margin: 12px 20px;
+    margin: 0px 20px 12px;
 
     @include atSmall {
         font-size: 24px;
-        margin: 24px 40px;
+        margin: 0px 40px 24px;
     }
 
     @include atMedium {
-        margin: 60px 40px 32px;
+        margin: 0px 40px 32px;
     }
 }
 </style>

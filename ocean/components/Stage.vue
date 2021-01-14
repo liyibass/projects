@@ -4,7 +4,7 @@
             <picture>
                 <source
                     media="(min-width:760px)"
-                    srcset="../assets/images/5.jpg"
+                    srcset="../assets/images/5.png"
                     alt="ocean"
                 />
                 <source

@@ -1,6 +1,6 @@
 <template>
     <div class="ArticleCarousel">
-        <vueper-slides
+        <!-- <vueper-slides
             ref="myVueperSlides"
             autoplay
             :pauseOnHover="true"
@@ -17,6 +17,24 @@
                 :image="image.imageUrl"
                 :content="image.comment"
             />
+        </vueper-slides> -->
+        <vueper-slides
+            lazy
+            lazy-load-on-drag
+            autoplay
+            :slideRatio="1 / 2"
+            :pauseOnHover="true"
+            :arrows="false"
+        >
+            <vueper-slide
+                v-for="(slide, i) in images"
+                :key="i"
+                :image="slide.imageUrl"
+            >
+                <template v-slot:loader>
+                    <span>Loading...</span>
+                </template>
+            </vueper-slide>
         </vueper-slides>
     </div>
 </template>
