@@ -2,11 +2,7 @@
     <div class="ArticleIframe">
         <div class="ArticleIframe__iframe" ref="iframeRef">
             <!-- <img :src="imageUrl" :alt="comment" /> -->
-            <iframe
-                :src="iframeUrl"
-                frameborder="0"
-                :height="iframeHeight"
-            ></iframe>
+            <iframe :src="iframeUrl" frameborder="0" height="100%"></iframe>
         </div>
 
         <div class="ArticleIframe__comment">

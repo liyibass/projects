@@ -404,7 +404,7 @@ export default {
                 degreeRulerDOM.style.position = 'absolute'
             })
 
-        // .addIndicators({ name: 'yearAudioScene' })
+            .addIndicators({ name: 'yearAudioScene' })
 
         this.$scrollmagic.addScene(yearAudioScene)
     },
