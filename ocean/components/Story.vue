@@ -413,6 +413,7 @@ export default {
 
 <style lang="scss" scoped>
 .Story {
+    z-index: 105;
     position: relative;
     background: white;
     padding-bottom: 36px;

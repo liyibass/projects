@@ -71,6 +71,7 @@ export default {
 
 <style lang="scss" scoped>
 .VolumeHint {
+    z-index: 101;
     position: relative;
     height: 100vh;
     background: black;
@@ -108,6 +109,7 @@ export default {
         height: 10px;
         position: absolute;
         bottom: 0;
+        z-index: -1;
     }
 }
 </style>

@@ -43,8 +43,9 @@ export default {
     mounted() {
         // const beachDOM = this.$refs.stageRef.previousElementSibling
         const stageDOM = document.querySelector('.Stage')
-        // const beachDOM = document.querySelector('.Beach')
+        const beachDOM = document.querySelector('.Beach')
         const stageBackgroundDOM = document.querySelector('.Stage__background')
+
         const stageScene = this.$scrollmagic
             .scene({
                 triggerElement: '.Stage',
@@ -56,28 +57,22 @@ export default {
             .on('enter', () => {
                 console.log('fix')
                 stageBackgroundDOM.style.bottom = 0
-                // stageBackgroundDOM.style.top = 'auto'
-                // stageDOM.style.opacity = 0.5
-                // stageBackgroundDOM.style.position = 'fixed'
-                // stageBackgroundDOM.style.bottom = 0
             })
 
             .on('leave', () => {
                 console.log('unfix')
                 stageBackgroundDOM.style.bottom = '-150px'
-
-                // stageBackgroundDOM.style.position = 'relative'
             })
         // .addIndicators({ name: 'stageScene' })
-        this.$scrollmagic.addScene(stageScene)
+        this.$scrollmagic.addScene([stageScene])
     },
 }
 </script>
 
 <style lang="scss" scoped>
 .Stage {
+    z-index: 104;
     position: relative;
-    z-index: 0;
     background: white;
     height: 100vh;
     overflow: hidden;

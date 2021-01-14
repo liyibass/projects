@@ -109,4 +109,19 @@ export default {
     styleResources: {
         scss: ['./assets/scss/*.scss'],
     },
+
+    generate: {
+        subFolders: false,
+    },
+    router: {
+        mode: 'history',
+        base: SITE_BASE,
+
+        extendRoutes(routes) {
+            routes.push({
+                path: '/index.html/',
+                redirect: '/',
+            })
+        },
+    },
 }

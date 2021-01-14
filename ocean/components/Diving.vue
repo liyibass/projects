@@ -52,6 +52,7 @@ export default {
     mounted() {
         const DivingMaskDOM = document.querySelector('.Diving__mask')
         const DivingWrapperDOM = document.querySelector('.Diving__wrapper')
+        const DivingWrapper2DOM = document.querySelector('.Diving__wrapper2')
         const DivingText2DOM = document.querySelector('.Diving__wrapper2_text')
 
         // Declare Scene
@@ -67,15 +68,30 @@ export default {
                 duration: 500,
             })
             .setPin(DivingWrapperDOM)
-
+            .on('enter', () => {
+                console.log('diving enter')
+            })
+            .on('leave', () => {
+                console.log('diving leave')
+            })
             .on('progress', (e) => {
                 // this.maskOpacity = e.progress
                 DivingMaskDOM.style.opacity = e.progress
 
-                if (e.progress > 0.9) {
-                    DivingText2DOM.style.opacity = 1
+                // display!==none && opacity == 1 wont trigger transition
+                // need to seperate them
+                if (e.progress < 0.1) {
+                    DivingWrapper2DOM.style.display = 'none'
                 } else {
-                    DivingText2DOM.style.opacity = 0
+                    DivingWrapper2DOM.style.display = 'flex'
+                }
+
+                if (e.progress > 0.9) {
+                    DivingWrapper2DOM.style.opacity = 1
+                } else {
+                    console.log(DivingWrapper2DOM.style.opacity)
+
+                    DivingWrapper2DOM.style.opacity = 0
                 }
             })
         // .addIndicators({ name: 'backgroundDarkScene' })
@@ -87,6 +103,7 @@ export default {
 
 <style lang="scss" scoped>
 .Diving {
+    z-index: 106;
     position: relative;
     background: black;
 
@@ -135,20 +152,22 @@ export default {
     }
 
     &__wrapper2 {
+        opacity: 0;
+        transition: opacity 0.4s ease;
+
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100vh;
 
-        display: flex;
+        display: none;
+        // display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
 
         &_text {
-            opacity: 0;
-            transition: opacity 0.4s ease;
             color: #fdffff;
 
             font-size: 16px;

@@ -73,7 +73,7 @@ export default {
         transform: scale(1);
     }
 
-    50%{
+    20%{
         transform: scale(1.3);
 
     }

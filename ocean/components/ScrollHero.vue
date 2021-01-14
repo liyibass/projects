@@ -74,7 +74,20 @@ export default {
             })
             .on('progress', (e) => {
                 ScrollHeroTitleDOM.style.opacity = -e.progress + 1
+
+                // switch (e.progress) {
+                //     case 0:
+                //         ScrollHeroTitleDOM.style.display = 'block'
+                //         break
+
+                //     case 1:
+                //         ScrollHeroTitleDOM.style.display = 'none'
+                //         break
+                //     default:
+                //         break
+                // }
             })
+
         // .addIndicators({ name: 'titleFadeScene' })
 
         this.$scrollmagic.addScene([backgroundDarkScene, titleFadeScene])
@@ -84,6 +97,7 @@ export default {
 
 <style lang="scss" scoped>
 .ScrollHero {
+    z-index: 100;
     position: relative;
     background: black;
 
@@ -136,6 +150,7 @@ export default {
         // background: gold;
         width: 100%;
         height: 10px;
+        z-index: -1;
     }
 }
 </style>

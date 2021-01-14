@@ -1,41 +1,48 @@
 <template>
-    <div class="Beach" id="Beach" ref="beachRef">
-        <div class="Beach__background">
-            <picture>
-                <source
-                    media="(min-width:760px)"
-                    srcset="../assets/images/3.jpg"
-                    alt="ocean"
-                />
-                <source
-                    media="(min-width:480px)"
-                    srcset="
-                        ../assets/images/pad/3@1x.png 1x,
-                        ../assets/images/pad/3@2x.png 2x
-                    "
-                    alt="ocean"
-                />
+    <div
+        class="Beach"
+        id="Beach"
+        ref="beachRef"
+        :style="{ height: `${BeachHeight}px` }"
+    >
+        <div class="Beach__fix_wrapper">
+            <div class="Beach__background">
+                <picture>
+                    <source
+                        media="(min-width:760px)"
+                        srcset="../assets/images/3.jpg"
+                        alt="ocean"
+                    />
+                    <source
+                        media="(min-width:480px)"
+                        srcset="
+                            ../assets/images/pad/3@1x.png 1x,
+                            ../assets/images/pad/3@2x.png 2x
+                        "
+                        alt="ocean"
+                    />
 
-                <img
-                    srcset="
-                        ../assets/images/mobile/3@1x.png 1x,
-                        ../assets/images/mobile/3@2x.png 2x,
-                        ../assets/images/mobile/3@3x.png 3x
-                    "
-                    alt="ocean"
-                />
-            </picture>
-        </div>
+                    <img
+                        srcset="
+                            ../assets/images/mobile/3@1x.png 1x,
+                            ../assets/images/mobile/3@2x.png 2x,
+                            ../assets/images/mobile/3@3x.png 3x
+                        "
+                        alt="ocean"
+                    />
+                </picture>
+            </div>
 
-        <div class="Beach__text1">
-            「妳注意過電影如何呈現人類在水下聽見的聲音嗎？」聲音藝術家Yannick
-            Dauby
-            說：「總是咕嚕咕嚕。」但那是不正確的，「咕嚕咕嚕是人背著氣瓶下水時發出的呼息，而非海洋的聲音。」
-        </div>
-        <div class="Beach__text2">
-            <div class="Beach__text2_content">
-                Yannick
-                領我走進書房，點開電腦中的音檔，房間隨後環繞一塊油脂豐滿的三層肉在鍋裡煎熬的劈啪聲響。然那並非油花彈跳，而是他利用特製水下錄音器材捕捉到的槍蝦聲音。
+            <div class="Beach__text1">
+                「妳注意過電影如何呈現人類在水下聽見的聲音嗎？」聲音藝術家Yannick
+                Dauby
+                說：「總是咕嚕咕嚕。」但那是不正確的，「咕嚕咕嚕是人背著氣瓶下水時發出的呼息，而非海洋的聲音。」
+            </div>
+            <div class="Beach__text2">
+                <div class="Beach__text2_content">
+                    Yannick
+                    領我走進書房，點開電腦中的音檔，房間隨後環繞一塊油脂豐滿的三層肉在鍋裡煎熬的劈啪聲響。然那並非油花彈跳，而是他利用特製水下錄音器材捕捉到的槍蝦聲音。
+                </div>
             </div>
         </div>
     </div>
@@ -46,11 +53,21 @@ export default {
     data() {
         return {
             isPlayed: false,
+            BeachHeight: 'none',
         }
     },
-    mounted() {
+    async mounted() {
+        function fetchBeachHeight(beachThis) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve(beachThis.$el.clientHeight)
+                }, 2000)
+            })
+        }
+
         const beachText1DOM = document.querySelector('.Beach__text1')
         const beachText2DOM = document.querySelector('.Beach__text2')
+        const beachFixWrapperDOM = document.querySelector('.Beach__fix_wrapper')
 
         const beachText1Scene = this.$scrollmagic
             .scene({
@@ -85,14 +102,43 @@ export default {
             })
         // .addIndicators({ name: 'beachScene' })
 
-        this.$scrollmagic.addScene([beachText1Scene, beachText2Scene])
+        // record Beach's height, when fix wrapper is fixed,
+        // Beach can still maintain its original height
+        this.BeachHeight = await fetchBeachHeight(this)
+
+        const fixBeachScene = this.$scrollmagic
+            .scene({
+                triggerElement: '#Stage',
+                offset: 0,
+                triggerHook: 1,
+                duration: 1000,
+            })
+            .on('enter', (e) => {
+                console.log('Beach fixed')
+                console.log(this.BeachHeight)
+                beachFixWrapperDOM.style.position = 'fixed'
+                beachFixWrapperDOM.style.bottom = '0px'
+            })
+
+            .on('leave', (e) => {
+                console.log('Beach unfixed')
+                console.log(this.BeachHeight)
+                beachFixWrapperDOM.style.position = 'relative'
+            })
+        // .addIndicators({ name: 'fixBeachScene' })
+
+        this.$scrollmagic.addScene([
+            beachText1Scene,
+            beachText2Scene,
+            fixBeachScene,
+        ])
     },
 }
 </script>
 
 <style lang="scss" scoped>
 .Beach {
-    z-index: 1;
+    z-index: 103;
     position: relative;
     background: white;
 
@@ -135,12 +181,16 @@ export default {
         border-top: 2px solid rgb(214, 214, 214);
         border-bottom: 2px solid rgb(214, 214, 214);
         padding: 1rem 4px;
-        margin: 32px 20px;
+        margin: 32px 20px 0px;
 
         width: auto;
         &_content {
             width: 100%;
         }
+    }
+
+    &__fix_wrapper {
+        padding-bottom: 32px;
     }
 
     @include atSmall {
@@ -155,9 +205,13 @@ export default {
             color: #4d4d4d;
 
             padding: 24px 60px;
-            margin: 48px 84px;
+            margin: 48px 84px 0px;
             &_content {
             }
+        }
+
+        &__fix_wrapper {
+            padding-bottom: 48px;
         }
     }
 
