@@ -90,21 +90,6 @@ export default {
     position: relative;
     background: black;
 
-    &__background {
-        // width: 100vw;
-        // height: 180vh;
-        overflow: hidden;
-        height: 100vh;
-        width: 100%;
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: 50% 50%;
-        }
-    }
-
     &__mask {
         z-index: 0;
         width: 100%;
@@ -117,6 +102,18 @@ export default {
     }
 
     &__wrapper {
+        &_background {
+            overflow: hidden;
+            height: 100vh;
+            width: 100%;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: 50% 50%;
+            }
+        }
         &_text {
             opacity: 1;
             color: #fdffff;

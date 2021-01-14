@@ -1,12 +1,13 @@
 <template>
     <div>
-        <!-- <ScrollHero /> -->
-        <!-- <VolumeHint /> -->
+        <ScrollHero />
+        <VolumeHint />
         <Beach />
-        <!-- <Stage /> -->
-        <!-- <Story /> -->
+        <Stage />
+        <Story />
         <Diving />
-        <Beach />
+        <Video />
+        <Final />
     </div>
 </template>
 
@@ -17,6 +18,8 @@ import Beach from '~/components/Beach'
 import Stage from '~/components/Stage'
 import Story from '~/components/Story'
 import Diving from '~/components/Diving'
+import Video from '~/components/Video'
+import Final from '~/components/Final'
 export default {
     components: {
         ScrollHero,
@@ -25,6 +28,8 @@ export default {
         Stage,
         Story,
         Diving,
+        Video,
+        Final,
     },
 }
 </script>
