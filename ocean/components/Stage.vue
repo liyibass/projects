@@ -51,7 +51,7 @@ export default {
                 triggerElement: '.Stage',
                 offset: 0,
                 triggerHook: 0,
-                duration: 2000,
+                duration: 3000,
             })
             .setPin(stageDOM)
             .on('enter', () => {

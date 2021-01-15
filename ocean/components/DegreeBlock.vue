@@ -12,7 +12,6 @@ export default {
 
     mounted() {
         this.$el.addEventListener('transitionend', (e) => {
-            console.log('transitionEnd')
             e.target.classList.add('zoom')
             setTimeout(() => {
                 e.target.classList.remove('zoom')

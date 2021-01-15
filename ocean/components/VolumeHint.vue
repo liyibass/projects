@@ -5,7 +5,7 @@
                 <VolumeIcon />
             </div>
             <div class="VolumeHint__content_text">
-                請開啟聲音<br />
+                請點擊圖示開啟聲音<br />
                 獲得最佳閱讀體驗
             </div>
         </div>

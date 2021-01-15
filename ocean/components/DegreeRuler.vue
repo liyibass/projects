@@ -2,8 +2,8 @@
     <div class="DegreeRuler">
         <div class="DegreeRuler__railway" ref="railwayRef">
             <DegreeBlock
-                :year="degreeList[audioIndex].year"
-                :degree="degreeList[audioIndex].degree"
+                :year="yearDegreeList[audioIndex].year"
+                :degree="yearDegreeList[audioIndex].degree"
                 :style="{
                     top: `${(railwayInterval + 52) *
                         audioIndex *
@@ -13,7 +13,7 @@
 
             <div
                 class="DegreeRuler__scale_block"
-                v-for="(degreeBlock, index) in degreeList"
+                v-for="(degreeBlock, index) in yearDegreeList"
                 :key="index"
             >
                 <div class="normal_bar" />
@@ -26,9 +26,11 @@
 
 <script>
 import DegreeBlock from '~/components/DegreeBlock'
+import yearDegreeMixin from '~/mixins/yearDegreeMixin'
 
 export default {
     props: ['audioIndex'],
+    mixins: [yearDegreeMixin],
 
     components: {
         DegreeBlock,
@@ -36,28 +38,6 @@ export default {
 
     data() {
         return {
-            degreeList: [
-                {
-                    year: '1958',
-                    degree: '26',
-                },
-                {
-                    year: '1990',
-                    degree: '27',
-                },
-                {
-                    year: '2020',
-                    degree: '29',
-                },
-                {
-                    year: '2050',
-                    degree: '31',
-                },
-                {
-                    year: '2077',
-                    degree: '77',
-                },
-            ],
             railwayInterval: 100,
             isNotMobile: 1,
         }
@@ -65,8 +45,9 @@ export default {
 
     mounted() {
         const railwayLength = this.$refs.railwayRef.clientHeight
+        const scaleCount = this.yearDegreeList.length
         const railwayInterval =
-            (railwayLength - 5 * 52) / (this.degreeList.length - 1)
+            (railwayLength - scaleCount * 52) / (scaleCount - 1)
 
         this.railwayInterval = railwayInterval
 
