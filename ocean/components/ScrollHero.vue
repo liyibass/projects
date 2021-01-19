@@ -97,7 +97,7 @@ export default {
 
 <style lang="scss" scoped>
 .ScrollHero {
-    z-index: 100;
+    // z-index: 100;
     position: relative;
     background: black;
 

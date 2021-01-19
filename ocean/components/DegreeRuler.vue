@@ -2,11 +2,11 @@
     <div class="DegreeRuler">
         <div class="DegreeRuler__railway" ref="railwayRef">
             <DegreeBlock
-                :year="yearDegreeList[audioIndex].year"
-                :degree="yearDegreeList[audioIndex].degree"
+                :year="yearDegreeList[scaleIndex].year"
+                :degree="yearDegreeList[scaleIndex].degree"
                 :style="{
                     top: `${(railwayInterval + 52) *
-                        audioIndex *
+                        scaleIndex *
                         isNotMobile}px`,
                 }"
             />
@@ -29,7 +29,7 @@ import DegreeBlock from '~/components/DegreeBlock'
 import yearDegreeMixin from '~/mixins/yearDegreeMixin'
 
 export default {
-    props: ['audioIndex'],
+    props: ['scaleIndex'],
     mixins: [yearDegreeMixin],
 
     components: {

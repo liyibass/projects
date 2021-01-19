@@ -29,10 +29,12 @@ export default {
             .on('enter', (e) => {
                 // this.maskOpacity = e.progress
                 DivingDarkWrapperDOM.style.opacity = 1
+                DivingDarkWrapperDOM.style.zIndex = 107
             })
             .on('leave', (e) => {
                 // this.maskOpacity = e.progress
                 DivingDarkWrapperDOM.style.opacity = 0
+                DivingDarkWrapperDOM.style.zIndex = -1
             })
             .on('leave', (e) => {
                 // this.maskOpacity = e.progress
@@ -46,7 +48,7 @@ export default {
 
 <style lang="scss" scoped>
 .DivingDark {
-    z-index: 107;
+    z-index: -1;
     position: relative;
     width: 100%;
     height: 1000px;

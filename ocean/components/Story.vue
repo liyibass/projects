@@ -5,10 +5,10 @@
         ref="storyRef"
         :style="{ height: `${wrapperHeight}px` }"
     >
-        <!-- <div class="audioIndex">
-            {{ currentAudioIndex }}
+        <!-- <div class="scaleIndex">
+            {{ currentScaleIndex }}
         </div> -->
-        <DegreeRuler :audioIndex="currentAudioIndex" />
+        <DegreeRuler :scaleIndex="currentScaleIndex" />
         <div class="Story__fix_wrapper">
             <div class="Story__wrapper">
                 <ArticleSubTitle title="澎湖的海 是他童年的夢" />
@@ -242,7 +242,7 @@
                 <div class="ArticleParagraph">
                     初步分析，今年副熱帶高壓偏強與全球海溫異常有關，因人類排碳所多出來的熱，90%
                     都被海吸收。據 NOAA統計，目前大氣中二氧化碳濃度已達
-                    411ppm。迄2017年止，人為導致的暖化已達工業化前水平約
+                    411ppm。迄 2017 年止，人為導致的暖化已達工業化前水平約
                     1°C。而台灣平均升溫是 1.4℃，高於全球。
                 </div>
 
@@ -302,6 +302,7 @@ import image17_2 from '~/assets/images/17-2.jpg'
 import image17_3 from '~/assets/images/17-3.jpg'
 
 import { fetchHeight } from '../utils/fetchDom'
+import yearDegreeMixin from '~/mixins/yearDegreeMixin'
 
 export default {
     components: {
@@ -312,12 +313,13 @@ export default {
         ArticleIframe,
         DegreeRuler,
     },
+    mixins: [yearDegreeMixin],
 
     data() {
         return {
             storyHeight: 7000,
             wrapperHeight: 'none',
-            currentAudioIndex: 0,
+            currentScaleIndex: 0,
             audioList: ['audio1', 'audio2', 'audio3', 'audio4', 'audio5'],
 
             image11,
@@ -379,8 +381,8 @@ export default {
         const degreeRulerDOM = document.querySelector('.DegreeRuler')
 
         const storyHeight = await fetchHeight(this)
-        const audioCount = this.audioList.length
-        const interval = 1 / audioCount
+        const scaleCount = this.yearDegreeList.length
+        const interval = 1 / scaleCount
         // ex: if there's 5 audio, interval = 0.2
         // and current progress is 0.3
         // then audio index = 0.3 / 0.2 = 1 (2nd audio)
@@ -393,12 +395,12 @@ export default {
                 duration: storyHeight,
             })
             .on('progress', (e) => {
-                const audioIndex = Math.round(e.progress / interval)
-                if (audioIndex === this.currentAudioIndex) return
+                const scaleIndex = Math.round(e.progress / interval)
+                if (scaleIndex === this.currentScaleIndex) return
 
                 // set to max if overflow
-                this.currentAudioIndex =
-                    audioIndex < audioCount ? audioIndex : audioCount - 1
+                this.currentScaleIndex =
+                    scaleIndex < scaleCount ? scaleIndex : scaleCount - 1
             })
             .on('enter', (e) => {
                 degreeRulerDOM.style.position = 'fixed'
@@ -519,7 +521,7 @@ export default {
     }
 }
 
-// .audioIndex {
+// .scaleIndex {
 //     width: 20px;
 //     height: 20px;
 //     position: fixed;

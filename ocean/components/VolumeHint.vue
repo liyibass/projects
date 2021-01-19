@@ -1,24 +1,46 @@
 <template>
     <div class="VolumeHint" id="VolumeHint">
-        <div class="VolumeHint__content">
-            <div class="VolumeHint__content_icon">
-                <VolumeIcon />
+        <div class="VolumeHint__content" v-if="isMuted">
+            <div class="VolumeHint__content_icon" @click="volumeHandler">
+                <img src="~/assets/images/icon_mute_120x120.svg" alt="" />
+                <!-- <VolumeIcon /> -->
             </div>
+
             <div class="VolumeHint__content_text">
                 請點擊圖示開啟聲音<br />
                 獲得最佳閱讀體驗
             </div>
         </div>
 
+        <div class="VolumeHint__content" v-else>
+            <div class="VolumeHint__content_text">
+                閱讀過程中<br />點選圖示可關閉聲音
+            </div>
+        </div>
+
+        <VolumeNavbar v-if="!isMuted" />
+
         <div class="VolumeHint__anchor" />
     </div>
 </template>
 
 <script>
-import VolumeIcon from '../components/VolumeIcon'
+import VolumeNavbar from '../components/VolumeNavbar'
+import iconMuteBig from '~/assets/images/icon_mute_120x120.svg'
+
 export default {
     components: {
-        VolumeIcon,
+        VolumeNavbar,
+    },
+    data() {
+        return {
+            isMuted: true,
+        }
+    },
+    methods: {
+        volumeHandler() {
+            this.isMuted = !this.isMuted
+        },
     },
     mounted() {
         const volumeHintContentDOM = document.querySelector(
@@ -71,7 +93,6 @@ export default {
 
 <style lang="scss" scoped>
 .VolumeHint {
-    z-index: 101;
     position: relative;
     height: 100vh;
     background: black;
@@ -93,10 +114,17 @@ export default {
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
 
         &_icon {
             width: 120px;
             height: 120px;
+
+            cursor: pointer;
+
+            img {
+                width: 100%;
+            }
         }
         &_text {
             margin-top: 8px;
