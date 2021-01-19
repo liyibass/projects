@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <VolumeNavbar v-if="!isMuted" />
+        <VolumeNavbar v-if="!isMuted" :forceShowIcon="forceShowIcon" />
 
         <div class="VolumeHint__anchor" />
     </div>
@@ -35,6 +35,7 @@ export default {
     data() {
         return {
             isMuted: true,
+            forceShowIcon: true,
         }
     },
     methods: {
@@ -57,6 +58,10 @@ export default {
             .on('progress', (e) => {
                 volumeHintContentDOM.style.opacity = e.progress
                 // ScrollHeroMaskDom.style.opacity = e.progress
+            })
+            // Handle force show VolumeNavbar(set this.forceShowIcon flag to true)
+            .on('enter', () => {
+                this.forceShowIcon = true
             })
 
         // .addIndicators({ name: 'volumeHintScene' })
@@ -83,6 +88,11 @@ export default {
                     default:
                         break
                 }
+            })
+            // Handle force show VolumeNavbar(set this.forceShowIcon flag to false)
+            .on('leave', () => {
+                console.log('leave')
+                this.forceShowIcon = false
             })
         // .addIndicators({ name: 'volumeHintFixScene' })
 

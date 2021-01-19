@@ -12,15 +12,17 @@ export default {
     components: {
         VolumeIcon,
     },
+
+    props: ['forceShowIcon'],
     data() {
         return {
-            direction: 'down',
+            direction: 'up',
         }
     },
 
     computed: {
         getTopHeight() {
-            if (this.direction === 'down') {
+            if (this.direction === 'down' && this.forceShowIcon === false) {
                 return '-64px'
             } else {
                 return '16px'
