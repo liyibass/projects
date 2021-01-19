@@ -433,6 +433,7 @@ export default {
                 this.wrapperHeight = fixWrapperDOM.clientHeight
                 // fix css
                 fixWrapperDOM.style.position = 'fixed'
+                fixWrapperDOM.style.width = '100%'
                 fixWrapperDOM.style.bottom = '0px'
             })
             .on('leave', (e) => {

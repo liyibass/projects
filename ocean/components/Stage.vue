@@ -1,26 +1,26 @@
 <template>
     <div class="Stage" id="Stage" ref="stageRef">
-        <div class="Stage__background">
+        <div class="Stage__background" ref="stageBackgroundRef">
             <picture>
                 <source
                     media="(min-width:760px)"
-                    srcset="../static/images/5.png"
+                    srcset="@/static/images/5.png"
                     alt="ocean"
                 />
                 <source
                     media="(min-width:480px)"
                     srcset="
-                        ../static/images/pad/5@1x.png 1x,
-                        ../static/images/pad/5@2x.png 2x
+                        @/static/images/pad/5@1x.png 1x,
+                        @/static/images/pad/5@2x.png 2x
                     "
                     alt="ocean"
                 />
 
                 <img
                     srcset="
-                        ../static/images/mobile/5@1x.png 1x,
-                        ../static/images/mobile/5@2x.png 2x,
-                        ../static/images/mobile/5@3x.png 3x
+                        @/static/images/mobile/5@1x.png 1x,
+                        @/static/images/mobile/5@2x.png 2x,
+                        @/static/images/mobile/5@3x.png 3x
                     "
                     alt="ocean"
                 />
@@ -43,11 +43,12 @@ export default {
     },
     data() {
         return {
-            marginTop: 100,
+            moveDistance: 100,
             mainPinList: [
                 {
                     id: 1,
-                    image: '../static/images/6-1@1x.png',
+                    size: 'Pin__small',
+                    image: '6-1',
                     name: '槍蝦',
                     englishName: 'Snapping shrimp',
                     audioUrl: '',
@@ -56,6 +57,7 @@ export default {
                 },
                 {
                     id: 2,
+                    size: 'Pin__large',
                     image: '6-2',
                     name: '金鱗魚',
                     englishName: 'Soldierfish',
@@ -65,6 +67,7 @@ export default {
                 },
                 {
                     id: 3,
+                    size: 'Pin__mid',
                     image: '6-3',
                     name: '雀鯛',
                     englishName: 'Demselfish',
@@ -90,13 +93,23 @@ export default {
             })
             .setPin(stageDOM)
             .on('enter', () => {
+                // Fetch moving distance
+                const screenHeight = window.screen.height
+                const backgroundImageHeight = this.$refs.stageBackgroundRef
+                    .clientHeight
+
+                this.moveDistance = backgroundImageHeight - screenHeight
+
                 console.log('fix')
-                stageBackgroundDOM.style.bottom = 0
+                stageBackgroundDOM.style.bottom = `-${this.moveDistance}px`
             })
 
             .on('leave', () => {
                 console.log('unfix')
-                stageBackgroundDOM.style.bottom = '-150px'
+                // stageBackgroundDOM.style.bottom = 'initial'
+                stageBackgroundDOM.style.bottom = '0px'
+
+                // stageBackgroundDOM.style.top = '0px'
             })
         // .addIndicators({ name: 'stageScene' })
         this.$scrollmagic.addScene([stageScene])
@@ -108,16 +121,22 @@ export default {
 .Stage {
     z-index: 104;
     position: relative;
-    background: white;
+    // background: white;
     height: 100vh;
     overflow: hidden;
 
-    &__background {
-        position: absolute;
-        width: 100%;
-        bottom: -150px;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: stretch;
+    // justify-content: flex-start;
 
-        transition: all 1s ease;
+    &__background {
+        width: 100%;
+        transition: all 2s ease;
+        position: absolute;
+        // top: 0;
+        bottom: 0px;
+
         img {
             width: 100%;
         }
