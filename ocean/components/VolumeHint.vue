@@ -2,7 +2,7 @@
     <div class="VolumeHint" id="VolumeHint">
         <div class="VolumeHint__content" v-if="isMuted">
             <div class="VolumeHint__content_icon" @click="volumeHandler">
-                <img src="~/assets/images/icon_mute_120x120.svg" alt="" />
+                <img src="~/static/images/icon_mute_120x120.svg" alt="" />
                 <!-- <VolumeIcon /> -->
             </div>
 
@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import VolumeNavbar from '../components/VolumeNavbar'
-import iconMuteBig from '~/assets/images/icon_mute_120x120.svg'
+import VolumeNavbar from '~/components/VolumeNavbar'
+import iconMuteBig from '~/static/images/icon_mute_120x120.svg'
 
 export default {
     components: {

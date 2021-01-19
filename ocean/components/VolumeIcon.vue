@@ -18,16 +18,16 @@
 </template>
 
 <script>
-import volume1 from '~/assets/images/icon_volume_1@1x.svg'
-import volume2 from '~/assets/images/icon_volume_2@1x.svg'
-import volume3 from '~/assets/images/icon_volume_3@1x.svg'
+import volume1 from '~/static/images/icon_volume_1@1x.svg'
+import volume2 from '~/static/images/icon_volume_2@1x.svg'
+import volume3 from '~/static/images/icon_volume_3@1x.svg'
 
-import iconMute from '~/assets/images/icon_mute_48x48.svg'
-import iconMuteBig from '~/assets/images/icon_mute_120x120.svg'
-import iconVolume from '~/assets/images/icon_volume_120x120.svg'
-import iconVolume1 from '~/assets/images/icon_volume_1_48x48.svg'
-import iconVolume2 from '~/assets/images/icon_volume_2_48x48.svg'
-import iconVolume3 from '~/assets/images/icon_volume_3_48x48.svg'
+import iconMute from '~/static/images/icon_mute_48x48.svg'
+import iconMuteBig from '~/static/images/icon_mute_120x120.svg'
+import iconVolume from '~/static/images/icon_volume_120x120.svg'
+import iconVolume1 from '~/static/images/icon_volume_1_48x48.svg'
+import iconVolume2 from '~/static/images/icon_volume_2_48x48.svg'
+import iconVolume3 from '~/static/images/icon_volume_3_48x48.svg'
 
 export default {
     data() {

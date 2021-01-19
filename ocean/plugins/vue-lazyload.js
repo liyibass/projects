@@ -1,7 +1,7 @@
 // plugins/vue-lazyload.js
 import VueLazyload from 'vue-lazyload'
 import Vue from 'vue'
-// const loadimage = require('~/assets/images/loading.gif')
+// const loadimage = require('~/static/images/loading.gif')
 
 Vue.use(VueLazyload, {
     preLoad: 1.3,

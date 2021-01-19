@@ -2,7 +2,7 @@
     <div>
         <transition name="fade">
             <div class="loadingMask" v-if="isLoading">
-                <img src="~/assets/images/loading.gif" alt="" />
+                <img src="~/static/images/loading.gif" alt="" />
             </div>
         </transition>
         <ScrollHero />

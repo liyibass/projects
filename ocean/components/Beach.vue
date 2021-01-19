@@ -10,23 +10,23 @@
                 <picture>
                     <source
                         media="(min-width:760px)"
-                        srcset="../assets/images/3.jpg"
+                        srcset="../static/images/3.jpg"
                         alt="ocean"
                     />
                     <source
                         media="(min-width:480px)"
                         srcset="
-                            ../assets/images/pad/3@1x.png 1x,
-                            ../assets/images/pad/3@2x.png 2x
+                            ../static/images/pad/3@1x.png 1x,
+                            ../static/images/pad/3@2x.png 2x
                         "
                         alt="ocean"
                     />
 
                     <img
                         srcset="
-                            ../assets/images/mobile/3@1x.png 1x,
-                            ../assets/images/mobile/3@2x.png 2x,
-                            ../assets/images/mobile/3@3x.png 3x
+                            ../static/images/mobile/3@1x.png 1x,
+                            ../static/images/mobile/3@2x.png 2x,
+                            ../static/images/mobile/3@3x.png 3x
                         "
                         alt="ocean"
                     />

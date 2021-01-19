@@ -4,23 +4,23 @@
             <picture>
                 <source
                     media="(min-width:760px)"
-                    srcset="../assets/images/1.jpg"
+                    srcset="~/static/images/1.jpg"
                     alt="ocean"
                 />
                 <source
                     media="(min-width:480px)"
                     srcset="
-                        ../assets/images/pad/1@1x.png 1x,
-                        ../assets/images/pad/1@2x.png 2x
+                        ~/static/images/pad/1@1x.png 1x,
+                        ~/static/images/pad/1@2x.png 2x
                     "
                     alt="ocean"
                 />
 
                 <img
                     srcset="
-                        ../assets/images/mobile/1@1x.png 1x,
-                        ../assets/images/mobile/1@2x.png 2x,
-                        ../assets/images/mobile/1@3x.png 3x
+                        ~/static/images/mobile/1@1x.png 1x,
+                        ~/static/images/mobile/1@2x.png 2x,
+                        ~/static/images/mobile/1@3x.png 3x
                     "
                     alt="ocean"
                 />
@@ -110,7 +110,7 @@ export default {
             width: 100%;
         }
 
-        // background: url('../assets/images/1.jpg');
+        // background: url('../static/images/1.jpg');
         // background-position-x: 50%;
         // background-size: cover;
     }
