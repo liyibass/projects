@@ -43,7 +43,7 @@ export default {
         z-index: 1;
         top: 0;
         left: 0;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%) scale(1);
         // margin-right: 12px;
 
         border: 2px solid rgba(255, 255, 255, 0.25);
@@ -53,7 +53,9 @@ export default {
         }
 
         // image transition
-        transition: all 0.5s ease-in-out;
+        opacity: 1;
+
+        transition: all 0.9s ease-in-out;
     }
 
     &__pin {
@@ -204,20 +206,29 @@ export default {
 }
 
 .Thumbnail__focus {
-    margin-right: 80px !important;
+    // margin-right: 80px !important;
+    display: none;
     .Thumbnail__image {
-        width: 80px !important;
-        height: 80px !important;
-        border-radius: 40px !important;
+        // width: 80px !important;
+        // height: 80px !important;
+        // border-radius: 40px !important;
+    }
+    .Thumbnail__pin {
+        display: none;
     }
 
     @include atSmall {
+        display: block;
+
         margin-right: 72px !important;
 
         .Thumbnail__image {
             width: 144px !important;
             height: 144px !important;
             border-radius: 72px !important;
+        }
+        .Thumbnail__pin {
+            display: block;
         }
     }
 

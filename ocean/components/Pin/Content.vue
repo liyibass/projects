@@ -1,10 +1,18 @@
 <template>
     <div class="Content" :class="`Content__${focusState}`">
-        <div class="Content__name">
-            {{ pin.name }}
-        </div>
-        <div class="Content__englishName">
-            {{ pin.englishName }}
+        <div class="Content__header">
+            <ThumbnailTiny :pin="pin" v-if="focusState === 'focus'" />
+
+            <div class="Content__header_wave"></div>
+
+            <div class="Content__header_title">
+                <div class="Content__header_title_name">
+                    {{ pin.name }}
+                </div>
+                <div class="Content__header_title_englishName">
+                    {{ pin.englishName }}
+                </div>
+            </div>
         </div>
 
         <div class="Content__detail">
@@ -14,8 +22,13 @@
 </template>
 
 <script>
+import ThumbnailTiny from './ThumbnailTiny'
+
 export default {
     props: ['pin', 'focusState'],
+    components: {
+        ThumbnailTiny,
+    },
 }
 </script>
 
@@ -28,29 +41,40 @@ export default {
     align-items: center;
     width: 100%;
 
+    &__header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 20px;
+
+        &_title {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            &_name {
+                font-weight: normal;
+                line-height: 100%;
+
+                color: #fdffff;
+
+                margin-bottom: 4px;
+            }
+            &_englishName {
+                font-weight: 300;
+                /* identical to box height */
+                text-align: center;
+
+                /* White */
+                color: #fdffff;
+                opacity: 0.7;
+
+                margin-bottom: 8px;
+            }
+        }
+    }
     // text opacity transition
-
     transition: all 1s ease-in-out;
-
-    &__name {
-        font-weight: normal;
-        line-height: 100%;
-
-        color: #fdffff;
-
-        margin-bottom: 4px;
-    }
-    &__englishName {
-        font-weight: 300;
-        /* identical to box height */
-        text-align: center;
-
-        /* White */
-        color: #fdffff;
-        opacity: 0.7;
-
-        margin-bottom: 8px;
-    }
 
     &__detail {
         opacity: 0;
@@ -67,7 +91,7 @@ export default {
 
         border-left: 1px solid rgba(253, 255, 255, 0.5);
         padding-left: 16px;
-        margin: 0 20px;
+        // margin: 0 20px;
     }
 
     @include atSmall {
@@ -76,13 +100,19 @@ export default {
         margin-left: 12px;
         align-items: flex-start;
 
-        &__englishName {
-            margin-bottom: 0;
-        }
+        &__header {
+            &_title {
+                align-items: flex-start;
 
-        &__detail {
-            margin: 0;
-            margin-top: 12px;
+                &_englishName {
+                    margin-bottom: 0;
+                }
+
+                &_detail {
+                    margin: 0;
+                    margin-top: 12px;
+                }
+            }
         }
     }
 
@@ -92,46 +122,88 @@ export default {
 }
 
 .Content__small {
-    &__name {
-        font-size: 16px;
-    }
-    &__englishName {
-        font-size: 12px;
-        line-height: 17px;
+    .Content__header {
+        &_title {
+            &_name {
+                font-size: 16px;
+            }
+            &_englishName {
+                font-size: 12px;
+                line-height: 17px;
+            }
+        }
     }
 }
 
 .Content__large {
-    &__name {
-        font-size: 22px;
-    }
-    &__englishName {
-        font-size: 16px;
-        line-height: 22px;
+    .Content__header {
+        &_title {
+            &_name {
+                font-size: 22px;
+            }
+            &_englishName {
+                font-size: 16px;
+                line-height: 22px;
+            }
+        }
     }
 }
 
 .Content__mid {
-    &__name {
-        font-size: 18px;
-    }
-    &__englishName {
-        font-size: 14px;
-        line-height: 20px;
+    .Content__header {
+        &_title {
+            &_name {
+                font-size: 18px;
+            }
+            &_englishName {
+                font-size: 14px;
+                line-height: 20px;
+            }
+        }
     }
 }
 
 .Content__focus {
+    position: fixed;
+    top: 8.049%;
+    left: 0;
+
+    align-items: flex-start;
+    padding: 0 20px;
+
+    .Content__header {
+        &_title {
+            align-items: flex-start;
+
+            &_name {
+                font-size: 22px;
+            }
+            &_englishName {
+                font-size: 14px;
+            }
+        }
+    }
+
     .Content__detail {
         opacity: 1;
+        position: relative;
         // text opacity transition
         transition: all 0.8s ease-in-out;
         transition-delay: 1s;
     }
 
     @include atSmall {
+        padding: 0;
+
+        position: relative;
+        top: initial;
+        left: initial;
         margin-top: -108px !important;
         margin-left: 40px;
+
+        .Content__detail {
+            position: absolute;
+        }
     }
 
     @include atMedium {

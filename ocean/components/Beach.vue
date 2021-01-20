@@ -84,14 +84,14 @@ export default {
         const beachText2Scene = this.$scrollmagic
             .scene({
                 triggerElement: '#Beach',
-                offset: 300,
+                offset: 0,
                 triggerHook: 0,
                 duration: 50,
             })
             .on('progress', (e) => {
                 beachText2DOM.style.opacity = e.progress
             })
-        // .addIndicators({ name: 'beachScene' })
+            .addIndicators({ name: 'beachScene' })
 
         // -------------------------------------------------------
         // Handle fix component,hover by next component

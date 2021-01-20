@@ -198,7 +198,7 @@ export default {
                     this.focusPin(-1)
                 }
             })
-            .addIndicators({ name: 'stageScene' })
+        // .addIndicators({ name: 'stageScene' })
         this.$scrollmagic.addScene([stageScene])
     },
 }

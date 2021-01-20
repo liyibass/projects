@@ -74,7 +74,9 @@ export default {
 
     .Thumbnail {
         &__image {
-            transform: scale(0) !important;
+            // transform: scale(0) !important;
+            transform: translate(-50%, -50%) scale(0.1);
+            opacity: 0;
         }
 
         &__pin {
