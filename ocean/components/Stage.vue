@@ -19,8 +19,9 @@
 
                 <img
                     srcset="
-                        @/static/images/mobile/5_v3@1x.png 1x,
-                        @/static/images/mobile/5_v3@2x.png 2x
+                        @/static/images/mobile/5_v4@1x.png 1x,
+                        @/static/images/mobile/5_v4@2x.png 2x
+                        @/static/images/mobile/5_v4@3x.png 3x
                     "
                     alt="ocean"
                 />
@@ -28,7 +29,12 @@
         </div>
 
         <div class="Stage__container">
-            <Pin v-for="pin in mainPinList" :key="pin.id" :pin="pin" />
+            <Pin
+                v-for="(pin, index) in mainPinList"
+                :key="pin.id"
+                :pin="pin"
+                :focusState="generateFocusState(index)"
+            />
         </div>
 
         <!-- <div class="Stage__anchor" /> -->
@@ -36,7 +42,7 @@
 </template>
 
 <script>
-import Pin from './Pin'
+import Pin from './Pin/Pin'
 export default {
     components: {
         Pin,
@@ -48,7 +54,7 @@ export default {
             mainPinList: [
                 {
                     id: 1,
-                    size: 'Pin__small',
+                    size: 'small',
                     image: '6-1',
                     name: '槍蝦',
                     englishName: 'Snapping shrimp',
@@ -58,7 +64,7 @@ export default {
                 },
                 {
                     id: 2,
-                    size: 'Pin__large',
+                    size: 'large',
                     image: '6-2',
                     name: '金鱗魚',
                     englishName: 'Soldierfish',
@@ -68,7 +74,7 @@ export default {
                 },
                 {
                     id: 3,
-                    size: 'Pin__mid',
+                    size: 'mid',
                     image: '6-3',
                     name: '雀鯛',
                     englishName: 'Demselfish',
@@ -108,25 +114,36 @@ export default {
             const allPins = document.querySelectorAll('.Pin')
 
             //if property receive -1,then clear all pin's focus status
-            if (focusedPinIndex === -1) {
-                allPins.forEach((pin, index) => {
-                    pin.classList.remove('Pin__focus')
-                    pin.classList.remove('Pin__unFocus')
-                })
+            // if (focusedPinIndex === -1) {
+            //     allPins.forEach((pin, index) => {
+            //         pin.classList.remove('Pin__focus')
+            //         pin.classList.remove('Pin__unFocus')
+            //     })
 
-                return
-            }
+            //     return
+            // }
 
             //if property has value 0~2 , then add corresponding className
-            allPins.forEach((pin, index) => {
-                if (index === focusedPinIndex) {
-                    pin.classList.remove('Pin__unFocus')
-                    pin.classList.add('Pin__focus')
-                } else {
-                    pin.classList.remove('Pin__focus')
-                    pin.classList.add('Pin__unFocus')
-                }
-            })
+            this.focusedPinIndex = focusedPinIndex
+            // allPins.forEach((pin, index) => {
+            //     if (index === focusedPinIndex) {
+            //         pin.classList.remove('Pin__unFocus')
+            //         pin.classList.add('Pin__focus')
+            //     } else {
+            //         pin.classList.remove('Pin__focus')
+            //         pin.classList.add('Pin__unFocus')
+            //     }
+            // })
+        },
+
+        generateFocusState(pinIndex) {
+            if (this.focusedPinIndex === -1) return 'null'
+
+            if (pinIndex === this.focusedPinIndex) {
+                return 'focus'
+            } else {
+                return 'unFocus'
+            }
         },
     },
 
@@ -172,13 +189,10 @@ export default {
                 }
 
                 if (e.progress > 0.1 && e.progress < 0.3) {
-                    this.focusedPinIndex = 0
                     this.focusPin(0)
                 } else if (e.progress > 0.3 && e.progress < 0.5) {
-                    this.focusedPinIndex = 1
                     this.focusPin(1)
                 } else if (e.progress > 0.5 && e.progress < 0.7) {
-                    this.focusedPinIndex = 2
                     this.focusPin(2)
                 } else {
                     this.focusPin(-1)
