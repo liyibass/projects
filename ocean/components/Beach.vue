@@ -91,7 +91,7 @@ export default {
             .on('progress', (e) => {
                 beachText2DOM.style.opacity = e.progress
             })
-            .addIndicators({ name: 'beachScene' })
+        // .addIndicators({ name: 'beachScene' })
 
         // -------------------------------------------------------
         // Handle fix component,hover by next component

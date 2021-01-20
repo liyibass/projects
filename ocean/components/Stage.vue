@@ -28,12 +28,20 @@
             </picture>
         </div>
 
-        <div class="Stage__container">
+        <div class="Stage__main_pins_ontainer">
             <Pin
                 v-for="(pin, index) in mainPinList"
                 :key="pin.id"
                 :pin="pin"
                 :focusState="generateFocusState(index)"
+            />
+        </div>
+
+        <div class="Stage__tiny_pins_ontainer">
+            <PinTiny
+                v-for="(pin, index) in tinyPinList"
+                :key="pin.id"
+                :pin="pin"
             />
         </div>
 
@@ -43,9 +51,11 @@
 
 <script>
 import Pin from './Pin/Pin'
+import PinTiny from './PinTiny/PinTiny'
 export default {
     components: {
         Pin,
+        PinTiny,
     },
     data() {
         return {
@@ -83,10 +93,42 @@ export default {
                         '至於雀鯛科非常吵鬧。牠們是神經兮兮的守衛者，當有威脅逼近，就會嘰嘰叫囂宣示領域。然而雄魚求偶，卻會發出類似貓咪的撒嬌呼嚕。',
                 },
             ],
+            tinyPinList: [
+                {
+                    id: 1,
+                    name: '槍蝦',
+                    audioUrl: '',
+                },
+                {
+                    id: 2,
+                    name: '雀鯛',
+                    audioUrl: '',
+                },
+                {
+                    id: 3,
+                    name: '金鱗魚',
+                    audioUrl: '',
+                },
+                {
+                    id: 4,
+                    name: '日本松球魚',
+                    audioUrl: '',
+                },
+                {
+                    id: 5,
+                    name: '擬金眼鯛',
+                    audioUrl: '',
+                },
+                {
+                    id: 6,
+                    name: '海膽',
+                    audioUrl: '',
+                },
+            ],
         }
     },
     methods: {
-        pinsGrow(operation) {
+        mainPinsGrow(operation) {
             const allPins = document.querySelectorAll('.Pin')
 
             switch (operation) {
@@ -103,6 +145,30 @@ export default {
                         setTimeout(() => {
                             pin.classList.add('Pin__readyToGrow')
                         }, index * 300)
+                    })
+                    break
+
+                default:
+                    break
+            }
+        },
+        tinyPinsGrow(operation) {
+            const allPins = document.querySelectorAll('.PinTiny')
+
+            switch (operation) {
+                case 'on':
+                    allPins.forEach((pin, index) => {
+                        setTimeout(() => {
+                            pin.classList.remove('PinTiny__readyToGrow')
+                            pin.classList.add('animate_start')
+                        }, 2000 + index * 400)
+                    })
+                    break
+
+                case 'off':
+                    allPins.forEach((pin, index) => {
+                        pin.classList.add('PinTiny__readyToGrow')
+                        pin.classList.remove('animate_start')
                     })
                     break
 
@@ -169,20 +235,18 @@ export default {
 
                 this.moveDistance = backgroundImageHeight - screenHeight
 
-                console.log('fix')
                 stageBackgroundDOM.style.bottom = `-${this.moveDistance - 5}px`
             })
 
             .on('leave', () => {
-                console.log('unfix')
                 stageBackgroundDOM.style.bottom = '0px'
             })
 
             .on('progress', (e) => {
-                if (e.progress > 0.01) {
-                    this.pinsGrow('on')
+                if (e.progress > 0) {
+                    this.mainPinsGrow('on')
                 } else {
-                    this.pinsGrow('off')
+                    this.mainPinsGrow('off')
                     this.focusPin(-1)
 
                     return
@@ -194,12 +258,42 @@ export default {
                     this.focusPin(1)
                 } else if (e.progress > 0.5 && e.progress < 0.7) {
                     this.focusPin(2)
-                } else {
+                    this.tinyPinsGrow('off')
+                } else if (e.progress > 0.7 && e.progress < 0.9) {
+                    this.mainPinsGrow('off')
                     this.focusPin(-1)
+                    this.tinyPinsGrow('on')
+                } else {
+                    this.mainPinsGrow('off')
+                    this.tinyPinsGrow('off')
                 }
             })
         // .addIndicators({ name: 'stageScene' })
         this.$scrollmagic.addScene([stageScene])
+
+        const array = [
+            223 + 24,
+            16 + 24,
+            84 + 18,
+            64 + 18,
+            209 + 32,
+            241 + 32,
+            292 + 32,
+            104 + 32,
+            128 + 24,
+            157 + 24,
+            358 + 18,
+            212 + 18,
+        ]
+
+        array.forEach((item, index) => {
+            if (index % 2 === 0) {
+                console.log('top : ' + (item / 528) * 100 + '%')
+            } else {
+                console.log('left : ' + (item / 320) * 100 + '%')
+                console.log('---------------')
+            }
+        })
     },
 }
 </script>
