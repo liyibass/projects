@@ -1,5 +1,6 @@
 <template>
     <div class="Stage" id="Stage" ref="stageRef">
+        <div class="focus">{{ focusedPinIndex }}</div>
         <div class="Stage__background" ref="stageBackgroundRef">
             <picture>
                 <source
@@ -18,9 +19,8 @@
 
                 <img
                     srcset="
-                        @/static/images/mobile/5@1x.png 1x,
-                        @/static/images/mobile/5@2x.png 2x,
-                        @/static/images/mobile/5@3x.png 3x
+                        @/static/images/mobile/5_v3@1x.png 1x,
+                        @/static/images/mobile/5_v3@2x.png 2x
                     "
                     alt="ocean"
                 />
@@ -43,6 +43,7 @@ export default {
     },
     data() {
         return {
+            focusedPinIndex: 0,
             moveDistance: 100,
             mainPinList: [
                 {
@@ -78,6 +79,57 @@ export default {
             ],
         }
     },
+    methods: {
+        pinsGrow(operation) {
+            const allPins = document.querySelectorAll('.Pin')
+
+            switch (operation) {
+                case 'on':
+                    allPins.forEach((pin, index) => {
+                        setTimeout(() => {
+                            pin.classList.remove('Pin__readyToGrow')
+                        }, index * 300)
+                    })
+                    break
+
+                case 'off':
+                    allPins.forEach((pin, index) => {
+                        setTimeout(() => {
+                            pin.classList.add('Pin__readyToGrow')
+                        }, index * 300)
+                    })
+                    break
+
+                default:
+                    break
+            }
+        },
+        focusPin(focusedPinIndex) {
+            const allPins = document.querySelectorAll('.Pin')
+
+            //if property receive -1,then clear all pin's focus status
+            if (focusedPinIndex === -1) {
+                allPins.forEach((pin, index) => {
+                    pin.classList.remove('Pin__focus')
+                    pin.classList.remove('Pin__unFocus')
+                })
+
+                return
+            }
+
+            //if property has value 0~2 , then add corresponding className
+            allPins.forEach((pin, index) => {
+                if (index === focusedPinIndex) {
+                    pin.classList.remove('Pin__unFocus')
+                    pin.classList.add('Pin__focus')
+                } else {
+                    pin.classList.remove('Pin__focus')
+                    pin.classList.add('Pin__unFocus')
+                }
+            })
+        },
+    },
+
     mounted() {
         // const beachDOM = this.$refs.stageRef.previousElementSibling
         const stageDOM = document.querySelector('.Stage')
@@ -101,34 +153,63 @@ export default {
                 this.moveDistance = backgroundImageHeight - screenHeight
 
                 console.log('fix')
-                stageBackgroundDOM.style.bottom = `-${this.moveDistance}px`
+                stageBackgroundDOM.style.bottom = `-${this.moveDistance - 5}px`
             })
 
             .on('leave', () => {
                 console.log('unfix')
-                // stageBackgroundDOM.style.bottom = 'initial'
                 stageBackgroundDOM.style.bottom = '0px'
-
-                // stageBackgroundDOM.style.top = '0px'
             })
-        // .addIndicators({ name: 'stageScene' })
+
+            .on('progress', (e) => {
+                if (e.progress > 0.01) {
+                    this.pinsGrow('on')
+                } else {
+                    this.pinsGrow('off')
+                    this.focusPin(-1)
+
+                    return
+                }
+
+                if (e.progress > 0.1 && e.progress < 0.3) {
+                    this.focusedPinIndex = 0
+                    this.focusPin(0)
+                } else if (e.progress > 0.3 && e.progress < 0.5) {
+                    this.focusedPinIndex = 1
+                    this.focusPin(1)
+                } else if (e.progress > 0.5 && e.progress < 0.7) {
+                    this.focusedPinIndex = 2
+                    this.focusPin(2)
+                } else {
+                    this.focusPin(-1)
+                }
+            })
+            .addIndicators({ name: 'stageScene' })
         this.$scrollmagic.addScene([stageScene])
     },
 }
 </script>
 
 <style lang="scss" scoped>
+.focus {
+    width: 20px;
+    height: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: white;
+    border: 1px solid red;
+    z-index: 99999;
+
+    text-align: center;
+    line-height: 20px;
+}
 .Stage {
     z-index: 104;
     position: relative;
-    // background: white;
+    background: white;
     height: 100vh;
     overflow: hidden;
-
-    // display: flex;
-    // flex-direction: column;
-    // align-items: stretch;
-    // justify-content: flex-start;
 
     &__background {
         width: 100%;
