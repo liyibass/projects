@@ -198,7 +198,7 @@ export default {
         position: relative;
         top: initial;
         left: initial;
-        margin-top: -108px !important;
+        margin-top: -75px !important;
         margin-left: 40px;
 
         .Content__detail {

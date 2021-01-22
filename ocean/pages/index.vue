@@ -10,7 +10,7 @@
         <Beach />
         <Stage />
         <!-- <Story /> -->
-        <!-- <Diving /> -->
+        <Diving />
         <!-- <DivingDark /> -->
         <!-- <Video /> -->
         <!-- <Final /> -->

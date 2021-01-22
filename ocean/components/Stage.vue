@@ -45,6 +45,19 @@
             />
         </div>
 
+        <transition name="fade">
+            <div class="Stage__text" v-if="currentAnimate === 6">
+                <div class="Stage__text_bar" />
+                不只魚類，當海膽覓食，牠們的刺棘會擦過礁石，像人類腳步，喀噠喀噠；若尋獲海藻，開始啃食，牙齒則會與礁石摩擦，發出刮擦刮擦的聲響。
+                <br />
+                <br />
+                如同人類，海洋生物也會靠聲音溝通，藉此劃定領域、吸引配偶，乃至尋覓自己適合生存的棲地。人類以為的沉默境地，其實萬分嘈雜。約有
+                1/4 到 1/3
+                的海洋物種，在生命週期需依賴珊瑚礁，使珊瑚礁區域成為海中生物多樣性最豐之處。探索、分辨珊瑚礁的聲音，成為
+                Yannick 近幾年全心投入的事。
+            </div>
+        </transition>
+
         <div>{{ animateGenerater }}</div>
 
         <!-- <div class="Stage__anchor" /> -->
@@ -63,6 +76,7 @@ export default {
         return {
             currentAnimate: 0,
             focusedPinIndex: 0,
+
             moveDistance: 100,
             mainPinList: [
                 {
@@ -157,6 +171,14 @@ export default {
                     this.mainPinsGrow('off')
                     this.tinyPinsGrow('on')
 
+                    break
+
+                case 6:
+                    this.tinyPinsGrow('off')
+                    break
+
+                case 7:
+                    // text fade out
                     break
 
                 default:
@@ -270,9 +292,10 @@ export default {
                     this.currentAnimate = 4
                 } else if (e.progress > 0.7 && e.progress < 0.9) {
                     this.currentAnimate = 5
-                } else {
-                    // this.mainPinsGrow('off')
-                    // this.tinyPinsGrow('off')
+                } else if (e.progress > 0.9 && e.progress < 1) {
+                    this.currentAnimate = 6
+                } else if (e.progress === 1) {
+                    this.currentAnimate = 7
                 }
             })
         // .addIndicators({ name: 'stageScene' })
@@ -341,10 +364,56 @@ export default {
         margin-bottom: -5px;
     }
 
+    &__text {
+        position: absolute;
+        top: 40%;
+        // left: 50%;
+        transform: translate(0%, -50%);
+
+        margin: 0 20px;
+
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 180%;
+        /* or 29px */
+        text-align: justify;
+
+        color: #ffffff;
+
+        opacity: 0.8;
+
+        &_bar {
+            border: 0.25px solid #fdffff;
+            width: 92px;
+            height: 0px;
+            margin-bottom: 16px;
+        }
+
+        @include atSmall {
+            top: 11.719%;
+            width: 402px;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            margin: 0;
+        }
+
+        @include atMedium {
+            top: 16.79%;
+        }
+    }
+
     &__anchor {
         width: 100%;
         height: 10px;
         background: gold;
     }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 1s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
 }
 </style>
