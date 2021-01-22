@@ -1,6 +1,6 @@
 <template>
     <div class="Stage" id="Stage" ref="stageRef">
-        <div class="focus">{{ focusedPinIndex }}</div>
+        <div class="focus">{{ currentAnimate }}</div>
         <div class="Stage__background" ref="stageBackgroundRef">
             <picture>
                 <source
@@ -45,6 +45,8 @@
             />
         </div>
 
+        <div>{{ animateGenerater }}</div>
+
         <!-- <div class="Stage__anchor" /> -->
     </div>
 </template>
@@ -59,6 +61,7 @@ export default {
     },
     data() {
         return {
+            currentAnimate: 0,
             focusedPinIndex: 0,
             moveDistance: 100,
             mainPinList: [
@@ -127,6 +130,41 @@ export default {
             ],
         }
     },
+    computed: {
+        animateGenerater() {
+            switch (this.currentAnimate) {
+                case 1:
+                    this.mainPinsGrow('on')
+                    this.focusPin(-1)
+                    break
+
+                case 2:
+                    this.focusPin(0)
+                    break
+
+                case 3:
+                    this.focusPin(1)
+                    break
+
+                case 4:
+                    this.focusPin(2)
+                    this.mainPinsGrow('on')
+                    this.tinyPinsGrow('off')
+                    break
+
+                case 5:
+                    this.focusPin(-1)
+                    this.mainPinsGrow('off')
+                    this.tinyPinsGrow('on')
+
+                    break
+
+                default:
+                    break
+            }
+            return null
+        },
+    },
     methods: {
         mainPinsGrow(operation) {
             const allPins = document.querySelectorAll('.Pin')
@@ -161,14 +199,15 @@ export default {
                         setTimeout(() => {
                             pin.classList.remove('PinTiny__readyToGrow')
                             pin.classList.add('animate_start')
-                        }, 2000 + index * 400)
+                        }, index * 300)
                     })
                     break
 
                 case 'off':
                     allPins.forEach((pin, index) => {
-                        pin.classList.add('PinTiny__readyToGrow')
                         pin.classList.remove('animate_start')
+                        pin.classList.add('PinTiny__readyToGrow')
+                        setTimeout(() => {}, index * 300)
                     })
                     break
 
@@ -177,29 +216,7 @@ export default {
             }
         },
         focusPin(focusedPinIndex) {
-            const allPins = document.querySelectorAll('.Pin')
-
-            //if property receive -1,then clear all pin's focus status
-            // if (focusedPinIndex === -1) {
-            //     allPins.forEach((pin, index) => {
-            //         pin.classList.remove('Pin__focus')
-            //         pin.classList.remove('Pin__unFocus')
-            //     })
-
-            //     return
-            // }
-
-            //if property has value 0~2 , then add corresponding className
             this.focusedPinIndex = focusedPinIndex
-            // allPins.forEach((pin, index) => {
-            //     if (index === focusedPinIndex) {
-            //         pin.classList.remove('Pin__unFocus')
-            //         pin.classList.add('Pin__focus')
-            //     } else {
-            //         pin.classList.remove('Pin__focus')
-            //         pin.classList.add('Pin__unFocus')
-            //     }
-            // })
         },
 
         generateFocusState(pinIndex) {
@@ -224,7 +241,7 @@ export default {
                 triggerElement: '.Stage',
                 offset: 0,
                 triggerHook: 0,
-                duration: 3000,
+                duration: 2000,
             })
             .setPin(stageDOM)
             .on('enter', () => {
@@ -243,57 +260,47 @@ export default {
             })
 
             .on('progress', (e) => {
-                if (e.progress > 0) {
-                    this.mainPinsGrow('on')
-                } else {
-                    this.mainPinsGrow('off')
-                    this.focusPin(-1)
-
-                    return
-                }
-
-                if (e.progress > 0.1 && e.progress < 0.3) {
-                    this.focusPin(0)
+                if (e.progress > 0.01 && e.progress < 0.1) {
+                    this.currentAnimate = 1
+                } else if (e.progress > 0.1 && e.progress < 0.3) {
+                    this.currentAnimate = 2
                 } else if (e.progress > 0.3 && e.progress < 0.5) {
-                    this.focusPin(1)
+                    this.currentAnimate = 3
                 } else if (e.progress > 0.5 && e.progress < 0.7) {
-                    this.focusPin(2)
-                    this.tinyPinsGrow('off')
+                    this.currentAnimate = 4
                 } else if (e.progress > 0.7 && e.progress < 0.9) {
-                    this.mainPinsGrow('off')
-                    this.focusPin(-1)
-                    this.tinyPinsGrow('on')
+                    this.currentAnimate = 5
                 } else {
-                    this.mainPinsGrow('off')
-                    this.tinyPinsGrow('off')
+                    // this.mainPinsGrow('off')
+                    // this.tinyPinsGrow('off')
                 }
             })
         // .addIndicators({ name: 'stageScene' })
         this.$scrollmagic.addScene([stageScene])
 
-        const array = [
-            223 + 24,
-            16 + 24,
-            84 + 18,
-            64 + 18,
-            209 + 32,
-            241 + 32,
-            292 + 32,
-            104 + 32,
-            128 + 24,
-            157 + 24,
-            358 + 18,
-            212 + 18,
-        ]
+        // const array = [
+        //     223 + 24,
+        //     16 + 24,
+        //     84 + 18,
+        //     64 + 18,
+        //     209 + 32,
+        //     241 + 32,
+        //     292 + 32,
+        //     104 + 32,
+        //     128 + 24,
+        //     157 + 24,
+        //     358 + 18,
+        //     212 + 18,
+        // ]
 
-        array.forEach((item, index) => {
-            if (index % 2 === 0) {
-                console.log('top : ' + (item / 528) * 100 + '%')
-            } else {
-                console.log('left : ' + (item / 320) * 100 + '%')
-                console.log('---------------')
-            }
-        })
+        // array.forEach((item, index) => {
+        //     if (index % 2 === 0) {
+        //         console.log('top : ' + (item / 528) * 100 + '%')
+        //     } else {
+        //         console.log('left : ' + (item / 320) * 100 + '%')
+        //         console.log('---------------')
+        //     }
+        // })
     },
 }
 </script>

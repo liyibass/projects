@@ -16,12 +16,12 @@ export default {
 .AnimateThumbnail {
     position: relative;
     &__ball {
-        background: rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.3);
         z-index: 1;
     }
     &__inner_ball {
         position: absolute;
-        background: rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.3);
         z-index: 1;
     }
 

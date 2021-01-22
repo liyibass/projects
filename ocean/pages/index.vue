@@ -14,6 +14,14 @@
         <!-- <DivingDark /> -->
         <!-- <Video /> -->
         <!-- <Final /> -->
+        <!-- <div class="YOYO">
+            <button v-scroll-to="'#scene1'">
+                Scroll to #element1
+            </button>
+        </div>
+
+        <Fullpage />
+        <div class="YOYO">Fuck</div> -->
     </div>
 </template>
 
@@ -27,6 +35,7 @@ import Diving from '~/components/Diving'
 import DivingDark from '~/components/DivingDark'
 import Video from '~/components/Video'
 import Final from '~/components/Final'
+import Fullpage from '~/components/Fullpage/Fullpage'
 export default {
     components: {
         ScrollHero,
@@ -38,6 +47,7 @@ export default {
         DivingDark,
         Video,
         Final,
+        Fullpage,
     },
     data() {
         return {
@@ -85,5 +95,10 @@ export default {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
+}
+
+.YOYO {
+    height: 200vh;
+    background: gold;
 }
 </style>

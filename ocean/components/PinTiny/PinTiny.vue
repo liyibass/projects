@@ -1,7 +1,9 @@
 <template>
     <div class="PinTiny PinTiny__readyToGrow" :class="`pin_${pin.id}`">
-        <div class="PinTiny__wave"></div>
-        <div class="PinTiny__name">{{ pin.name }}</div>
+        <div class="PinTiny__header">
+            <div class="PinTiny__header_wave"></div>
+            <div class="PinTiny__header_name">{{ pin.name }}</div>
+        </div>
         <AnimateThumbnail :pin="pin" />
     </div>
 </template>
@@ -36,21 +38,27 @@ export default {
     // movement transition
     transition: all 1s ease-in-out;
 
-    .PinTiny__name {
-        font-weight: normal;
-        font-size: 16px;
-        line-height: 100%;
-        /* identical to box height, or 16px */
-        display: flex;
-        align-items: center;
+    .PinTiny__header {
+        &_name {
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 100%;
+            /* identical to box height, or 16px */
+            display: flex;
+            align-items: center;
 
-        /* White */
-        color: #fdffff;
-        margin-bottom: 8px;
+            /* White */
+            color: #fdffff;
+            margin-bottom: 8px;
+        }
     }
 
     @include atSmall {
-        flex-direction: row;
+        flex-direction: row-reverse;
+
+        &__header {
+            margin-left: 16px;
+        }
     }
 
     @include atMedium {
@@ -59,6 +67,7 @@ export default {
 
 .PinTiny__readyToGrow {
     transform: translateY(400%) !important;
+    opacity: 0;
 
     .AnimateThumbnail {
         // transform: scale(0) !important;
@@ -69,8 +78,10 @@ export default {
             border-top: 1px solid rgba(255, 255, 255, 0.25) !important;
         }
     }
-    .PinTiny__name {
-        opacity: 0;
+    .PinTiny__header {
+        &_name {
+            opacity: 0;
+        }
     }
 }
 
