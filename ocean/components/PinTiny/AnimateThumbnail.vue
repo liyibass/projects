@@ -93,22 +93,6 @@ export default {
 
 .pin_2 {
     .AnimateThumbnail__ball {
-        width: $pin_2_size;
-        height: $pin_2_size;
-        border-radius: $pin_2_size/2;
-    }
-    .AnimateThumbnail__inner_ball {
-        top: $pin_2_size/4;
-        left: $pin_2_size/4;
-
-        width: $pin_2_size/2;
-        height: $pin_2_size/2;
-        border-radius: $pin_2_size/4;
-    }
-}
-
-.pin_3 {
-    .AnimateThumbnail__ball {
         width: $pin_3_size;
         height: $pin_3_size;
         border-radius: $pin_3_size/2;
@@ -120,6 +104,22 @@ export default {
         width: $pin_3_size/2;
         height: $pin_3_size/2;
         border-radius: $pin_3_size/4;
+    }
+}
+
+.pin_3 {
+    .AnimateThumbnail__ball {
+        width: $pin_2_size;
+        height: $pin_2_size;
+        border-radius: $pin_2_size/2;
+    }
+    .AnimateThumbnail__inner_ball {
+        top: $pin_2_size/4;
+        left: $pin_2_size/4;
+
+        width: $pin_2_size/2;
+        height: $pin_2_size/2;
+        border-radius: $pin_2_size/4;
     }
 }
 

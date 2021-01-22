@@ -5,7 +5,8 @@
                 <img src="~/static/images/loading.gif" alt="" />
             </div>
         </transition>
-        <!-- <ScrollHero /> -->
+        <ScrollHero />
+        <!-- <VolumeToggle /> -->
         <VolumeHint />
         <Beach />
         <Stage />
@@ -14,19 +15,12 @@
         <!-- <DivingDark /> -->
         <!-- <Video /> -->
         <!-- <Final /> -->
-        <!-- <div class="YOYO">
-            <button v-scroll-to="'#scene1'">
-                Scroll to #element1
-            </button>
-        </div>
-
-        <Fullpage />
-        <div class="YOYO">Fuck</div> -->
     </div>
 </template>
 
 <script>
 import ScrollHero from '~/components/ScrollHero'
+import VolumeToggle from '~/components/VolumeToggle'
 import VolumeHint from '~/components/VolumeHint'
 import Beach from '~/components/Beach'
 import Stage from '~/components/Stage'
@@ -35,10 +29,10 @@ import Diving from '~/components/Diving'
 import DivingDark from '~/components/DivingDark'
 import Video from '~/components/Video'
 import Final from '~/components/Final'
-import Fullpage from '~/components/Fullpage/Fullpage'
 export default {
     components: {
         ScrollHero,
+        VolumeToggle,
         VolumeHint,
         Beach,
         Stage,
@@ -47,7 +41,6 @@ export default {
         DivingDark,
         Video,
         Final,
-        Fullpage,
     },
     data() {
         return {

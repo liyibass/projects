@@ -67,6 +67,13 @@
 <script>
 import Pin from './Pin/Pin'
 import PinTiny from './PinTiny/PinTiny'
+
+import wave1 from '../static/images/waves/wave1.svg'
+import wave2 from '../static/images/waves/wave2.svg'
+import wave3 from '../static/images/waves/wave3.svg'
+import wave4 from '../static/images/waves/wave4.svg'
+import wave5 from '../static/images/waves/wave5.svg'
+import wave6 from '../static/images/waves/wave6.svg'
 export default {
     components: {
         Pin,
@@ -83,6 +90,7 @@ export default {
                     id: 1,
                     size: 'small',
                     image: '6-1',
+                    waveImg: wave1,
                     name: '槍蝦',
                     englishName: 'Snapping shrimp',
                     audioUrl: '',
@@ -93,6 +101,7 @@ export default {
                     id: 2,
                     size: 'large',
                     image: '6-2',
+                    waveImg: wave2,
                     name: '金鱗魚',
                     englishName: 'Soldierfish',
                     audioUrl: '',
@@ -103,6 +112,7 @@ export default {
                     id: 3,
                     size: 'mid',
                     image: '6-3',
+                    waveImg: wave3,
                     name: '雀鯛',
                     englishName: 'Demselfish',
                     audioUrl: '',
@@ -114,31 +124,38 @@ export default {
                 {
                     id: 1,
                     name: '槍蝦',
+                    waveImg: wave1,
                     audioUrl: '',
                 },
                 {
                     id: 2,
-                    name: '雀鯛',
+                    name: '金鱗魚',
+                    waveImg: wave2,
                     audioUrl: '',
                 },
                 {
                     id: 3,
-                    name: '金鱗魚',
+                    name: '雀鯛',
+                    waveImg: wave3,
                     audioUrl: '',
                 },
+
                 {
                     id: 4,
                     name: '日本松球魚',
+                    waveImg: wave4,
                     audioUrl: '',
                 },
                 {
                     id: 5,
                     name: '擬金眼鯛',
+                    waveImg: wave5,
                     audioUrl: '',
                 },
                 {
                     id: 6,
                     name: '海膽',
+                    waveImg: wave6,
                     audioUrl: '',
                 },
             ],
@@ -154,10 +171,14 @@ export default {
 
                 case 2:
                     this.focusPin(0)
+                    this.tinyPinsGrow('off')
+
                     break
 
                 case 3:
                     this.focusPin(1)
+                    this.tinyPinsGrow('off')
+
                     break
 
                 case 4:
@@ -229,7 +250,6 @@ export default {
                     allPins.forEach((pin, index) => {
                         pin.classList.remove('animate_start')
                         pin.classList.add('PinTiny__readyToGrow')
-                        setTimeout(() => {}, index * 300)
                     })
                     break
 
@@ -263,7 +283,7 @@ export default {
                 triggerElement: '.Stage',
                 offset: 0,
                 triggerHook: 0,
-                duration: 2000,
+                duration: 2500,
             })
             .setPin(stageDOM)
             .on('enter', () => {
@@ -383,7 +403,7 @@ export default {
         opacity: 0.8;
 
         &_bar {
-            border: 0.25px solid #fdffff;
+            border-top: 0.25px solid #fdffff;
             width: 92px;
             height: 0px;
             margin-bottom: 16px;

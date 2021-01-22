@@ -1,7 +1,7 @@
 <template>
     <div class="PinTiny PinTiny__readyToGrow" :class="`pin_${pin.id}`">
         <div class="PinTiny__header">
-            <div class="PinTiny__header_wave"></div>
+            <Wave :waveImg="pin.waveImg" class="Wave__tiny" :play="true" />
             <div class="PinTiny__header_name">{{ pin.name }}</div>
         </div>
         <AnimateThumbnail :pin="pin" />
@@ -10,12 +10,15 @@
 
 <script>
 import AnimateThumbnail from './AnimateThumbnail'
+import Wave from '../Wave'
+
 // import Content from './Content'
 
 export default {
     props: ['pin'],
     components: {
         AnimateThumbnail,
+        Wave,
         // Content,
     },
 
@@ -38,7 +41,10 @@ export default {
     // movement transition
     transition: all 1s ease-in-out;
 
-    .PinTiny__header {
+    &__header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         &_name {
             font-weight: normal;
             font-size: 16px;
@@ -51,17 +57,34 @@ export default {
             color: #fdffff;
             margin-bottom: 8px;
         }
+
+        .Wave {
+            margin-bottom: 12px;
+        }
     }
 
     @include atSmall {
-        flex-direction: row-reverse;
-
         &__header {
             margin-left: 16px;
+            .Wave {
+                margin: 0 0 8px;
+            }
         }
     }
 
     @include atMedium {
+        flex-direction: row-reverse;
+
+        &__header {
+            flex-direction: column-reverse;
+
+            &_name {
+                margin: 0;
+            }
+            .Wave {
+                margin: 8px 0 0;
+            }
+        }
     }
 }
 
@@ -89,13 +112,14 @@ export default {
     top: 46.78%;
     left: 5.5%;
 }
+
 .pin_2 {
-    top: 19.318%;
-    left: 18.625%;
-}
-.pin_3 {
     top: 46.644%;
     left: 78.313%;
+}
+.pin_3 {
+    top: 19.318%;
+    left: 18.625%;
 }
 .pin_4 {
     top: 61.364%;

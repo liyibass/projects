@@ -3,11 +3,15 @@
         <div class="Content__header">
             <ThumbnailTiny :pin="pin" v-if="focusState === 'focus'" />
 
-            <div class="Content__header_wave"></div>
-
             <div class="Content__header_title">
                 <div class="Content__header_title_name">
                     {{ pin.name }}
+
+                    <Wave
+                        :waveImg="pin.waveImg"
+                        v-if="focusState === 'focus'"
+                        :play="focusState"
+                    />
                 </div>
                 <div class="Content__header_title_englishName">
                     {{ pin.englishName }}
@@ -23,11 +27,13 @@
 
 <script>
 import ThumbnailTiny from './ThumbnailTiny'
+import Wave from '../Wave'
 
 export default {
     props: ['pin', 'focusState'],
     components: {
         ThumbnailTiny,
+        Wave,
     },
 }
 </script>
@@ -45,13 +51,14 @@ export default {
         display: flex;
         flex-direction: row;
         align-items: center;
+        justify-content: flex-start;
+
         margin-bottom: 20px;
 
         &_title {
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 100%;
             &_name {
                 font-weight: normal;
                 line-height: 100%;
@@ -59,6 +66,12 @@ export default {
                 color: #fdffff;
 
                 margin-bottom: 4px;
+                display: flex;
+                flex-direction: row;
+
+                .Wave {
+                    margin-left: 16px;
+                }
             }
             &_englishName {
                 font-weight: 300;

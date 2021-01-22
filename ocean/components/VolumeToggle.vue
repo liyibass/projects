@@ -1,14 +1,18 @@
 <template>
-    <div class="VolumeHint" id="VolumeHint">
-        <div class="VolumeHint__content">
-            <div class="VolumeHint__content_text">
-                閱讀過程中<br />點選圖示可關閉聲音
+    <div class="VolumeToggle" id="VolumeToggle">
+        <div class="VolumeToggle__content">
+            <div class="VolumeToggle__content_icon" @click="volumeHandler">
+                <!-- <img src="~/static/images/icon_mute_120x120.svg" alt="" /> -->
+                <VolumeIcon :big="true" />
+            </div>
+
+            <div class="VolumeToggle__content_text">
+                請點擊圖示開啟聲音<br />
+                獲得最佳閱讀體驗
             </div>
         </div>
 
-        <VolumeNavbar v-if="!isMuted" :forceShowIcon="forceShowIcon" />
-
-        <div class="VolumeHint__anchor" />
+        <div class="VolumeToggle__anchor" />
     </div>
 </template>
 
@@ -32,65 +36,38 @@ export default {
         },
     },
     mounted() {
-        const volumeHintContentDOM = document.querySelector(
-            '.VolumeHint__content'
+        const VolumeToggleContentDOM = document.querySelector(
+            '.VolumeToggle__content'
         )
 
-        const volumeHintScene = this.$scrollmagic
+        const VolumeToggleScene = this.$scrollmagic
             .scene({
-                triggerElement: '#VolumeHint',
+                triggerElement: '#VolumeToggle',
                 offset: 0,
                 triggerHook: 0.5,
                 duration: 100,
             })
             .on('progress', (e) => {
-                volumeHintContentDOM.style.opacity = e.progress
+                VolumeToggleContentDOM.style.opacity = e.progress
                 // ScrollHeroMaskDom.style.opacity = e.progress
             })
             // Handle force show VolumeNavbar(set this.forceShowIcon flag to true)
             .on('enter', () => {
                 this.forceShowIcon = true
             })
-
-        // .addIndicators({ name: 'volumeHintScene' })
-
-        // After trigger leaving anchor, disable content's fix
-        const volumeHintFixScene = this.$scrollmagic
-            .scene({
-                triggerElement: '.VolumeHint__anchor',
-                offset: 100,
-                triggerHook: 0,
-                duration: 5,
-            })
-            .on('enter', (e) => {
-                switch (e.scrollDirection) {
-                    case 'FORWARD':
-                        volumeHintContentDOM.style.position = 'relative'
-                        break
-
-                    case 'REVERSE':
-                        volumeHintContentDOM.style.position = 'fixed'
-
-                        break
-
-                    default:
-                        break
-                }
-            })
-            // Handle force show VolumeNavbar(set this.forceShowIcon flag to false)
             .on('leave', () => {
-                console.log('leave')
-                this.forceShowIcon = false
+                this.forceShowIcon = true
             })
-        // .addIndicators({ name: 'volumeHintFixScene' })
 
-        this.$scrollmagic.addScene([volumeHintScene, volumeHintFixScene])
+        // .addIndicators({ name: 'VolumeToggleScene' })
+
+        this.$scrollmagic.addScene([VolumeToggleScene])
     },
 }
 </script>
 
 <style lang="scss" scoped>
-.VolumeHint {
+.VolumeToggle {
     position: relative;
     height: 100vh;
     background: black;
