@@ -24,27 +24,27 @@ export default {
             '.DivingDark__fix_wrapper'
         )
 
-        const DivingDarkTextScene = this.$scrollmagic
-            .scene({
-                // ID of element where animation starts
-                triggerElement: '#DivingDark',
-                // Where to start trigger from element top
-                offset: 0,
-                // {0,0.5,1} - animations starts from {top,center,end} of window
-                triggerHook: 0,
-                // Duration of animation
-                duration: 1000,
-            })
-            .on('enter', (e) => {
-                // this.maskOpacity = e.progress
-                DivingDarkWrapperDOM.style.opacity = 1
-                DivingDarkWrapperDOM.style.zIndex = 107
-            })
-            .on('leave', (e) => {
-                // this.maskOpacity = e.progress
-                DivingDarkWrapperDOM.style.opacity = 0
-                DivingDarkWrapperDOM.style.zIndex = -1
-            })
+        // const DivingDarkTextScene = this.$scrollmagic
+        //     .scene({
+        //         // ID of element where animation starts
+        //         triggerElement: '#DivingDark',
+        //         // Where to start trigger from element top
+        //         offset: 0,
+        //         // {0,0.5,1} - animations starts from {top,center,end} of window
+        //         triggerHook: 0,
+        //         // Duration of animation
+        //         duration: 1000,
+        //     })
+        //     .on('enter', (e) => {
+        //         // this.maskOpacity = e.progress
+        //         DivingDarkWrapperDOM.style.opacity = 1
+        //         DivingDarkWrapperDOM.style.zIndex = 107
+        //     })
+        //     .on('leave', (e) => {
+        //         // this.maskOpacity = e.progress
+        //         DivingDarkWrapperDOM.style.opacity = 0
+        //         DivingDarkWrapperDOM.style.zIndex = -1
+        //     })
 
         // .addIndicators({ name: 'DivingDarkTextScene' })
 
@@ -61,7 +61,7 @@ export default {
                 triggerElement: nextComponentClass,
                 offset: 0,
                 triggerHook: 1,
-                duration: 1000,
+                duration: this.$el.clientHeight,
             })
             .on('enter', (e) => {
                 fixWrapperDOM = document.querySelector(
@@ -73,16 +73,19 @@ export default {
                 fixWrapperDOM.style.position = 'fixed'
                 fixWrapperDOM.style.width = '100%'
                 fixWrapperDOM.style.bottom = '0px'
+                fixWrapperDOM.style.opacity = 1
             })
             .on('leave', (e) => {
                 // unfix css
                 fixWrapperDOM.style.position = 'relative'
+                fixWrapperDOM.style.opacity = 0
             })
-        // .addIndicators({ name: 'fixStoryScene' })
+            .addIndicators({ name: 'fixStoryScene' })
 
         // -------------------------------------------------------
 
-        this.$scrollmagic.addScene([DivingDarkTextScene, fixAndHoverScene])
+        this.$scrollmagic.addScene([fixAndHoverScene])
+        // this.$scrollmagic.addScene([DivingDarkTextScene, fixAndHoverScene])
     },
 }
 </script>
@@ -92,14 +95,13 @@ export default {
     z-index: 107;
     position: relative;
     width: 100%;
-    height: 1000px;
     background: black;
 
     &__fix_wrapper {
         opacity: 0;
         transition: opacity 0.4s ease;
 
-        position: absolute;
+        position: relative;
         top: 0;
         left: 0;
         width: 100%;

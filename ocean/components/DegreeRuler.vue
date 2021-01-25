@@ -49,9 +49,8 @@ export default {
 
     computed: {
         fetchAudioSrc() {
-            return require(`@/static/audios/temp/${
-                this.yearDegreeList[this.scaleIndex].year
-            }.mp3`)
+            // console.log(this.yearDegreeMixin[this.scaleIndex])
+            return this.yearDegreeList[this.scaleIndex].audio
         },
     },
 

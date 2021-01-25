@@ -25,7 +25,7 @@ import iconVolume2 from '~/static/images/icon_volume_2_120x120.svg'
 import iconVolume3 from '~/static/images/icon_volume_3_120x120.svg'
 
 export default {
-    props: ['isMuted', 'setIsMuted'],
+    props: ['isMuted', 'isMutedToggle'],
     data() {
         return {
             icon: 0,
@@ -35,7 +35,7 @@ export default {
     },
     methods: {
         volumeHandler() {
-            this.setIsMuted(!this.isMuted)
+            this.isMutedToggle()
 
             this.$el.classList.add('clicked')
             setTimeout(() => {

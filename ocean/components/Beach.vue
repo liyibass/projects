@@ -52,7 +52,6 @@
 export default {
     data() {
         return {
-            isPlayed: false,
             wrapperHeight: 'none',
         }
     },
@@ -69,15 +68,6 @@ export default {
             })
             .on('progress', (e) => {
                 beachText1DOM.style.opacity = e.progress
-
-                if (e.progress < 1) {
-                    if (this.isPlayed === false) return
-                    console.log('stop music')
-                    this.isPlayed = false
-                } else {
-                    console.log('play music')
-                    this.isPlayed = true
-                }
             })
         // .addIndicators({ name: 'beachScene' })
 

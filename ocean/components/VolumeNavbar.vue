@@ -1,6 +1,6 @@
 <template>
     <div class="VolumeNavbar" :style="{ top: getTopHeight }">
-        <VolumeIcon :isMuted="isMuted" :setIsMuted="setIsMuted" />
+        <VolumeIcon :isMuted="isMuted" :isMutedToggle="isMutedToggle" />
     </div>
 </template>
 
@@ -13,7 +13,7 @@ export default {
         VolumeIcon,
     },
 
-    props: ['isMuted', 'setIsMuted'],
+    props: ['isMuted', 'isMutedToggle', 'forceShowIcon'],
     data() {
         return {
             direction: 'up',

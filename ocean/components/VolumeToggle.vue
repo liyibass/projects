@@ -1,20 +1,18 @@
 <template>
     <div class="VolumeToggle" id="VolumeToggle">
-        <audio
-            :src="require('@/static/audios/ocean.mp3')"
-            :autoplay="true"
-            loop
-            controls
-        >
+        <audio :src="require('@/static/audios/ocean.mp3')" loop controls>
             Your browser does not support the <code>audio</code> element.
         </audio>
         、
 
         <transition name="fade">
             <div class="VolumeToggle__content" v-if="currentScene === 1">
-                <div class="VolumeToggle__content_icon" @click="volumeHandler">
+                <div class="VolumeToggle__content_icon">
                     <!-- <img src="~/static/images/icon_mute_120x120.svg" alt="" /> -->
-                    <VolumeIcon :isMuted="isMuted" :setIsMuted="setIsMuted" />
+                    <VolumeIcon
+                        :isMuted="isMuted"
+                        :isMutedToggle="isMutedToggle"
+                    />
                 </div>
 
                 <div class="VolumeToggle__content_text">
@@ -39,7 +37,8 @@
         <VolumeNavbar
             v-if="currentScene === 2"
             :isMuted="isMuted"
-            :setIsMuted="setIsMuted"
+            :isMutedToggle="isMutedToggle"
+            :forceShowIcon="forceShowIcon"
         />
 
         <div class="VolumeToggle__anchor" />
@@ -58,16 +57,17 @@ export default {
         return {
             isMuted: true,
             currentScene: 0,
+            forceShowIcon: false,
         }
     },
     methods: {
-        volumeHandler() {
-            this.isMuted = !this.isMuted
-        },
         setIsMuted(status) {
             console.log('check')
             console.log(status)
             console.log(this.isMuted)
+            this.isMuted = !this.isMuted
+        },
+        isMutedToggle() {
             this.isMuted = !this.isMuted
         },
     },
@@ -91,8 +91,11 @@ export default {
             })
             .on('enter', () => {
                 // this.currentScene = 0
+                this.forceShowIcon = true
             })
             .on('leave', () => {
+                this.forceShowIcon = false
+
                 // this.currentScene = 0
             })
 

@@ -319,7 +319,6 @@ export default {
             wrapperHeight: 'none',
 
             currentScaleIndex: 0,
-            audioList: ['audio1', 'audio2', 'audio3', 'audio4', 'audio5'],
 
             image11,
             image14,
