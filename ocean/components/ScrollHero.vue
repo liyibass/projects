@@ -70,24 +70,17 @@ export default {
                 offset: 0,
                 triggerHook: 0.5,
                 // Duration of animation
-                duration: 100,
+                duration: 200,
             })
             .on('progress', (e) => {
                 ScrollHeroTitleDOM.style.opacity = -e.progress + 1
-
-                // switch (e.progress) {
-                //     case 0:
-                //         ScrollHeroTitleDOM.style.display = 'block'
-                //         break
-
-                //     case 1:
-                //         ScrollHeroTitleDOM.style.display = 'none'
-                //         break
-                //     default:
-                //         break
-                // }
             })
-
+            .on('enter', (e) => {
+                // ScrollHeroTitleDOM.style.zIndex = 1
+            })
+            .on('leave', (e) => {
+                // ScrollHeroTitleDOM.style.zIndex = -1
+            })
         // .addIndicators({ name: 'titleFadeScene' })
 
         this.$scrollmagic.addScene([backgroundDarkScene, titleFadeScene])

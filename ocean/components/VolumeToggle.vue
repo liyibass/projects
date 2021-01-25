@@ -1,16 +1,46 @@
 <template>
     <div class="VolumeToggle" id="VolumeToggle">
-        <div class="VolumeToggle__content">
-            <div class="VolumeToggle__content_icon" @click="volumeHandler">
-                <!-- <img src="~/static/images/icon_mute_120x120.svg" alt="" /> -->
-                <VolumeIcon :big="true" />
-            </div>
+        <audio
+            :src="require('@/static/audios/ocean.mp3')"
+            :autoplay="true"
+            loop
+            controls
+        >
+            Your browser does not support the <code>audio</code> element.
+        </audio>
+        、
 
-            <div class="VolumeToggle__content_text">
-                請點擊圖示開啟聲音<br />
-                獲得最佳閱讀體驗
+        <transition name="fade">
+            <div class="VolumeToggle__content" v-if="currentScene === 1">
+                <div class="VolumeToggle__content_icon" @click="volumeHandler">
+                    <!-- <img src="~/static/images/icon_mute_120x120.svg" alt="" /> -->
+                    <VolumeIcon :isMuted="isMuted" :setIsMuted="setIsMuted" />
+                </div>
+
+                <div class="VolumeToggle__content_text">
+                    請點擊圖示開啟聲音<br />
+                    獲得最佳閱讀體驗
+                </div>
             </div>
-        </div>
+        </transition>
+
+        <transition name="fade">
+            <div
+                class="VolumeToggle__content"
+                id="VolumeToggle__content"
+                v-if="currentScene === 2"
+            >
+                <div class="VolumeToggle__content_text">
+                    閱讀過程中<br />點選圖示可關閉聲音
+                </div>
+            </div>
+        </transition>
+
+        <VolumeNavbar
+            v-if="currentScene === 2"
+            :isMuted="isMuted"
+            :setIsMuted="setIsMuted"
+        />
 
         <div class="VolumeToggle__anchor" />
     </div>
@@ -27,36 +57,43 @@ export default {
     data() {
         return {
             isMuted: true,
-            forceShowIcon: true,
+            currentScene: 0,
         }
     },
     methods: {
         volumeHandler() {
             this.isMuted = !this.isMuted
         },
+        setIsMuted(status) {
+            console.log('check')
+            console.log(status)
+            console.log(this.isMuted)
+            this.isMuted = !this.isMuted
+        },
     },
     mounted() {
-        const VolumeToggleContentDOM = document.querySelector(
-            '.VolumeToggle__content'
-        )
+        const VolumeToggleDOM = document.querySelector('#VolumeToggle')
 
         const VolumeToggleScene = this.$scrollmagic
             .scene({
                 triggerElement: '#VolumeToggle',
-                offset: 0,
-                triggerHook: 0.5,
-                duration: 100,
+                offset: 0.5,
+                triggerHook: 0,
+                duration: 1000,
             })
+            .setPin(VolumeToggleDOM)
             .on('progress', (e) => {
-                VolumeToggleContentDOM.style.opacity = e.progress
-                // ScrollHeroMaskDom.style.opacity = e.progress
+                if (e.progress >= 0 && e.progress < 0.5) {
+                    this.currentScene = 1
+                } else if (e.progress >= 0.5 && e.progress <= 1) {
+                    this.currentScene = 2
+                }
             })
-            // Handle force show VolumeNavbar(set this.forceShowIcon flag to true)
             .on('enter', () => {
-                this.forceShowIcon = true
+                // this.currentScene = 0
             })
             .on('leave', () => {
-                this.forceShowIcon = true
+                // this.currentScene = 0
             })
 
         // .addIndicators({ name: 'VolumeToggleScene' })
@@ -71,6 +108,7 @@ export default {
     position: relative;
     height: 100vh;
     background: black;
+    // background: gold;
 
     font-weight: 300;
     font-size: 18px;
@@ -80,8 +118,10 @@ export default {
     color: #ffffff;
 
     &__content {
-        opacity: 0;
-        position: fixed;
+        z-index: 0;
+        // opacity: 0;
+        transition: opacity 0.5s ease;
+        position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -106,6 +146,10 @@ export default {
         }
     }
 
+    #VolumeToggle__content {
+        position: fixed;
+    }
+
     &__anchor {
         // background: gold;
         width: 100%;
@@ -114,5 +158,13 @@ export default {
         bottom: 0;
         z-index: -1;
     }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
 }
 </style>

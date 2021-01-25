@@ -1,7 +1,8 @@
 <template>
     <div class="ArticleImage">
         <div class="ArticleImage__image">
-            <img v-lazy="imageUrl" :alt="comment" />
+            <!-- <img v-lazy="imageUrl" :alt="comment" /> -->
+            <img :src="imageUrl" :alt="comment" />
         </div>
 
         <div class="ArticleImage__comment">

@@ -1,5 +1,5 @@
 <template>
-    <div class="VolumeIcon" @click="volumeHandler" :class="{ big: big }">
+    <div class="VolumeIcon" @click="volumeHandler">
         <img
             v-if="isMuted"
             class="VolumeIcon__icon"
@@ -18,30 +18,24 @@
 </template>
 
 <script>
-import volume1 from '~/static/images/icon_volume_1@1x.svg'
-import volume2 from '~/static/images/icon_volume_2@1x.svg'
-import volume3 from '~/static/images/icon_volume_3@1x.svg'
 import iconMuteBig from '~/static/images/icon_mute_120x120.svg'
 
-import iconMute from '~/static/images/icon_mute_48x48.svg'
-import iconVolume from '~/static/images/icon_volume_120x120.svg'
-import iconVolume1 from '~/static/images/icon_volume_1_48x48.svg'
-import iconVolume2 from '~/static/images/icon_volume_2_48x48.svg'
-import iconVolume3 from '~/static/images/icon_volume_3_48x48.svg'
+import iconVolume1 from '~/static/images/icon_volume_1_120x120.svg'
+import iconVolume2 from '~/static/images/icon_volume_2_120x120.svg'
+import iconVolume3 from '~/static/images/icon_volume_3_120x120.svg'
 
 export default {
-    props: ['big'],
+    props: ['isMuted', 'setIsMuted'],
     data() {
         return {
-            isMuted: false,
             icon: 0,
             iconMuteBig: iconMuteBig,
-            iconArray: [volume1, volume2, volume3],
+            iconArray: [iconVolume1, iconVolume2, iconVolume3],
         }
     },
     methods: {
         volumeHandler() {
-            this.isMuted = !this.isMuted
+            this.setIsMuted(!this.isMuted)
 
             this.$el.classList.add('clicked')
             setTimeout(() => {
@@ -68,13 +62,11 @@ export default {
     cursor: pointer;
     // background: gold;
     background: rgba(0, 0, 0, 0.3);
-    height: 48px;
-    border-radius: 24px;
-}
-
-.big {
-    height: 120px;
-    border-radius: 60px;
+    border-radius: 50%;
+    img {
+        width: 100%;
+        display: block;
+    }
 }
 
 .clicked {

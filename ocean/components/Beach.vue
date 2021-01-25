@@ -206,8 +206,6 @@ export default {
 
             padding: 24px 60px;
             margin: 48px 84px 0px;
-            &_content {
-            }
         }
 
         &__fix_wrapper {

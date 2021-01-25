@@ -1,6 +1,6 @@
 <template>
     <div class="VolumeNavbar" :style="{ top: getTopHeight }">
-        <VolumeIcon />
+        <VolumeIcon :isMuted="isMuted" :setIsMuted="setIsMuted" />
     </div>
 </template>
 
@@ -13,7 +13,7 @@ export default {
         VolumeIcon,
     },
 
-    props: ['forceShowIcon'],
+    props: ['isMuted', 'setIsMuted'],
     data() {
         return {
             direction: 'up',
@@ -22,6 +22,7 @@ export default {
 
     computed: {
         getTopHeight() {
+            console.log(this.direction)
             if (this.direction === 'down' && this.forceShowIcon === false) {
                 return '-64px'
             } else {

@@ -1,6 +1,6 @@
 <template>
     <div class="Wave">
-        <div class="Wave__cursor" :class="{ Wave__cursor_play: play }" />
+        <!-- <div class="Wave__cursor" :class="{ Wave__cursor_play: play }" /> -->
         <div class="Wave__before">
             <img :src="waveImg" alt="" />
         </div>
@@ -69,12 +69,15 @@ export default {
 @keyframes play {
     0% {
         filter: grayscale(100%);
+        transform: scaleY(1);
     }
     50% {
         filter: grayscale(0%);
+        transform: scaleY(1.6);
     }
     100% {
         filter: grayscale(100%);
+        transform: scaleY(1);
     }
 }
 

@@ -5,9 +5,8 @@
         ref="storyRef"
         :style="{ height: `${wrapperHeight}px` }"
     >
-        <!-- <div class="scaleIndex">
-            {{ currentScaleIndex }}
-        </div> -->
+        <!-- <div class="observer">{{ wrapperHeight }}</div> -->
+
         <DegreeRuler :scaleIndex="currentScaleIndex" />
         <div class="Story__fix_wrapper">
             <div class="Story__wrapper">
@@ -317,8 +316,8 @@ export default {
 
     data() {
         return {
-            storyHeight: 7000,
             wrapperHeight: 'none',
+
             currentScaleIndex: 0,
             audioList: ['audio1', 'audio2', 'audio3', 'audio4', 'audio5'],
 
@@ -377,39 +376,31 @@ export default {
         }
     },
 
+    methods: {
+        getCurrentAudioId(progress) {
+            // ex: if there's 5 audio, interval = 0.2
+            // and current progress is 0.3
+            // then audio index = 0.3 / 0.2 = 1 (2nd audio)
+            const scaleCount = this.yearDegreeList.length
+            const interval = 1 / scaleCount
+
+            const scaleIndex = Math.round(progress / interval)
+            return scaleIndex
+        },
+    },
+
     async mounted() {
-        const degreeRulerDOM = document.querySelector('.DegreeRuler')
+        // fetch correct current Story height,
+        // then update wapperHeight with it
+        setTimeout(() => {
+            const fixWrapperDOM = document.querySelector('.Story__fix_wrapper')
+            console.log(fixWrapperDOM.clientHeight)
+            this.wrapperHeight = fixWrapperDOM.clientHeight
+        }, 3000)
+    },
 
-        const storyHeight = await fetchHeight(this)
-        const scaleCount = this.yearDegreeList.length
-        const interval = 1 / scaleCount
-        // ex: if there's 5 audio, interval = 0.2
-        // and current progress is 0.3
-        // then audio index = 0.3 / 0.2 = 1 (2nd audio)
-
-        const yearAudioScene = this.$scrollmagic
-            .scene({
-                triggerElement: '#Story',
-                offset: 0,
-                triggerHook: 0,
-                duration: storyHeight,
-            })
-            .on('progress', (e) => {
-                const scaleIndex = Math.round(e.progress / interval)
-                if (scaleIndex === this.currentScaleIndex) return
-
-                // set to max if overflow
-                this.currentScaleIndex =
-                    scaleIndex < scaleCount ? scaleIndex : scaleCount - 1
-            })
-            .on('enter', (e) => {
-                degreeRulerDOM.style.position = 'fixed'
-            })
-            .on('leave', (e) => {
-                degreeRulerDOM.style.position = 'absolute'
-            })
-        // .addIndicators({ name: 'yearAudioScene' })
-
+    async updated() {
+        console.log('story updated')
         // -------------------------------------------------------
         // Handle fix component,hover by next component
         // need to define data.wrapperHeight
@@ -443,6 +434,38 @@ export default {
         // .addIndicators({ name: 'fixStoryScene' })
 
         // -------------------------------------------------------
+
+        const degreeRulerDOM = document.querySelector('.DegreeRuler')
+
+        const scaleCount = this.yearDegreeList.length
+        const interval = 1 / scaleCount
+        // ex: if there's 5 audio, interval = 0.2
+        // and current progress is 0.3
+        // then audio index = 0.3 / 0.2 = 1 (2nd audio)
+        const screenHeight = document.documentElement.clientHeight
+
+        const yearAudioScene = this.$scrollmagic
+            .scene({
+                triggerElement: '#Story',
+                offset: 0,
+                triggerHook: 0,
+                duration: this.wrapperHeight - screenHeight,
+            })
+            .on('progress', (e) => {
+                const scaleIndex = this.getCurrentAudioId(e.progress)
+                if (scaleIndex === this.currentScaleIndex) return
+
+                // set to max if overflow
+                this.currentScaleIndex =
+                    scaleIndex < scaleCount ? scaleIndex : scaleCount - 1
+            })
+            .on('enter', (e) => {
+                degreeRulerDOM.style.position = 'fixed'
+            })
+            .on('leave', (e) => {
+                degreeRulerDOM.style.position = 'absolute'
+            })
+        // .addIndicators({ name: 'yearAudioScene' })
 
         this.$scrollmagic.addScene([yearAudioScene, fixAndHoverScene])
     },

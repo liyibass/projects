@@ -1,6 +1,5 @@
 <template>
     <div class="Stage" id="Stage" ref="stageRef">
-        <div class="focus">{{ currentAnimate }}</div>
         <div class="Stage__background" ref="stageBackgroundRef">
             <picture>
                 <source
@@ -38,11 +37,7 @@
         </div>
 
         <div class="Stage__tiny_pins_ontainer">
-            <PinTiny
-                v-for="(pin, index) in tinyPinList"
-                :key="pin.id"
-                :pin="pin"
-            />
+            <PinTiny v-for="pin in tinyPinList" :key="pin.id" :pin="pin" />
         </div>
 
         <transition name="fade">
@@ -164,6 +159,11 @@ export default {
     computed: {
         animateGenerater() {
             switch (this.currentAnimate) {
+                case 0:
+                    this.mainPinsGrow('off')
+                    this.focusPin(-1)
+                    break
+
                 case 1:
                     this.mainPinsGrow('on')
                     this.focusPin(-1)
@@ -299,6 +299,7 @@ export default {
 
             .on('leave', () => {
                 stageBackgroundDOM.style.bottom = '0px'
+                this.currentAnimate = 0
             })
 
             .on('progress', (e) => {
@@ -349,19 +350,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.focus {
-    width: 20px;
-    height: 20px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: white;
-    border: 1px solid red;
-    z-index: 99999;
-
-    text-align: center;
-    line-height: 20px;
-}
 .Stage {
     z-index: 104;
     position: relative;

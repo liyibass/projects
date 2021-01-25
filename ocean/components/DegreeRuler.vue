@@ -1,5 +1,7 @@
 <template>
     <div class="DegreeRuler">
+        <!-- <div class="observer">{{ scaleIndex }}</div> -->
+
         <div class="DegreeRuler__railway" ref="railwayRef">
             <DegreeBlock
                 :year="yearDegreeList[scaleIndex].year"
@@ -21,6 +23,8 @@
 
             <div class="mobile_bar" />
         </div>
+
+        <audio :src="fetchAudioSrc" :autoplay="true"></audio>
     </div>
 </template>
 
@@ -41,6 +45,14 @@ export default {
             railwayInterval: 100,
             isNotMobile: 1,
         }
+    },
+
+    computed: {
+        fetchAudioSrc() {
+            return require(`@/static/audios/temp/${
+                this.yearDegreeList[this.scaleIndex].year
+            }.mp3`)
+        },
     },
 
     mounted() {

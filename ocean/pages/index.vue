@@ -1,27 +1,25 @@
 <template>
-    <div>
+    <div class="main">
         <transition name="fade">
             <div class="loadingMask" v-if="isLoading">
                 <img src="~/static/images/loading.gif" alt="" />
             </div>
         </transition>
         <ScrollHero />
-        <!-- <VolumeToggle /> -->
-        <VolumeHint />
+        <VolumeToggle />
         <Beach />
         <Stage />
-        <!-- <Story /> -->
+        <Story />
         <Diving />
-        <!-- <DivingDark /> -->
-        <!-- <Video /> -->
-        <!-- <Final /> -->
+        <DivingDark />
+        <Video />
+        <Final />
     </div>
 </template>
 
 <script>
 import ScrollHero from '~/components/ScrollHero'
 import VolumeToggle from '~/components/VolumeToggle'
-import VolumeHint from '~/components/VolumeHint'
 import Beach from '~/components/Beach'
 import Stage from '~/components/Stage'
 import Story from '~/components/Story'
@@ -33,7 +31,6 @@ export default {
     components: {
         ScrollHero,
         VolumeToggle,
-        VolumeHint,
         Beach,
         Stage,
         Story,
@@ -64,6 +61,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.main {
+    background: black;
+}
 .loadingMask {
     width: 100%;
     height: 100vh;
