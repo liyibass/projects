@@ -6,11 +6,9 @@
             :isMuted="isMuted"
             autoplay
             loop
-            controls
         >
             Your browser does not support the <code>audio</code> element.
         </audio>
-        、
 
         <transition name="fade">
             <div class="VolumeToggle__content" v-if="currentScene === 1">

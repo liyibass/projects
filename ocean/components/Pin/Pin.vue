@@ -16,6 +16,7 @@
             v-if="focusState === 'focus'"
             :src="pin.audioUrl"
             :autoplay="true"
+            loop
         ></audio>
     </div>
 </template>

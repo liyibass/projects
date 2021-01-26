@@ -80,7 +80,7 @@ export default {
                 fixWrapperDOM.style.position = 'relative'
                 fixWrapperDOM.style.opacity = 0
             })
-            .addIndicators({ name: 'fixDivingDarkScene' })
+        // .addIndicators({ name: 'fixDivingDarkScene' })
 
         // -------------------------------------------------------
 

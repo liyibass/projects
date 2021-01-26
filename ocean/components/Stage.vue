@@ -58,8 +58,9 @@
 
         <audio
             v-if="currentAnimate === 5"
-            :src="audioAll"
+            :src="require('@/static/audios/animal/all.mp3')"
             :autoplay="true"
+            loop
         ></audio>
 
         <!-- <div class="Stage__anchor" /> -->
@@ -80,7 +81,6 @@ import wave6 from '../static/images/waves/wave6.svg'
 import audio1 from '@/static/audios/animal/1.mp3'
 import audio2 from '@/static/audios/animal/2.wav'
 import audio3 from '@/static/audios/animal/3.mp3'
-import audioAll from '@/static/audios/animal/all.mp3'
 
 export default {
     components: {
