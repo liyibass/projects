@@ -59,6 +59,8 @@ export default {
         const beachText1DOM = document.querySelector('.Beach__text1')
         const beachText2DOM = document.querySelector('.Beach__text2')
 
+        const oceanAudioDOM = document.querySelector('.oceanAudio')
+
         const beachText1Scene = this.$scrollmagic
             .scene({
                 triggerElement: '#Beach',
@@ -68,6 +70,10 @@ export default {
             })
             .on('progress', (e) => {
                 beachText1DOM.style.opacity = e.progress
+            })
+            .on('enter', (e) => {
+                console.log('play audio')
+                oceanAudioDOM.play()
             })
         // .addIndicators({ name: 'beachScene' })
 

@@ -2,7 +2,14 @@
     <div class="ArticleIframe">
         <div class="ArticleIframe__iframe" ref="iframeRef">
             <!-- <img :src="imageUrl" :alt="comment" /> -->
-            <iframe :src="iframeUrl" frameborder="0" height="100%"></iframe>
+            <!-- <iframe :src="iframeUrl" frameborder="0" height="600px"></iframe> -->
+            <iframe
+                src="https://flo.uri.sh/visualisation/4620597/embed"
+                title="Interactive or visual content"
+                frameborder="0"
+                scrolling="no"
+                style="width:100%;height:600px;"
+            ></iframe>
         </div>
 
         <div class="ArticleIframe__comment">

@@ -393,7 +393,7 @@ export default {
         // then update wapperHeight with it
         setTimeout(() => {
             const fixWrapperDOM = document.querySelector('.Story__fix_wrapper')
-            console.log(fixWrapperDOM.clientHeight)
+            // console.log(fixWrapperDOM.clientHeight)
             this.wrapperHeight = fixWrapperDOM.clientHeight
         }, 3000)
     },

@@ -22,7 +22,7 @@ export default {
 
     computed: {
         getTopHeight() {
-            console.log(this.direction)
+            // console.log(this.direction)
             if (this.direction === 'down' && this.forceShowIcon === false) {
                 return '-64px'
             } else {

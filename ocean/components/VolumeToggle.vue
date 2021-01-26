@@ -1,7 +1,7 @@
 <template>
     <div class="VolumeToggle" id="VolumeToggle">
         <audio
-            class="oceanAudio"
+            class="oceanAudio audio"
             :src="require('@/static/audios/ocean.mp3')"
             :isMuted="isMuted"
             autoplay

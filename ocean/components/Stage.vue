@@ -61,6 +61,7 @@
             :src="require('@/static/audios/animal/all.mp3')"
             :autoplay="true"
             loop
+            preload="auto"
         ></audio>
 
         <!-- <div class="Stage__anchor" /> -->
@@ -209,6 +210,8 @@ export default {
 
                 case 6:
                     this.tinyPinsGrow('off')
+                    this.mainPinsGrow('off')
+
                     break
 
                 case 7:
@@ -290,6 +293,7 @@ export default {
         const stageDOM = document.querySelector('.Stage')
         const beachDOM = document.querySelector('.Beach')
         const stageBackgroundDOM = document.querySelector('.Stage__background')
+        const oceanAudioDOM = document.querySelector('.oceanAudio')
 
         const stageScene = this.$scrollmagic
             .scene({
@@ -308,11 +312,17 @@ export default {
                 this.moveDistance = backgroundImageHeight - screenHeight
 
                 stageBackgroundDOM.style.bottom = `-${this.moveDistance - 5}px`
+
+                // turn ocean audio volume down
+                oceanAudioDOM.volume = 0.5
             })
 
             .on('leave', () => {
                 stageBackgroundDOM.style.bottom = '0px'
                 this.currentAnimate = 0
+
+                // turn ocean audio volume back to
+                oceanAudioDOM.volume = 1
             })
 
             .on('progress', (e) => {

@@ -24,7 +24,11 @@
             <div class="mobile_bar" />
         </div>
 
-        <audio :src="fetchAudioSrc" :autoplay="true"></audio>
+        <audio
+            class="audio degreeRulerAudio"
+            :src="fetchAudioSrc"
+            :autoplay="true"
+        ></audio>
     </div>
 </template>
 
@@ -65,6 +69,10 @@ export default {
         const screenWidth = document.documentElement.clientWidth
 
         this.isNotMobile = screenWidth < 450 ? 0 : 1
+
+        // turn annoying audio's volume down
+        const degreeRulerAudioDOM = document.querySelector('.degreeRulerAudio')
+        degreeRulerAudioDOM.volume = 0.2
     },
 }
 </script>

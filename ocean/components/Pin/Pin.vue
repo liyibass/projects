@@ -13,6 +13,7 @@
         />
 
         <audio
+            class="audio pinAudio"
             v-if="focusState === 'focus'"
             :src="pin.audioUrl"
             :autoplay="true"

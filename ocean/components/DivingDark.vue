@@ -96,7 +96,7 @@ export default {
     position: relative;
     width: 100%;
     background: black;
-    background: gold;
+    // background: gold;
 
     &__fix_wrapper {
         opacity: 0;
