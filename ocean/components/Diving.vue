@@ -63,7 +63,7 @@ export default {
             .on('progress', (e) => {
                 DivingMaskDOM.style.opacity = e.progress
             })
-        // .addIndicators({ name: 'backgroundDarkScene' })
+            .addIndicators({ name: 'backgroundDarkScene' })
 
         this.$scrollmagic.addScene(backgroundDarkScene)
     },

@@ -11,6 +11,12 @@
             :pin="pin"
             :focusState="focusState"
         />
+
+        <audio
+            v-if="focusState === 'focus'"
+            :src="pin.audioUrl"
+            :autoplay="true"
+        ></audio>
     </div>
 </template>
 

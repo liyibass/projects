@@ -80,7 +80,7 @@ export default {
                 fixWrapperDOM.style.position = 'relative'
                 fixWrapperDOM.style.opacity = 0
             })
-            .addIndicators({ name: 'fixStoryScene' })
+            .addIndicators({ name: 'fixDivingDarkScene' })
 
         // -------------------------------------------------------
 
@@ -96,6 +96,7 @@ export default {
     position: relative;
     width: 100%;
     background: black;
+    background: gold;
 
     &__fix_wrapper {
         opacity: 0;

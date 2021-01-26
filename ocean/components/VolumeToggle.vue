@@ -1,6 +1,13 @@
 <template>
     <div class="VolumeToggle" id="VolumeToggle">
-        <audio :src="require('@/static/audios/ocean.mp3')" loop controls>
+        <audio
+            class="oceanAudio"
+            :src="require('@/static/audios/ocean.mp3')"
+            :isMuted="isMuted"
+            autoplay
+            loop
+            controls
+        >
             Your browser does not support the <code>audio</code> element.
         </audio>
         、
@@ -47,7 +54,6 @@
 
 <script>
 import VolumeNavbar from '~/components/VolumeNavbar'
-import iconMuteBig from '~/static/images/icon_mute_120x120.svg'
 
 export default {
     components: {
@@ -61,14 +67,15 @@ export default {
         }
     },
     methods: {
-        setIsMuted(status) {
-            console.log('check')
-            console.log(status)
-            console.log(this.isMuted)
-            this.isMuted = !this.isMuted
-        },
         isMutedToggle() {
             this.isMuted = !this.isMuted
+            const oceanAudio = document.querySelector('.oceanAudio')
+
+            if (this.isMuted === false) {
+                oceanAudio.play()
+            } else {
+                oceanAudio.pause()
+            }
         },
     },
     mounted() {
@@ -89,14 +96,14 @@ export default {
                     this.currentScene = 2
                 }
             })
+            // When viewport is in this page, volumeNavbar won't disappear
             .on('enter', () => {
-                // this.currentScene = 0
                 this.forceShowIcon = true
+                VolumeToggleDOM.style.opacity = 1
             })
             .on('leave', () => {
                 this.forceShowIcon = false
-
-                // this.currentScene = 0
+                // VolumeToggleDOM.style.opacity = 0
             })
 
         // .addIndicators({ name: 'VolumeToggleScene' })
