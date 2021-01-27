@@ -55,7 +55,7 @@ export default {
                 content: FB_APP_ID,
             },
         ],
-        link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+        // link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
         script: [
             //     {
             //         src:

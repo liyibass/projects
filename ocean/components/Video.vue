@@ -6,6 +6,8 @@
                     :video-id="videoId"
                     ref="youtube"
                     :fitParent="true"
+                    :resize="true"
+                    width="360"
                 ></youtube>
             </div>
         </div>
@@ -107,6 +109,10 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+        &_youtube {
+            width: 100%;
+            // height: 80%;
+        }
     }
 
     @include atLarge {

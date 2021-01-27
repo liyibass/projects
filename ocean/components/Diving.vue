@@ -28,7 +28,7 @@
                 </picture>
             </div>
 
-            <div class="Diving__wrapper_text">
+            <div class="Diving__wrapper_text hide_text">
                 「因為有光，所以我們能看見東西。聲音是光。我所聽的是『聲音』——在聲音裡我聽到孩子玩耍、聽到冰箱馬達震動、兔子奔跑。聲音是光。我不是在聽這個東西的『聲音』。我是在聲音裡面聆聽。」
             </div>
         </div>
@@ -83,9 +83,32 @@ export default {
             .on('progress', (e) => {
                 DivingDarkTextDOM.style.opacity = e.progress
             })
-        // .addIndicators({ name: 'backgroundDarkScene' })
+        // .addIndicators({ name: 'darkTextScene' })
 
-        this.$scrollmagic.addScene([backgroundDarkScene, darkTextScene])
+        const darkTextPositonScene = this.$scrollmagic
+            .scene({
+                // ID of element where animation starts
+                triggerElement: '#Diving',
+                // Where to start trigger from element top
+                offset: 500,
+                // {0,0.5,1} - animations starts from {top,center,end} of window
+                triggerHook: 0,
+                // Duration of animation
+                duration: 2000,
+            })
+            .on('enter', (e) => {
+                DivingDarkTextDOM.style.position = 'fixed'
+            })
+            .on('leave', (e) => {
+                DivingDarkTextDOM.style.position = 'absolute'
+            })
+        // .addIndicators({ name: 'darkTextPositionScene' })
+
+        this.$scrollmagic.addScene([
+            backgroundDarkScene,
+            darkTextScene,
+            darkTextPositonScene,
+        ])
     },
 }
 </script>
@@ -143,7 +166,7 @@ export default {
     &__dark_text {
         opacity: 0;
         color: white;
-        position: fixed;
+        position: absolute;
         top: 50%;
         left: 50%;
         width: 100%;
@@ -157,7 +180,6 @@ export default {
         text-align: justify;
 
         max-width: 280px;
-        margin: 0 20px;
 
         &_bar {
             width: 92px;

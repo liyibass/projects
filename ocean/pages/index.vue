@@ -1,19 +1,20 @@
 <template>
     <div class="main">
-        <transition name="fade">
+        <!-- <transition name="fade">
             <div class="loadingMask" v-if="isLoading">
                 <img src="~/static/images/loading.gif" alt="" />
             </div>
-        </transition>
+        </transition> -->
         <ScrollHero />
         <VolumeToggle />
         <Beach />
         <Stage />
-        <Story />
+        <!-- <Story /> -->
         <Diving />
-        <DivingDark />
-        <Video />
+        <!-- <DivingDark /> -->
+        <!-- <Video /> -->
         <Final />
+        <!-- <LongImage image="5" /> -->
     </div>
 </template>
 
@@ -27,6 +28,7 @@ import Diving from '~/components/Diving'
 import DivingDark from '~/components/DivingDark'
 import Video from '~/components/Video'
 import Final from '~/components/Final'
+import LongImage from '~/components/LongImage'
 
 import 'intersection-observer'
 import scrollama from 'scrollama'
@@ -42,6 +44,7 @@ export default {
         DivingDark,
         Video,
         Final,
+        LongImage,
     },
     data() {
         return {
@@ -81,6 +84,10 @@ export default {
 </script>
 
 <style lang="scss">
+.main {
+    background: black;
+}
+
 .loadingMask {
     width: 100%;
     height: 100vh;

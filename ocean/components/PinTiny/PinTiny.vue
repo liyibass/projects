@@ -96,10 +96,10 @@ export default {
     .AnimateThumbnail {
         // transform: scale(0) !important;
         transform: translate(-50%, -50%) scale(0.1);
-        opacity: 0;
 
         &__pin {
             border-top: 1px solid rgba(255, 255, 255, 0.25) !important;
+            opacity: 0;
         }
     }
     .PinTiny__header {

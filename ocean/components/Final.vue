@@ -1,34 +1,11 @@
 <template>
     <div class="Final" id="Final">
         <div class="Final__background">
-            <picture>
-                <source
-                    media="(min-width:760px)"
-                    srcset="../static/images/23.jpg"
-                    alt="ocean"
-                />
-                <source
-                    media="(min-width:480px)"
-                    srcset="
-                        ../static/images/pad/23@1x.png 1x,
-                        ../static/images/pad/23@2x.png 2x
-                    "
-                    alt="ocean"
-                />
-
-                <img
-                    srcset="
-                        ../static/images/mobile/23@1x.png 1x,
-                        ../static/images/mobile/23@2x.png 2x,
-                        ../static/images/mobile/23@3x.png 3x
-                    "
-                    alt="ocean"
-                />
-            </picture>
+            <LongImage image="23" :zoom="true" />
         </div>
 
         <div class="Final__credit">
-            <div class="Final__credit_content">
+            <div class="Final__credit_content hide_text">
                 記者：胡慕情<br />
                 攝影：鄒保祥、林煒凱<br />
                 網頁製作：呂理詣、吳曼汝、米承鶴、李又如、陳姿廷、簡信昌<br />
@@ -44,9 +21,12 @@
 </template>
 
 <script>
-import { TweenMax } from 'gsap'
+import LongImage from './LongImage'
 
 export default {
+    components: {
+        LongImage,
+    },
     data() {
         return {}
     },
@@ -61,10 +41,11 @@ export default {
                 // Where to start trigger from element top
                 offset: 0,
                 // {0,0.5,1} - animations starts from {top,center,end} of window
-                triggerHook: 0.2,
+                triggerHook: 0,
                 // Duration of animation
                 duration: 100,
             })
+            .setPin('.Final')
             .on('progress', (e) => {
                 // this.maskOpacity = e.progress
                 FinalMaskDOM.style.opacity = -e.progress + 1
@@ -82,27 +63,7 @@ export default {
     position: relative;
     background: black;
 
-    &__background {
-        overflow: hidden;
-
-        img {
-            width: 100%;
-        }
-    }
-
-    @include atLarge {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        img {
-            height: 100vh;
-            width: auto;
-            min-width: 100vw;
-
-            object-fit: cover;
-            object-position: 50% 50%;
-        }
-    }
+    overflow: hidden;
 
     &__mask {
         z-index: 0;
@@ -131,6 +92,8 @@ export default {
             /* or 29px */
 
             color: #ffffff;
+            opacity: 1;
+            transition: opacity 0.5s ease;
         }
     }
 

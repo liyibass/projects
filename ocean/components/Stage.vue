@@ -2,30 +2,7 @@
     <div class="Stage" id="Stage" ref="stageRef">
         <!-- <div class="observer">{{ currentAnimate }}</div> -->
         <div class="Stage__background" ref="stageBackgroundRef">
-            <picture>
-                <source
-                    media="(min-width:760px)"
-                    srcset="@/static/images/5.png"
-                    alt="ocean"
-                />
-                <source
-                    media="(min-width:480px)"
-                    srcset="
-                        @/static/images/pad/5@1x.png 1x,
-                        @/static/images/pad/5@2x.png 2x
-                    "
-                    alt="ocean"
-                />
-
-                <img
-                    srcset="
-                        @/static/images/mobile/5_v4@1x.png 1x,
-                        @/static/images/mobile/5_v4@2x.png 2x
-                        @/static/images/mobile/5_v4@3x.png 3x
-                    "
-                    alt="ocean"
-                />
-            </picture>
+            <LongImage image="5" :zoom="true" />
         </div>
 
         <div class="Stage__main_pins_container">
@@ -71,6 +48,7 @@
 <script>
 import Pin from './Pin/Pin'
 import PinTiny from './PinTiny/PinTiny'
+import LongImage from './LongImage'
 
 import wave1 from '../static/images/waves/wave1.svg'
 import wave2 from '../static/images/waves/wave2.svg'
@@ -87,13 +65,14 @@ export default {
     components: {
         Pin,
         PinTiny,
+        LongImage,
     },
     data() {
         return {
             currentAnimate: 0,
             focusedPinIndex: 0,
+            translateRatio: 30,
 
-            moveDistance: 100,
             mainPinList: [
                 {
                     id: 1,
@@ -294,6 +273,15 @@ export default {
         const stageBackgroundDOM = document.querySelector('.Stage__background')
         const oceanAudioDOM = document.querySelector('.oceanAudio')
 
+        // Fetch moving distance
+        const screenHeight = window.innerHeight
+        const backgroundImageHeight = this.$refs.stageBackgroundRef.clientHeight
+        const translateRatio =
+            ((backgroundImageHeight - screenHeight) / backgroundImageHeight) *
+            100
+        this.translateRatio = translateRatio
+        stageBackgroundDOM.style.transform = `translate(0%,-20%)`
+
         const stageScene = this.$scrollmagic
             .scene({
                 triggerElement: '.Stage',
@@ -304,15 +292,8 @@ export default {
             .setPin(stageDOM)
             .on('enter', () => {
                 console.log('Stage in')
-                // Fetch moving distance
-                const screenHeight = window.innerHeight
 
-                const backgroundImageHeight = this.$refs.stageBackgroundRef
-                    .clientHeight
-
-                this.moveDistance = backgroundImageHeight - screenHeight
-
-                stageBackgroundDOM.style.bottom = `-${this.moveDistance - 5}px`
+                stageBackgroundDOM.style.transform = `translate(0%,0%)`
 
                 // turn ocean audio volume down
                 oceanAudioDOM.volume = 0.5
@@ -320,8 +301,9 @@ export default {
 
             .on('leave', () => {
                 console.log('Stage out')
+                // stageBackgroundDOM.style.transform = `translate(-50%,-${this.translateRatio}%)`
+                stageBackgroundDOM.style.transform = `translate(0%,-20%)`
 
-                stageBackgroundDOM.style.bottom = '0px'
                 this.currentAnimate = 0
 
                 // turn ocean audio volume back to
@@ -380,50 +362,30 @@ export default {
     z-index: 104;
     position: relative;
     // background: white;
-    background: goldenrod;
 
     height: 100vh;
     overflow: hidden;
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     &__background {
         width: 100%;
         transition: all 2s ease;
-        position: absolute;
-        // top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        bottom: 0px;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        img {
-            // width: 100%;
-            min-width: 100%;
-            min-height: 130vh;
-        }
-        // position: fixed;
+        transform: translate(0%, -20%);
 
         margin-bottom: -5px;
     }
 
-    @include atSuperLarge {
-        &__background {
-            // width: 100vw;
-            // height: 180vh;
-            overflow: hidden;
-            display: block;
-
-            img {
-                width: 100%;
-                height: auto;
-                min-width: inherit;
-                min-height: inherit;
-                // width: 100%;
-            }
-        }
-    }
+    // @include atSuperLarge {
+    //     &__background {
+    //         // width: 100vw;
+    //         // height: 180vh;
+    //         overflow: hidden;
+    //         display: block;
+    //     }
+    // }
 
     &__text {
         position: absolute;

@@ -1,31 +1,9 @@
 <template>
     <div class="ScrollHero" id="ScrollHero">
         <div class="ScrollHero__background">
-            <picture>
-                <source
-                    media="(min-width:760px)"
-                    srcset="~/static/images/1.jpg"
-                    alt="ocean"
-                />
-                <source
-                    media="(min-width:480px)"
-                    srcset="
-                        ~/static/images/pad/1@1x.png 1x,
-                        ~/static/images/pad/1@2x.png 2x
-                    "
-                    alt="ocean"
-                />
-
-                <img
-                    srcset="
-                        ~/static/images/mobile/1@1x.png 1x,
-                        ~/static/images/mobile/1@2x.png 2x,
-                        ~/static/images/mobile/1@3x.png 3x
-                    "
-                    alt="ocean"
-                />
-            </picture>
+            <LongImage image="1" :zoom="true" />
         </div>
+
         <div class="ScrollHero__title">
             珊瑚礁的寂聲終章
         </div>
@@ -36,7 +14,12 @@
 </template>
 
 <script>
+import LongImage from './LongImage'
+
 export default {
+    components: {
+        LongImage,
+    },
     data() {
         return {}
     },
@@ -91,46 +74,6 @@ export default {
     // z-index: 100;
     position: relative;
     background: black;
-
-    &__background {
-        // width: 100vw;
-        // height: 180vh;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        img {
-            min-width: 100%;
-            min-height: 120vh;
-            // width: 100%;
-        }
-
-        // background: url('../static/images/1.jpg');
-        // background-position-x: 50%;
-        // background-size: cover;
-    }
-
-    @include atSuperLarge {
-        &__background {
-            // width: 100vw;
-            // height: 180vh;
-            overflow: hidden;
-            display: block;
-
-            img {
-                width: 100%;
-                height: auto;
-                min-width: inherit;
-                min-height: inherit;
-                // width: 100%;
-            }
-
-            // background: url('../static/images/1.jpg');
-            // background-position-x: 50%;
-            // background-size: cover;
-        }
-    }
 
     &__title {
         z-index: 1;
