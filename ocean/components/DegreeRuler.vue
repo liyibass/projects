@@ -24,10 +24,10 @@
             <div class="mobile_bar" />
         </div>
 
-        <audio class="audio degreeRulerAudio1" :src="audio1Src"></audio>
-        <audio class="audio degreeRulerAudio2" :src="audio2Src"></audio>
-        <audio class="audio degreeRulerAudio3" :src="audio3Src"></audio>
-        <audio class="audio degreeRulerAudio4" :src="audio4Src"></audio>
+        <audio class="audio degreeRulerAudio1" />
+        <audio class="audio degreeRulerAudio2" />
+        <audio class="audio degreeRulerAudio3" />
+        <audio class="audio degreeRulerAudio4" />
     </div>
 </template>
 
@@ -47,18 +47,7 @@ export default {
         return {
             railwayInterval: 100,
             isNotMobile: 1,
-            audio1Src: 0,
-            audio2Src: 0,
-            audio3Src: 0,
-            audio4Src: 0,
         }
-    },
-
-    computed: {
-        fetchAudioSrc() {
-            // console.log(this.yearDegreeMixin[this.scaleIndex])
-            return this.yearDegreeList[this.scaleIndex].audio
-        },
     },
 
     mounted() {
@@ -74,41 +63,33 @@ export default {
         this.isNotMobile = screenWidth < 450 ? 0 : 1
     },
 
-    updated() {
+    async updated() {
         //   distribute audioSrc to 4 audio players, prevent audio pause issue
-        let playerIndex
+        let currentPlayerIndex
 
         switch (this.scaleIndex % 3) {
             case 0:
-                this.audio1Src = this.yearDegreeList[this.scaleIndex].audio
-                playerIndex = 1
-
+                currentPlayerIndex = 1
                 break
-
             case 1:
-                this.audio2Src = this.yearDegreeList[this.scaleIndex].audio
-                playerIndex = 2
-
+                currentPlayerIndex = 2
                 break
-
             case 2:
-                this.audio3Src = this.yearDegreeList[this.scaleIndex].audio
-                playerIndex = 3
-
+                currentPlayerIndex = 3
                 break
             case 3:
-                this.audio4Src = this.yearDegreeList[this.scaleIndex].audio
-                playerIndex = 4
-
-                break
-
-            default:
+                currentPlayerIndex = 4
                 break
         }
+
+        const src = this.yearDegreeList[this.scaleIndex].audio
         const degreeRulerAudio = document.querySelector(
-            `.degreeRulerAudio${playerIndex}`
+            `.degreeRulerAudio${currentPlayerIndex}`
         )
-        // turn annoying audio's volume down
+        degreeRulerAudio.src = src
+
+        // change src from DOM need to reload
+        await degreeRulerAudio.load()
         degreeRulerAudio.volume = 0.2
         degreeRulerAudio.play()
     },
