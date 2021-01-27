@@ -379,19 +379,22 @@ export default {
 .Stage {
     z-index: 104;
     position: relative;
-    background: white;
+    // background: white;
+    background: goldenrod;
+
     height: 100vh;
     overflow: hidden;
 
     &__background {
-        width: 100%;
+        // width: 100%;
         transition: all 2s ease;
         position: absolute;
         // top: 0;
         bottom: 0px;
 
         img {
-            width: 100%;
+            // width: 100%;
+            min-height: 130vh;
         }
         // position: fixed;
 
