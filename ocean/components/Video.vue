@@ -7,6 +7,9 @@
 
         <div class="Video__fix_wrapper">
             <h1>Video</h1>
+            <!-- <video class="Video__video">
+                <source src="~/static/videos/video.mp4" type="video/mp4" />
+            </video> -->
         </div>
     </div>
 </template>
@@ -34,6 +37,8 @@ export default {
         const nextComponentClass = '.Final'
         const currentComponentWrapperClass = '.Video__fix_wrapper'
 
+        const videoDOM = document.querySelector('.Video__video')
+
         const fixAndHoverScene = this.$scrollmagic
             .scene({
                 triggerElement: nextComponentClass,
@@ -51,10 +56,13 @@ export default {
                 fixWrapperDOM.style.position = 'fixed'
                 fixWrapperDOM.style.width = '100%'
                 fixWrapperDOM.style.bottom = '0px'
+
+                videoDOM.play()
             })
             .on('leave', (e) => {
                 // unfix css
                 fixWrapperDOM.style.position = 'relative'
+                videoDOM.pause()
             })
         // .addIndicators({ name: 'fixStoryScene' })
 
@@ -84,12 +92,16 @@ export default {
 
         height: 100vh;
         width: 100%;
-        background: darkslategrey;
-        color: white;
+        // background: black;
+        // color: white;
 
         display: flex;
         justify-content: center;
         align-items: center;
+
+        .Video__video {
+            width: 100%;
+        }
     }
 }
 </style>

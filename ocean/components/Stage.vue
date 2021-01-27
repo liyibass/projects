@@ -291,7 +291,6 @@ export default {
     mounted() {
         // const beachDOM = this.$refs.stageRef.previousElementSibling
         const stageDOM = document.querySelector('.Stage')
-        const beachDOM = document.querySelector('.Beach')
         const stageBackgroundDOM = document.querySelector('.Stage__background')
         const oceanAudioDOM = document.querySelector('.oceanAudio')
 
@@ -300,16 +299,22 @@ export default {
                 triggerElement: '.Stage',
                 offset: 0,
                 triggerHook: 0,
-                duration: 2500,
+                duration: 5000,
             })
             .setPin(stageDOM)
             .on('enter', () => {
+                console.log('Stage in')
                 // Fetch moving distance
-                const screenHeight = window.screen.height
+                const screenHeight = window.innerHeight
+
                 const backgroundImageHeight = this.$refs.stageBackgroundRef
                     .clientHeight
 
+                console.log(screenHeight)
+                console.log(backgroundImageHeight)
                 this.moveDistance = backgroundImageHeight - screenHeight
+
+                console.log(this.moveDistance)
 
                 stageBackgroundDOM.style.bottom = `-${this.moveDistance - 5}px`
 
@@ -318,6 +323,8 @@ export default {
             })
 
             .on('leave', () => {
+                console.log('Stage out')
+
                 stageBackgroundDOM.style.bottom = '0px'
                 this.currentAnimate = 0
 
@@ -326,17 +333,17 @@ export default {
             })
 
             .on('progress', (e) => {
-                if (e.progress > 0.01 && e.progress < 0.1) {
+                if (e.progress > 0.01 && e.progress < 0.2) {
                     this.currentAnimate = 1
-                } else if (e.progress > 0.1 && e.progress < 0.3) {
+                } else if (e.progress > 0.2 && e.progress < 0.35) {
                     this.currentAnimate = 2
-                } else if (e.progress > 0.3 && e.progress < 0.5) {
+                } else if (e.progress > 0.35 && e.progress < 0.5) {
                     this.currentAnimate = 3
-                } else if (e.progress > 0.5 && e.progress < 0.7) {
+                } else if (e.progress > 0.5 && e.progress < 0.65) {
                     this.currentAnimate = 4
-                } else if (e.progress > 0.7 && e.progress < 0.9) {
+                } else if (e.progress > 0.65 && e.progress < 0.85) {
                     this.currentAnimate = 5
-                } else if (e.progress > 0.9 && e.progress < 1) {
+                } else if (e.progress > 0.85 && e.progress < 1) {
                     this.currentAnimate = 6
                 } else if (e.progress === 1) {
                     this.currentAnimate = 7

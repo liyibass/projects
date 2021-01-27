@@ -12,8 +12,31 @@
 </template>
 
 <script>
+import 'intersection-observer'
+import scrollama from 'scrollama'
+
 export default {
     props: ['imageUrl', 'comment'],
+
+    mounted() {
+        // instantiate the scrollama
+        const scroller = scrollama()
+
+        // setup the instance, pass callback functions
+        scroller
+            .setup({
+                step: '.ArticleImage__comment',
+            })
+            .onStepEnter((response) => {
+                // { element, index, direction }
+            })
+            .onStepExit((response) => {
+                // { element, index, direction }
+            })
+
+        // setup resize event
+        window.addEventListener('resize', scroller.resize)
+    },
 }
 </script>
 

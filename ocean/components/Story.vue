@@ -276,9 +276,6 @@
 </template>
 
 <script>
-import 'intersection-observer'
-import scrollama from 'scrollama'
-
 import ArticleSubTitle from '~/components/Article/ArticleSubTitle'
 import ArticleImage from '~/components/Article/ArticleImage'
 import ArticleCarousel from '~/components/Article/ArticleCarousel'

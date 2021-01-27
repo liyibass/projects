@@ -4,7 +4,6 @@
             class="oceanAudio audio"
             :src="require('@/static/audios/ocean.mp3')"
             :isMuted="isMuted"
-            autoplay
             loop
         >
             Your browser does not support the <code>audio</code> element.
@@ -69,10 +68,16 @@ export default {
             this.isMuted = !this.isMuted
             const oceanAudio = document.querySelector('.oceanAudio')
 
+            const allAudio = document.querySelectorAll('.audio')
+
             if (this.isMuted === false) {
-                oceanAudio.play()
+                allAudio.forEach((audio) => {
+                    audio.play()
+                })
             } else {
-                oceanAudio.pause()
+                allAudio.forEach((audio) => {
+                    audio.pause()
+                })
             }
         },
     },

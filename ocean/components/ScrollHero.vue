@@ -27,7 +27,7 @@
             </picture>
         </div>
         <div class="ScrollHero__title">
-            珊瑚白化變奏曲
+            珊瑚礁的寂聲終章
         </div>
         <div class="ScrollHero__mask" />
 
