@@ -34,10 +34,9 @@
         <div>{{ animateGenerater }}</div>
 
         <audio
-            v-if="currentAnimate === 5"
-            class="audio_player"
+            class="audio_all audio"
             :src="require('@/static/audios/animal/all.mp3')"
-            loop
+            :loop="true"
         ></audio>
     </div>
 </template>
@@ -349,10 +348,15 @@ export default {
     },
 
     updated() {
+        const audioAllDOM = document.querySelector('.audio_all')
         if (this.currentAnimate === 5) {
-            const audioPlayer = document.querySelector('.audio_player')
-
-            audioPlayer.play()
+            console.log('start audio all')
+            audioAllDOM.volume = 1
+            audioAllDOM.play()
+        } else {
+            console.log('stop audio all')
+            audioAllDOM.volume = 0
+            audioAllDOM.pause()
         }
     },
 }

@@ -70,6 +70,17 @@ export default {
             const oceanAudio = document.querySelector('.oceanAudio')
 
             if (this.isMuted === false) {
+                const allAudio = document.querySelectorAll('.audio')
+
+                // in order to play audio, need to activate all audio tag
+                // play all audio player with mute state,
+                allAudio.forEach((audio) => {
+                    audio.volume = 0
+                    audio.play()
+                    audio.pause()
+                })
+
+                oceanAudio.volume = 1
                 oceanAudio.play()
             } else {
                 const allAudio = document.querySelectorAll('.audio')

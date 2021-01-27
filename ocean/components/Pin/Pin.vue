@@ -13,7 +13,6 @@
         />
 
         <audio
-            v-if="focusState === 'focus'"
             class="audio pinAudio"
             :class="`audio${pin.id}`"
             :src="pin.audioUrl"
@@ -45,14 +44,16 @@ export default {
         switch (this.focusState) {
             case 'focus':
                 audioPlayer = document.querySelector(`.audio${this.pin.id}`)
+                console.log('focus')
+                audioPlayer.volume = 1
                 audioPlayer.play()
                 break
 
-            case 'unFocus':
-                // no need to pause audio because we use v-if to render audio tag
-                break
-
             default:
+                // unFocus and other state
+                audioPlayer = document.querySelector(`.audio${this.pin.id}`)
+                audioPlayer.volume = 0
+                audioPlayer.pause()
                 break
         }
     },
