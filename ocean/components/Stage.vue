@@ -74,6 +74,7 @@ export default {
                     name: '槍蝦',
                     englishName: 'Snapping shrimp',
                     audioUrl: require('@/static/audios/animal/1.mp3'),
+                    duration: 11,
                     detail:
                         '全世界有上千種槍蝦，絕大多數生活在熱帶礁岩海底。槍蝦有一隻特化的螯，捕食時會將螯指快速闔上釋放空蝕氣泡。釋出的氣泡會因壓力而塌陷，產生的衝擊波可以震碎玻璃、擊暈獵物，發出響亮爆音。當一群槍蝦一齊發出聲響，甚至可以干擾海底聲納運作。',
                 },
@@ -85,6 +86,7 @@ export default {
                     name: '金鱗魚',
                     englishName: 'Soldierfish',
                     audioUrl: require('@/static/audios/animal/2.mp3'),
+                    duration: 12,
                     detail:
                         '又如金鱗魚科的魚是夜行性動物，白天常躲在洞穴内。若受干擾，會發出像啄木鳥啄木一樣的「dou-dou」聲響。',
                 },
@@ -96,47 +98,54 @@ export default {
                     name: '雀鯛',
                     englishName: 'Demselfish',
                     audioUrl: require('@/static/audios/animal/3.mp3'),
+                    duration: 11,
                     detail:
                         '至於雀鯛科非常吵鬧。牠們是神經兮兮的守衛者，當有威脅逼近，就會嘰嘰叫囂宣示領域。然而雄魚求偶，卻會發出類似貓咪的撒嬌呼嚕。',
                 },
             ],
             tinyPinList: [
                 {
-                    id: 1,
+                    id: 0,
                     name: '槍蝦',
                     waveImg: wave1,
                     audioUrl: '',
+                    duration: 11,
                 },
                 {
-                    id: 2,
+                    id: 1,
                     name: '金鱗魚',
                     waveImg: wave2,
                     audioUrl: '',
+                    duration: 12,
                 },
                 {
-                    id: 3,
+                    id: 2,
                     name: '雀鯛',
                     waveImg: wave3,
                     audioUrl: '',
+                    duration: 11,
                 },
 
                 {
-                    id: 4,
+                    id: 3,
                     name: '日本松球魚',
                     waveImg: wave4,
                     audioUrl: '',
+                    duration: 11,
                 },
                 {
-                    id: 5,
+                    id: 4,
                     name: '擬金眼鯛',
                     waveImg: wave5,
                     audioUrl: '',
+                    duration: 11,
                 },
                 {
-                    id: 6,
+                    id: 5,
                     name: '海膽',
                     waveImg: wave6,
                     audioUrl: '',
+                    duration: 11,
                 },
             ],
         }

@@ -4,12 +4,15 @@
         <div class="Wave__before">
             <img :src="waveImg" alt="" />
         </div>
+        <div class="Wave__after" :style="{ animationDuration: `${duration}s` }">
+            <img :src="waveImg" alt="" />
+        </div>
     </div>
 </template>
 
 <script>
 export default {
-    props: ['waveImg', 'play'],
+    props: ['waveImg', 'play', 'duration'],
 }
 </script>
 
@@ -21,7 +24,7 @@ export default {
     width: 88px;
     img {
         display: block;
-        width: 100%;
+        width: 88px;
     }
 
     &__cursor {
@@ -35,17 +38,27 @@ export default {
     }
 
     &__cursor_play {
-        animation: cursorPlay;
-        animation-delay: 1s;
-        animation-duration: 4s;
-        animation-iteration-count: infinite;
-        animation-timing-function: linear;
+        // animation: cursorPlay;
+        // animation-delay: 1s;
+        // animation-duration: 4s;
+        // animation-iteration-count: infinite;
+        // animation-timing-function: linear;
     }
 
     &__before {
         filter: grayscale(100%);
+    }
+
+    &__after {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        width: 50%;
+        overflow: hidden;
+
         animation: play;
-        animation-duration: 2s;
+        animation-duration: 11s;
         animation-iteration-count: infinite;
     }
 
@@ -68,25 +81,25 @@ export default {
 
 @keyframes play {
     0% {
-        filter: grayscale(100%);
-        transform: scaleY(1);
+        transform: translateY(-50%) scaleY(1);
+        width: 0px;
     }
     50% {
-        filter: grayscale(0%);
-        transform: scaleY(1.6);
+        transform: translateY(-50%) scaleY(1.6);
+        width: 44px;
     }
     100% {
-        filter: grayscale(100%);
-        transform: scaleY(1);
+        transform: translateY(-50%) scaleY(1);
+        width: 88px;
     }
 }
 
-@keyframes cursorPlay {
-    0% {
-        left: 0;
-    }
-    100% {
-        left: 100%;
-    }
-}
+// @keyframes cursorPlay {
+//     0% {
+//         left: 0;
+//     }
+//     100% {
+//         left: 100%;
+//     }
+// }
 </style>

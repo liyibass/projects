@@ -9,6 +9,7 @@
 
                     <Wave
                         :waveImg="pin.waveImg"
+                        :duration="pin.duration"
                         v-if="focusState === 'focus'"
                         :play="focusState"
                     />
