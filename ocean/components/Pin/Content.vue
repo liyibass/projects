@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        <div class="Content__detail">
+        <div class="Content__detail" v-if="focusState">
             {{ pin.detail }}
         </div>
     </div>
@@ -42,19 +42,23 @@ export default {
 <style lang="scss" scoped>
 .Content {
     z-index: 1;
-    position: relative;
+    position: absolute;
+    bottom: calc(100% + 8px);
+
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
 
     &__header {
+        position: relative;
+
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: flex-start;
 
-        margin-bottom: 20px;
+        // margin-bottom: 20px;
 
         &_title {
             display: flex;
@@ -83,7 +87,7 @@ export default {
                 color: #fdffff;
                 opacity: 0.7;
 
-                margin-bottom: 8px;
+                // margin-bottom: 8px;
             }
         }
     }
@@ -94,7 +98,8 @@ export default {
         opacity: 0;
 
         position: absolute;
-        top: 100%;
+        // top: 100%;
+        top: 0;
         font-size: 16px;
         line-height: 180%;
         /* or 29px */
@@ -111,27 +116,34 @@ export default {
     @include atSmall {
         width: calc(40vw);
         max-width: 437px;
-        margin-left: 12px;
         align-items: flex-start;
 
+        bottom: 50%;
+        transform: translate(0%, 50%);
+        left: calc(100% + 12px);
+
         &__header {
+            // margin-bottom: 12px;
+
             &_title {
                 align-items: flex-start;
 
                 &_englishName {
                     margin-bottom: 0;
                 }
-
-                &_detail {
-                    margin: 0;
-                    margin-top: 12px;
-                }
             }
+
+            // &_detail {
+            //     margin: 0;
+            //     margin-top: 12px;
+            // }
         }
     }
 
     @include atMedium {
         width: 348px;
+
+        left: calc(100% + 16px);
     }
 }
 
@@ -186,6 +198,8 @@ export default {
     padding: 0 20px;
 
     .Content__header {
+        margin-bottom: 8px;
+
         &_title {
             align-items: flex-start;
 
@@ -212,16 +226,20 @@ export default {
         position: relative;
         top: initial;
         left: initial;
-        margin-top: -75px !important;
+        margin-top: -135px !important;
         margin-left: 40px;
 
+        .Content__header {
+            margin-bottom: 12px;
+        }
+
         .Content__detail {
-            position: absolute;
+            position: relative;
         }
     }
 
     @include atMedium {
-        margin-top: -110px !important;
+        margin-top: -154px !important;
         margin-left: 32px;
     }
 }

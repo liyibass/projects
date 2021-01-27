@@ -77,7 +77,7 @@ export default {
     }
 }
 
-.pin_1 {
+.pin_0 {
     .AnimateThumbnail__ball {
         width: $pin_1_size;
         height: $pin_1_size;
@@ -93,7 +93,7 @@ export default {
     }
 }
 
-.pin_2 {
+.pin_1 {
     .AnimateThumbnail__ball {
         width: $pin_3_size;
         height: $pin_3_size;
@@ -109,7 +109,7 @@ export default {
     }
 }
 
-.pin_3 {
+.pin_2 {
     .AnimateThumbnail__ball {
         width: $pin_2_size;
         height: $pin_2_size;
@@ -125,7 +125,7 @@ export default {
     }
 }
 
-.pin_4 {
+.pin_3 {
     .AnimateThumbnail__ball {
         width: $pin_4_size;
         height: $pin_4_size;
@@ -141,7 +141,7 @@ export default {
     }
 }
 
-.pin_5 {
+.pin_4 {
     .AnimateThumbnail__ball {
         width: $pin_5_size;
         height: $pin_5_size;
@@ -157,7 +157,7 @@ export default {
     }
 }
 
-.pin_6 {
+.pin_5 {
     .AnimateThumbnail__ball {
         width: $pin_6_size;
         height: $pin_6_size;

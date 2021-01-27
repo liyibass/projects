@@ -42,6 +42,11 @@ export default {
     transition: all 1s ease-in-out;
 
     &__header {
+        position: absolute;
+
+        bottom: calc(100% + 13px);
+        // top: calc(- 16px);
+
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -65,7 +70,6 @@ export default {
 
     @include atSmall {
         &__header {
-            margin-left: 16px;
             .Wave {
                 margin: 0 0 8px;
             }
@@ -76,6 +80,9 @@ export default {
         flex-direction: row-reverse;
 
         &__header {
+            bottom: auto;
+            left: calc(100% + 13px);
+
             flex-direction: column-reverse;
             align-items: flex-start;
 
@@ -109,28 +116,28 @@ export default {
     }
 }
 
-.pin_1 {
+.pin_0 {
     top: 46.78%;
     left: 5.5%;
 }
 
-.pin_2 {
+.pin_1 {
     top: 46.644%;
     left: 78.313%;
 }
-.pin_3 {
+.pin_2 {
     top: 19.318%;
     left: 18.625%;
 }
-.pin_4 {
+.pin_3 {
     top: 61.364%;
     left: 35.5%;
 }
-.pin_5 {
+.pin_4 {
     top: 28.788%;
     left: 49.563%;
 }
-.pin_6 {
+.pin_5 {
     top: 71.212%;
     left: 64.875%;
 }

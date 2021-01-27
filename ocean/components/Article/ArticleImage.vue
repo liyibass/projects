@@ -43,12 +43,16 @@ export default {
         opacity: 0.66;
         transition: opacity 0.5s ease;
 
-        margin: 12px 20px 24px 0;
+        margin: 12px 20px 24px;
     }
 
     @include atSmall {
         max-width: 550px;
         margin: 0 40px;
+
+        &__comment {
+            margin: 12px 20px 24px 0;
+        }
     }
 
     @include atLarge {

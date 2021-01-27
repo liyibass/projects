@@ -2,7 +2,7 @@ module.exports = {
     app: {
         siteProtocol: 'https',
         domain: 'www.mirrormedia.mg',
-        base: '/projects/ocean_test11',
+        base: '/projects/ocean_test12',
     },
 }
 

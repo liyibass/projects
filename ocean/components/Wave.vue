@@ -19,8 +19,9 @@ export default {
 <style lang="scss" scoped>
 .Wave {
     position: relative;
-    display: flex;
-    align-items: center;
+    // display: flex;
+    // align-items: center;
+
     width: 88px;
     img {
         display: block;
@@ -46,14 +47,19 @@ export default {
     }
 
     &__before {
+        display: block;
         filter: grayscale(100%);
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 88px;
     }
 
     &__after {
+        display: block;
         position: absolute;
-        top: 50%;
+        top: 0;
         left: 0;
-        transform: translateY(-50%);
         width: 50%;
         overflow: hidden;
 
@@ -64,10 +70,16 @@ export default {
 
     @include atSmall {
         width: 120px;
+        img {
+            width: 120px;
+        }
     }
 
     @include atMedium {
         width: 80px;
+        img {
+            width: 80px;
+        }
     }
 }
 
@@ -81,16 +93,19 @@ export default {
 
 @keyframes play {
     0% {
-        transform: translateY(-50%) scaleY(1);
+        top: 0;
+        left: 0;
         width: 0px;
     }
     50% {
-        transform: translateY(-50%) scaleY(1.6);
-        width: 44px;
+        top: 0;
+        left: 0;
+        width: 50%;
     }
     100% {
-        transform: translateY(-50%) scaleY(1);
-        width: 88px;
+        top: 0;
+        left: 0;
+        width: 100%;
     }
 }
 

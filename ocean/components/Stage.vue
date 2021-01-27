@@ -407,7 +407,7 @@ export default {
         // left: 50%;
         transform: translate(0%, -50%);
 
-        margin: 0 20px;
+        padding: 0 20px;
 
         font-weight: normal;
         font-size: 16px;
