@@ -34,13 +34,11 @@
         <div>{{ animateGenerater }}</div>
 
         <audio
+            v-if="currentAnimate === 5"
             class="audio_player"
-            :src="audioPlayer"
+            :src="require('@/static/audios/animal/all.mp3')"
             loop
-            :autoplay="true"
         ></audio>
-
-        <!-- <div class="Stage__anchor" /> -->
     </div>
 </template>
 
@@ -70,7 +68,7 @@ export default {
 
             mainPinList: [
                 {
-                    id: 1,
+                    id: 0,
                     size: 'small',
                     image: '6-1',
                     waveImg: wave1,
@@ -81,7 +79,7 @@ export default {
                         '全世界有上千種槍蝦，絕大多數生活在熱帶礁岩海底。槍蝦有一隻特化的螯，捕食時會將螯指快速闔上釋放空蝕氣泡。釋出的氣泡會因壓力而塌陷，產生的衝擊波可以震碎玻璃、擊暈獵物，發出響亮爆音。當一群槍蝦一齊發出聲響，甚至可以干擾海底聲納運作。',
                 },
                 {
-                    id: 2,
+                    id: 1,
                     size: 'large',
                     image: '6-2',
                     waveImg: wave2,
@@ -92,7 +90,7 @@ export default {
                         '又如金鱗魚科的魚是夜行性動物，白天常躲在洞穴内。若受干擾，會發出像啄木鳥啄木一樣的「dou-dou」聲響。',
                 },
                 {
-                    id: 3,
+                    id: 2,
                     size: 'mid',
                     image: '6-3',
                     waveImg: wave3,
@@ -196,24 +194,6 @@ export default {
                     break
             }
             return null
-        },
-        audioPlayer() {
-            switch (this.currentAnimate) {
-                case 2:
-                    return require('@/static/audios/animal/1.mp3')
-
-                case 3:
-                    return require('@/static/audios/animal/2.mp3')
-
-                case 4:
-                    return require('@/static/audios/animal/3.mp3')
-
-                case 5:
-                    return require('@/static/audios/animal/all.mp3')
-
-                default:
-                    return null
-            }
         },
     },
     methods: {
@@ -366,6 +346,14 @@ export default {
         //         console.log('---------------')
         //     }
         // })
+    },
+
+    updated() {
+        if (this.currentAnimate === 5) {
+            const audioPlayer = document.querySelector('.audio_player')
+
+            audioPlayer.play()
+        }
     },
 }
 </script>

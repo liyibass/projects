@@ -11,6 +11,14 @@
             :pin="pin"
             :focusState="focusState"
         />
+
+        <audio
+            v-if="focusState === 'focus'"
+            class="audio pinAudio"
+            :class="`audio${pin.id}`"
+            :src="pin.audioUrl"
+            loop
+        ></audio>
     </div>
 </template>
 
@@ -28,6 +36,24 @@ export default {
     data() {
         return {
             isExpanded: false,
+        }
+    },
+
+    updated() {
+        let audioPlayer
+
+        switch (this.focusState) {
+            case 'focus':
+                audioPlayer = document.querySelector(`.audio${this.pin.id}`)
+                audioPlayer.play()
+                break
+
+            case 'unFocus':
+                // no need to pause audio because we use v-if to render audio tag
+                break
+
+            default:
+                break
         }
     },
 }
