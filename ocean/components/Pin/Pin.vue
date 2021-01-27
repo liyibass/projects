@@ -11,14 +11,6 @@
             :pin="pin"
             :focusState="focusState"
         />
-
-        <audio
-            class="audio pinAudio"
-            v-if="focusState === 'focus'"
-            :src="pin.audioUrl"
-            :autoplay="true"
-            loop
-        ></audio>
     </div>
 </template>
 

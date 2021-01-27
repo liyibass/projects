@@ -114,14 +114,5 @@ export default {
             // height: 80%;
         }
     }
-
-    @include atLarge {
-        &__fix_wrapper {
-            &_youtube {
-                width: 80%;
-                // height: 80%;
-            }
-        }
-    }
 }
 </style>

@@ -2,30 +2,7 @@
     <div class="Diving" id="Diving">
         <div class="Diving__wrapper">
             <div class="Diving__wrapper_background">
-                <picture>
-                    <source
-                        media="(min-width:760px)"
-                        srcset="../static/images/20.jpg"
-                        alt="ocean"
-                    />
-                    <source
-                        media="(min-width:480px)"
-                        srcset="
-                            ../static/images/pad/20@1x.png 1x,
-                            ../static/images/pad/20@2x.png 2x
-                        "
-                        alt="ocean"
-                    />
-
-                    <img
-                        srcset="
-                            ../static/images/mobile/20@1x.png 1x,
-                            ../static/images/mobile/20@2x.png 2x,
-                            ../static/images/mobile/20@3x.png 3x
-                        "
-                        alt="ocean"
-                    />
-                </picture>
+                <LongImage image="20" :zoom="true" />
             </div>
 
             <div class="Diving__wrapper_text hide_text">
@@ -42,7 +19,12 @@
 </template>
 
 <script>
+import LongImage from './LongImage'
+
 export default {
+    components: {
+        LongImage,
+    },
     data() {
         return {}
     },
@@ -131,18 +113,6 @@ export default {
     }
 
     &__wrapper {
-        &_background {
-            overflow: hidden;
-            height: 100vh;
-            width: 100%;
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                object-position: 50% 50%;
-            }
-        }
         &_text {
             opacity: 1;
             color: #fdffff;

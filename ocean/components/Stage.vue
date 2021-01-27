@@ -34,11 +34,10 @@
         <div>{{ animateGenerater }}</div>
 
         <audio
-            v-if="currentAnimate === 5"
-            :src="require('@/static/audios/animal/all.mp3')"
-            :autoplay="true"
+            class="audio_player"
+            :src="audioPlayer"
             loop
-            preload="auto"
+            :autoplay="true"
         ></audio>
 
         <!-- <div class="Stage__anchor" /> -->
@@ -56,10 +55,6 @@ import wave3 from '../static/images/waves/wave3.svg'
 import wave4 from '../static/images/waves/wave4.svg'
 import wave5 from '../static/images/waves/wave5.svg'
 import wave6 from '../static/images/waves/wave6.svg'
-
-import audio1 from '@/static/audios/animal/1.mp3'
-import audio2 from '@/static/audios/animal/2.mp3'
-import audio3 from '@/static/audios/animal/3.mp3'
 
 export default {
     components: {
@@ -81,7 +76,7 @@ export default {
                     waveImg: wave1,
                     name: '槍蝦',
                     englishName: 'Snapping shrimp',
-                    audioUrl: audio1,
+                    audioUrl: require('@/static/audios/animal/1.mp3'),
                     detail:
                         '全世界有上千種槍蝦，絕大多數生活在熱帶礁岩海底。槍蝦有一隻特化的螯，捕食時會將螯指快速闔上釋放空蝕氣泡。釋出的氣泡會因壓力而塌陷，產生的衝擊波可以震碎玻璃、擊暈獵物，發出響亮爆音。當一群槍蝦一齊發出聲響，甚至可以干擾海底聲納運作。',
                 },
@@ -92,7 +87,7 @@ export default {
                     waveImg: wave2,
                     name: '金鱗魚',
                     englishName: 'Soldierfish',
-                    audioUrl: audio2,
+                    audioUrl: require('@/static/audios/animal/2.mp3'),
                     detail:
                         '又如金鱗魚科的魚是夜行性動物，白天常躲在洞穴内。若受干擾，會發出像啄木鳥啄木一樣的「dou-dou」聲響。',
                 },
@@ -103,7 +98,7 @@ export default {
                     waveImg: wave3,
                     name: '雀鯛',
                     englishName: 'Demselfish',
-                    audioUrl: audio3,
+                    audioUrl: require('@/static/audios/animal/3.mp3'),
                     detail:
                         '至於雀鯛科非常吵鬧。牠們是神經兮兮的守衛者，當有威脅逼近，就會嘰嘰叫囂宣示領域。然而雄魚求偶，卻會發出類似貓咪的撒嬌呼嚕。',
                 },
@@ -201,6 +196,24 @@ export default {
                     break
             }
             return null
+        },
+        audioPlayer() {
+            switch (this.currentAnimate) {
+                case 2:
+                    return require('@/static/audios/animal/1.mp3')
+
+                case 3:
+                    return require('@/static/audios/animal/2.mp3')
+
+                case 4:
+                    return require('@/static/audios/animal/3.mp3')
+
+                case 5:
+                    return require('@/static/audios/animal/all.mp3')
+
+                default:
+                    return null
+            }
         },
     },
     methods: {

@@ -1,20 +1,19 @@
 <template>
     <div class="main">
-        <!-- <transition name="fade">
+        <transition name="fade">
             <div class="loadingMask" v-if="isLoading">
                 <img src="~/static/images/loading.gif" alt="" />
             </div>
-        </transition> -->
+        </transition>
         <ScrollHero />
         <VolumeToggle />
         <Beach />
         <Stage />
-        <!-- <Story /> -->
+        <Story />
         <Diving />
-        <!-- <DivingDark /> -->
-        <!-- <Video /> -->
+        <DivingDark />
+        <Video />
         <Final />
-        <!-- <LongImage image="5" /> -->
     </div>
 </template>
 
