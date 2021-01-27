@@ -80,7 +80,7 @@ import wave5 from '../static/images/waves/wave5.svg'
 import wave6 from '../static/images/waves/wave6.svg'
 
 import audio1 from '@/static/audios/animal/1.mp3'
-import audio2 from '@/static/audios/animal/2.wav'
+import audio2 from '@/static/audios/animal/2.mp3'
 import audio3 from '@/static/audios/animal/3.mp3'
 
 export default {
@@ -386,19 +386,43 @@ export default {
     overflow: hidden;
 
     &__background {
-        // width: 100%;
+        width: 100%;
         transition: all 2s ease;
         position: absolute;
         // top: 0;
+        left: 50%;
+        transform: translateX(-50%);
         bottom: 0px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
         img {
             // width: 100%;
+            min-width: 100%;
             min-height: 130vh;
         }
         // position: fixed;
 
         margin-bottom: -5px;
+    }
+
+    @include atSuperLarge {
+        &__background {
+            // width: 100vw;
+            // height: 180vh;
+            overflow: hidden;
+            display: block;
+
+            img {
+                width: 100%;
+                height: auto;
+                min-width: inherit;
+                min-height: inherit;
+                // width: 100%;
+            }
+        }
     }
 
     &__text {

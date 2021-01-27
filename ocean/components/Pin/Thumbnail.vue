@@ -89,7 +89,7 @@ export default {
 
     .Thumbnail__pin {
         margin-top: 18px;
-        border-top: 224px solid rgba(255, 255, 255, 0.25);
+        border-top: 60vh solid rgba(255, 255, 255, 0.25);
     }
 
     @include atSmall {
@@ -102,7 +102,7 @@ export default {
 
         .Thumbnail__pin {
             margin-top: 30px;
-            border-top: 500px solid rgba(255, 255, 255, 0.25);
+            border-top: 60vh solid rgba(255, 255, 255, 0.25);
         }
     }
 
@@ -116,7 +116,7 @@ export default {
 
         .Thumbnail__pin {
             margin-top: 20px;
-            border-top: 231px solid rgba(255, 255, 255, 0.25);
+            border-top: 60vh solid rgba(255, 255, 255, 0.25);
         }
     }
 }
@@ -131,7 +131,7 @@ export default {
 
     .Thumbnail__pin {
         margin-top: 32px;
-        border-top: 72px solid rgba(255, 255, 255, 0.25);
+        border-top: 60vh solid rgba(255, 255, 255, 0.25);
     }
 
     @include atSmall {
@@ -144,7 +144,7 @@ export default {
 
         .Thumbnail__pin {
             margin-top: 45px;
-            border-top: 360px solid rgba(255, 255, 255, 0.25);
+            border-top: 60vh solid rgba(255, 255, 255, 0.25);
         }
     }
 
@@ -158,7 +158,7 @@ export default {
 
         .Thumbnail__pin {
             margin-top: 40px;
-            border-top: 238px solid rgba(255, 255, 255, 0.25);
+            border-top: 60vh solid rgba(255, 255, 255, 0.25);
         }
     }
 }
@@ -173,7 +173,7 @@ export default {
 
     .Thumbnail__pin {
         margin-top: 24px;
-        border-top: 252px solid rgba(255, 255, 255, 0.25);
+        border-top: 60vh solid rgba(255, 255, 255, 0.25);
     }
 
     @include atSmall {
@@ -186,7 +186,7 @@ export default {
 
         .Thumbnail__pin {
             margin-top: 30px;
-            border-top: 480px solid rgba(255, 255, 255, 0.25);
+            border-top: 60vh solid rgba(255, 255, 255, 0.25);
         }
     }
 
@@ -200,7 +200,7 @@ export default {
 
         .Thumbnail__pin {
             margin-top: 30px;
-            border-top: 390px solid rgba(255, 255, 255, 0.25);
+            border-top: 60vh solid rgba(255, 255, 255, 0.25);
         }
     }
 }

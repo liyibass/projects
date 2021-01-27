@@ -61,7 +61,7 @@ export default {
                 // Where to start trigger from element top
                 offset: 0,
                 // {0,0.5,1} - animations starts from {top,center,end} of window
-                triggerHook: 0,
+                triggerHook: 0.2,
                 // Duration of animation
                 duration: 100,
             })
@@ -69,7 +69,7 @@ export default {
                 // this.maskOpacity = e.progress
                 FinalMaskDOM.style.opacity = -e.progress + 1
             })
-        // .addIndicators({ name: 'backgroundDarkScene' })
+        // .addIndicators({ name: 'FinalScene' })
 
         this.$scrollmagic.addScene(backgroundDarkScene)
     },
@@ -87,6 +87,20 @@ export default {
 
         img {
             width: 100%;
+        }
+    }
+
+    @include atLarge {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        img {
+            height: 100vh;
+            width: auto;
+            min-width: 100vw;
+
+            object-fit: cover;
+            object-position: 50% 50%;
         }
     }
 

@@ -31,13 +31,11 @@
         </div>
         <div class="ScrollHero__mask" />
 
-        <div class="ScrollHero__anchor">YO</div>
+        <div class="ScrollHero__anchor"></div>
     </div>
 </template>
 
 <script>
-import { TweenMax } from 'gsap'
-
 export default {
     data() {
         return {}
@@ -54,7 +52,7 @@ export default {
                 // Where to start trigger from element top
                 offset: 0,
                 // {0,0.5,1} - animations starts from {top,center,end} of window
-                triggerHook: 0.8,
+                triggerHook: 0.9,
                 // Duration of animation
                 duration: 100,
             })
@@ -98,14 +96,40 @@ export default {
         // width: 100vw;
         // height: 180vh;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
         img {
-            width: 100%;
+            min-width: 100%;
+            min-height: 120vh;
+            // width: 100%;
         }
 
         // background: url('../static/images/1.jpg');
         // background-position-x: 50%;
         // background-size: cover;
+    }
+
+    @include atSuperLarge {
+        &__background {
+            // width: 100vw;
+            // height: 180vh;
+            overflow: hidden;
+            display: block;
+
+            img {
+                width: 100%;
+                height: auto;
+                min-width: inherit;
+                min-height: inherit;
+                // width: 100%;
+            }
+
+            // background: url('../static/images/1.jpg');
+            // background-position-x: 50%;
+            // background-size: cover;
+        }
     }
 
     &__title {
@@ -139,7 +163,7 @@ export default {
 
     &__anchor {
         position: absolute;
-        bottom: 20%;
+        top: 100vh;
         // background: gold;
         width: 100%;
         height: 10px;

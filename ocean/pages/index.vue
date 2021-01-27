@@ -5,15 +5,15 @@
                 <img src="~/static/images/loading.gif" alt="" />
             </div>
         </transition>
-        <!-- <ScrollHero /> -->
+        <ScrollHero />
         <VolumeToggle />
         <Beach />
         <Stage />
-        <!-- <Story /> -->
-        <!-- <Diving /> -->
-        <!-- <DivingDark /> -->
-        <!-- <Video /> -->
-        <!-- <Final /> -->
+        <Story />
+        <Diving />
+        <DivingDark />
+        <Video />
+        <Final />
     </div>
 </template>
 
