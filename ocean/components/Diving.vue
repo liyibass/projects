@@ -42,8 +42,6 @@
 </template>
 
 <script>
-import { TweenMax } from 'gsap'
-
 export default {
     data() {
         return {}

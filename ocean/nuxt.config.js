@@ -96,6 +96,10 @@ export default {
             src: '~plugins/VueSmoothScroll.js',
             ssr: false,
         },
+        {
+            src: '~plugins/vue-youtube.js',
+            ssr: false,
+        },
     ],
 
     // Auto import components (https://go.nuxtjs.dev/config-components)

@@ -1,15 +1,13 @@
 <template>
     <div class="Video" ref="videoRef" :style="{ height: `${wrapperHeight}px` }">
-        <!-- <video class="Video__video" playsinline> -->
-        <!-- <source v-if="isMobile" src="~/static/videos/people_mobile.mp4" />
-            <source v-else src="~/static/videos/people.mp4" /> -->
-        <!-- </video> -->
-
         <div class="Video__fix_wrapper">
-            <h1>Video</h1>
-            <!-- <video class="Video__video">
-                <source src="~/static/videos/video.mp4" type="video/mp4" />
-            </video> -->
+            <div class="Video__fix_wrapper_youtube">
+                <youtube
+                    :video-id="videoId"
+                    ref="youtube"
+                    :fitParent="true"
+                ></youtube>
+            </div>
         </div>
     </div>
 </template>
@@ -20,7 +18,29 @@ export default {
         return {
             isMobile: true,
             wrapperHeight: 'none',
+            videoId: 'tcbSitsCx0c',
+            playerVars: {
+                autoplay: 1,
+            },
         }
+    },
+    methods: {
+        playVideo() {
+            console.log('video played')
+            this.player.playVideo()
+        },
+        pauseVideo() {
+            console.log('video paused')
+            this.player.pauseVideo()
+        },
+        playing() {
+            console.log('\o/ we are watching!!!')
+        },
+    },
+    computed: {
+        player() {
+            return this.$refs.youtube.player
+        },
     },
     mounted() {
         if (this.$refs.videoRef.clientWidth > 480) {
@@ -36,8 +56,6 @@ export default {
         let fixWrapperDOM
         const nextComponentClass = '.Final'
         const currentComponentWrapperClass = '.Video__fix_wrapper'
-
-        const videoDOM = document.querySelector('.Video__video')
 
         const fixAndHoverScene = this.$scrollmagic
             .scene({
@@ -57,27 +75,18 @@ export default {
                 fixWrapperDOM.style.width = '100%'
                 fixWrapperDOM.style.bottom = '0px'
 
-                videoDOM.play()
+                this.playVideo()
             })
             .on('leave', (e) => {
                 // unfix css
                 fixWrapperDOM.style.position = 'relative'
-                videoDOM.pause()
+                this.pauseVideo()
             })
         // .addIndicators({ name: 'fixStoryScene' })
 
         // -------------------------------------------------------
 
         this.$scrollmagic.addScene([fixAndHoverScene])
-    },
-
-    methods: {
-        // toggleVolume() {
-        //     if (this.isMuted === true) {
-        //         this.gaClickHandler('sound')
-        //     }
-        //     this.isMuted = !this.isMuted
-        // },
     },
 }
 </script>
@@ -92,15 +101,20 @@ export default {
 
         height: 100vh;
         width: 100%;
-        // background: black;
+        background: black;
         // color: white;
 
         display: flex;
         justify-content: center;
         align-items: center;
+    }
 
-        .Video__video {
-            width: 100%;
+    @include atLarge {
+        &__fix_wrapper {
+            &_youtube {
+                width: 80%;
+                // height: 80%;
+            }
         }
     }
 }
