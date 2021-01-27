@@ -33,6 +33,11 @@
             </div>
         </div>
         <div class="Diving__mask" />
+
+        <div class="Diving__dark_text">
+            <div class="Diving__dark_text_bar" />
+            珊瑚礁正在哀唱，如煤礦坑裡的金絲雀。牠的衰弱不僅是牠生命的頹敗，更是海洋連結大氣變化的警示。當珊瑚礁完全死去，牠不再鮮豔、被藻類附生，如發霉腐爛的石塊，化為見證海洋受難的墓碑。但目前，牠們正正掙扎。艱困活著，等待聆聽。
+        </div>
     </div>
 </template>
 
@@ -46,6 +51,7 @@ export default {
     mounted() {
         const DivingMaskDOM = document.querySelector('.Diving__mask')
         const DivingWrapperDOM = document.querySelector('.Diving__wrapper')
+        const DivingDarkTextDOM = document.querySelector('.Diving__dark_text')
 
         // Declare Scene
         const backgroundDarkScene = this.$scrollmagic
@@ -65,7 +71,23 @@ export default {
             })
         // .addIndicators({ name: 'backgroundDarkScene' })
 
-        this.$scrollmagic.addScene(backgroundDarkScene)
+        const darkTextScene = this.$scrollmagic
+            .scene({
+                // ID of element where animation starts
+                triggerElement: '#Diving',
+                // Where to start trigger from element top
+                offset: 800,
+                // {0,0.5,1} - animations starts from {top,center,end} of window
+                triggerHook: 0,
+                // Duration of animation
+                duration: 200,
+            })
+            .on('progress', (e) => {
+                DivingDarkTextDOM.style.opacity = e.progress
+            })
+        // .addIndicators({ name: 'backgroundDarkScene' })
+
+        this.$scrollmagic.addScene([backgroundDarkScene, darkTextScene])
     },
 }
 </script>
@@ -120,6 +142,35 @@ export default {
         }
     }
 
+    &__dark_text {
+        opacity: 0;
+        color: white;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        transform: translate(-50%, -50%);
+
+        color: #fdffff;
+
+        font-size: 16px;
+        line-height: 180%;
+        /* or 29px */
+        text-align: justify;
+
+        max-width: 280px;
+        margin: 0 20px;
+
+        &_bar {
+            width: 92px;
+            height: 0px;
+
+            /* White */
+            border: 0.25px solid #fdffff;
+            margin-bottom: 16px;
+        }
+    }
+
     @include atSmall {
         &__wrapper {
             &_text {
@@ -139,6 +190,16 @@ export default {
             &_text {
                 max-width: none;
                 width: 402px;
+            }
+        }
+
+        &__dark_text {
+            max-width: none;
+            width: 402px;
+            margin: 0;
+
+            &_bar {
+                width: 100.5px;
             }
         }
     }

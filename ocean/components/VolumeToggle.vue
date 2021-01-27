@@ -1,5 +1,6 @@
 <template>
     <div class="VolumeToggle" id="VolumeToggle">
+
         <audio
             class="oceanAudio audio"
             :src="require('@/static/audios/ocean.mp3')"
@@ -66,7 +67,6 @@ export default {
     methods: {
         isMutedToggle() {
             this.isMuted = !this.isMuted
-            const oceanAudio = document.querySelector('.oceanAudio')
 
             const allAudio = document.querySelectorAll('.audio')
 
@@ -109,7 +109,7 @@ export default {
                 // VolumeToggleDOM.style.opacity = 0
             })
 
-        // .addIndicators({ name: 'VolumeToggleScene' })
+            // .addIndicators({ name: 'VolumeToggleScene' })
 
         this.$scrollmagic.addScene([VolumeToggleScene])
     },
@@ -130,14 +130,15 @@ export default {
     text-align: center;
     color: #ffffff;
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
     &__content {
         z-index: 0;
         // opacity: 0;
         transition: opacity 0.5s ease;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
 
         display: flex;
         flex-direction: column;
@@ -161,6 +162,9 @@ export default {
 
     #VolumeToggle__content {
         position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 
     &__anchor {

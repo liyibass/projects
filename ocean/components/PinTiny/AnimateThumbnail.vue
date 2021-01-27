@@ -16,13 +16,15 @@ export default {
 .AnimateThumbnail {
     position: relative;
     &__ball {
-        background: rgba(255, 255, 255, 0.3);
         z-index: 1;
+        background: linear-gradient(0deg, #ffffff, #ffffff);
+        mix-blend-mode: soft-light;
     }
     &__inner_ball {
         position: absolute;
-        background: rgba(255, 255, 255, 0.3);
         z-index: 1;
+        background: linear-gradient(0deg, #ffffff, #ffffff);
+        mix-blend-mode: soft-light;
     }
 
     &__pin {

@@ -116,20 +116,7 @@ export default {
     }
 
     &__scale_block {
-        height: 52px;
-        width: 52px;
-
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        justify-content: center;
-        padding-right: 8px;
-        .normal_bar {
-            height: 1px;
-            width: 8px;
-            background: #b3b3b3;
-            opacity: 0.5;
-        }
+        display: none;
         // background: gold;
     }
 
@@ -145,6 +132,24 @@ export default {
 
         .mobile_bar {
             display: none;
+        }
+
+        &__scale_block {
+            height: 52px;
+            width: 52px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            padding-right: 8px;
+            .normal_bar {
+                height: 1px;
+                width: 8px;
+                background: #b3b3b3;
+                opacity: 0.5;
+            }
+            // background: gold;
         }
     }
 }

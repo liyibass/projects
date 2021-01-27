@@ -5,38 +5,17 @@
             <img :src="imageUrl" :alt="comment" />
         </div>
 
-        <div class="ArticleImage__comment">
+        <div class="ArticleImage__comment hide_text">
             {{ comment }}
         </div>
     </div>
 </template>
 
 <script>
-import 'intersection-observer'
-import scrollama from 'scrollama'
-
 export default {
     props: ['imageUrl', 'comment'],
 
-    mounted() {
-        // instantiate the scrollama
-        const scroller = scrollama()
-
-        // setup the instance, pass callback functions
-        scroller
-            .setup({
-                step: '.ArticleImage__comment',
-            })
-            .onStepEnter((response) => {
-                // { element, index, direction }
-            })
-            .onStepExit((response) => {
-                // { element, index, direction }
-            })
-
-        // setup resize event
-        window.addEventListener('resize', scroller.resize)
-    },
+    mounted() {},
 }
 </script>
 
@@ -62,8 +41,9 @@ export default {
         /* Gray */
         color: #4d4d4d;
         opacity: 0.66;
+        transition: opacity 0.5s ease;
 
-        margin: 12px 20px 24px;
+        margin: 12px 20px 24px 0;
     }
 
     @include atSmall {

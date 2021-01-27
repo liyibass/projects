@@ -46,3 +46,9 @@ a {
     text-align: center;
     line-height: 50px;
 }
+
+.hide_text {
+    opacity: 0 !important;
+    // add transition to text that want to fade in
+    // transition: opacity 0.5s ease;
+}

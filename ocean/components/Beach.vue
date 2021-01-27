@@ -33,17 +33,19 @@
                 </picture>
             </div>
 
-            <div class="Beach__text1">
+            <div class="Beach__text1 hide_text">
                 「妳注意過電影如何呈現人類在水下聽見的聲音嗎？」聲音藝術家Yannick
                 Dauby
                 說：「總是咕嚕咕嚕。」但那是不正確的，「咕嚕咕嚕是人背著氣瓶下水時發出的呼息，而非海洋的聲音。」
             </div>
-            <div class="Beach__text2">
-                <div class="Beach__text2_content">
+            <div class="Beach__text2 hide_text">
+                <div class="Beach__text2_content ">
                     Yannick
                     領我走進書房，點開電腦中的音檔，房間隨後環繞一塊油脂豐滿的三層肉在鍋裡煎熬的劈啪聲響。然那並非油花彈跳，而是他利用特製水下錄音器材捕捉到的槍蝦聲音。
                 </div>
             </div>
+
+            <div class="Beach__blenk" />
         </div>
     </div>
 </template>
@@ -56,39 +58,6 @@ export default {
         }
     },
     async mounted() {
-        const beachText1DOM = document.querySelector('.Beach__text1')
-        const beachText2DOM = document.querySelector('.Beach__text2')
-
-        const oceanAudioDOM = document.querySelector('.oceanAudio')
-
-        const beachText1Scene = this.$scrollmagic
-            .scene({
-                triggerElement: '#Beach',
-                offset: 0,
-                triggerHook: 0.5,
-                duration: 50,
-            })
-            .on('progress', (e) => {
-                beachText1DOM.style.opacity = e.progress
-            })
-            .on('enter', (e) => {
-                console.log('play audio')
-                oceanAudioDOM.play()
-            })
-        // .addIndicators({ name: 'beachScene' })
-
-        const beachText2Scene = this.$scrollmagic
-            .scene({
-                triggerElement: '#Beach',
-                offset: 0,
-                triggerHook: 0,
-                duration: 50,
-            })
-            .on('progress', (e) => {
-                beachText2DOM.style.opacity = e.progress
-            })
-        // .addIndicators({ name: 'beachScene' })
-
         // -------------------------------------------------------
         // Handle fix component,hover by next component
         // need to define data.wrapperHeight
@@ -123,11 +92,7 @@ export default {
 
         // -------------------------------------------------------
 
-        this.$scrollmagic.addScene([
-            beachText1Scene,
-            beachText2Scene,
-            fixAndHoverScene,
-        ])
+        this.$scrollmagic.addScene([fixAndHoverScene])
     },
 }
 </script>
@@ -149,7 +114,8 @@ export default {
     }
 
     &__text1 {
-        opacity: 0;
+        opacity: 1;
+        transition: opacity 0.5s ease;
         color: #fdffff;
 
         font-size: 16px;
@@ -168,7 +134,8 @@ export default {
     }
 
     &__text2 {
-        opacity: 0;
+        opacity: 1;
+        transition: opacity 0.5s ease;
         color: #4d4d4d;
         display: flex;
         flex-direction: column;
@@ -183,6 +150,12 @@ export default {
         &_content {
             width: 100%;
         }
+    }
+
+    &__blenk {
+        background: white;
+        width: 100%;
+        height: 30vh;
     }
 
     &__fix_wrapper {

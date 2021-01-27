@@ -310,11 +310,7 @@ export default {
                 const backgroundImageHeight = this.$refs.stageBackgroundRef
                     .clientHeight
 
-                console.log(screenHeight)
-                console.log(backgroundImageHeight)
                 this.moveDistance = backgroundImageHeight - screenHeight
-
-                console.log(this.moveDistance)
 
                 stageBackgroundDOM.style.bottom = `-${this.moveDistance - 5}px`
 

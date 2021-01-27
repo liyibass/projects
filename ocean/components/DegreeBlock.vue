@@ -24,7 +24,7 @@ export default {
 <style lang="scss" scoped>
 .DegreeBlock {
     position: absolute;
-    // width: 100%;
+    width: 100%;
     height: 30px;
 
     display: flex;

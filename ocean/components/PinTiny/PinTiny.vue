@@ -77,6 +77,7 @@ export default {
 
         &__header {
             flex-direction: column-reverse;
+            align-items: flex-start;
 
             &_name {
                 margin: 0;

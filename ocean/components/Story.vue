@@ -396,7 +396,7 @@ export default {
     },
 
     async updated() {
-        console.log('story updated')
+        // console.log('story updated')
         // -------------------------------------------------------
         // Handle fix component,hover by next component
         // need to define data.wrapperHeight

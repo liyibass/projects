@@ -29,7 +29,7 @@
             </picture>
         </div>
 
-        <div class="ArticleImage__comment">
+        <div class="ArticleImage__comment hide_text">
             {{ comment }}
         </div>
     </div>
@@ -68,6 +68,7 @@ export default {
         padding-left: 16px;
 
         width: 240px;
+        transition: opacity 0.5s ease;
     }
 
     @include atSmall {

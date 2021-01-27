@@ -27,6 +27,10 @@ import Diving from '~/components/Diving'
 import DivingDark from '~/components/DivingDark'
 import Video from '~/components/Video'
 import Final from '~/components/Final'
+
+import 'intersection-observer'
+import scrollama from 'scrollama'
+
 export default {
     components: {
         ScrollHero,
@@ -44,12 +48,6 @@ export default {
             isLoading: true,
         }
     },
-    // mounted() {
-    //     this.$nextTick(() => {
-    //         console.log('ready load')
-    //         // this.isLoading = false
-    //     })
-    // },
     created() {
         // would work in 'ready', 'attached', etc.
         window.addEventListener('load', () => {
@@ -57,10 +55,32 @@ export default {
             this.isLoading = false
         })
     },
+    mounted() {
+        // Handle image's text fede in
+        // instantiate the scrollama
+        const scroller = scrollama()
+
+        // setup the instance, pass callback functions
+        scroller
+            .setup({
+                step: '.hide_text',
+                offset: 0.8,
+            })
+            .onStepEnter((response) => {
+                // { element, index, direction }
+                response.element.classList.remove('hide_text')
+            })
+            .onStepExit((response) => {
+                // { element, index, direction }
+            })
+
+        // setup resize event
+        window.addEventListener('resize', scroller.resize)
+    },
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .loadingMask {
     width: 100%;
     height: 100vh;
@@ -85,10 +105,5 @@ export default {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
-}
-
-.YOYO {
-    height: 200vh;
-    background: gold;
 }
 </style>
