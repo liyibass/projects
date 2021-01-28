@@ -116,8 +116,8 @@ export default {
 }
 
 .Pin__small {
-    top: 20.606%;
-    left: 3.25%;
+    top: 25.606%;
+    left: 8.25%;
 
     @include atSmall {
         top: 9.375%;
@@ -131,7 +131,7 @@ export default {
 }
 
 .Pin__large {
-    top: 36.325%;
+    top: 41.325%;
     left: 40%;
 
     @include atSmall {
@@ -146,7 +146,7 @@ export default {
 }
 
 .Pin__mid {
-    top: 25.909%;
+    top: 30.909%;
     left: 76.875%;
 
     @include atSmall {

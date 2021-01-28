@@ -123,7 +123,7 @@ export default {
 
 .pin_1 {
     top: 46.644%;
-    left: 78.313%;
+    left: 74.313%;
 }
 .pin_2 {
     top: 19.318%;

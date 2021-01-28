@@ -132,16 +132,11 @@ export default {
                     margin-bottom: 0;
                 }
             }
-
-            // &_detail {
-            //     margin: 0;
-            //     margin-top: 12px;
-            // }
         }
     }
 
     @include atMedium {
-        width: 348px;
+        max-width: 348px;
 
         left: calc(100% + 16px);
     }
@@ -193,6 +188,7 @@ export default {
     position: fixed;
     top: 8.049%;
     left: 0;
+    bottom: auto;
 
     align-items: flex-start;
     padding: 0 20px;

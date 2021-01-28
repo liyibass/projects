@@ -86,6 +86,7 @@ export default {
                 const allAudio = document.querySelectorAll('.audio')
 
                 allAudio.forEach((audio) => {
+                    audio.volume = 0
                     audio.pause()
                 })
             }

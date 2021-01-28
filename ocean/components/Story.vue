@@ -7,7 +7,7 @@
     >
         <!-- <div class="observer">{{ wrapperHeight }}</div> -->
 
-        <DegreeRuler :scaleIndex="currentScaleIndex" />
+        <DegreeRuler />
         <div class="Story__fix_wrapper">
             <div class="Story__wrapper">
                 <ArticleSubTitle title="澎湖的海 是他童年的夢" />
@@ -297,8 +297,9 @@ import image17_1 from '~/static/images/17-1.jpg'
 import image17_2 from '~/static/images/17-2.jpg'
 import image17_3 from '~/static/images/17-3.jpg'
 
-import { fetchHeight } from '../utils/fetchDom'
 import yearDegreeMixin from '~/mixins/yearDegreeMixin'
+import 'intersection-observer'
+import scrollama from 'scrollama'
 
 export default {
     components: {
@@ -314,8 +315,6 @@ export default {
     data() {
         return {
             wrapperHeight: 'none',
-
-            currentScaleIndex: 0,
 
             image11,
             image14,
@@ -396,7 +395,7 @@ export default {
     },
 
     async updated() {
-        // console.log('story updated')
+        console.log('story updated')
         // -------------------------------------------------------
         // Handle fix component,hover by next component
         // need to define data.wrapperHeight
@@ -429,41 +428,32 @@ export default {
             })
         // .addIndicators({ name: 'fixStoryScene' })
 
+        this.$scrollmagic.addScene([fixAndHoverScene])
         // -------------------------------------------------------
+        // instantiate the scrollama
+        const scroller = scrollama()
+        const degreeRulerNavbarDOM = document.querySelector(
+            '.DegreeRuler__navbar'
+        )
 
-        const degreeRulerDOM = document.querySelector('.DegreeRuler')
-
-        const scaleCount = this.yearDegreeList.length
-        const interval = 1 / scaleCount
-        // ex: if there's 5 audio, interval = 0.2
-        // and current progress is 0.3
-        // then audio index = 0.3 / 0.2 = 1 (2nd audio)
-        const screenHeight = document.documentElement.clientHeight
-
-        const yearAudioScene = this.$scrollmagic
-            .scene({
-                triggerElement: '#Story',
+        // setup the instance, pass callback functions
+        scroller
+            .setup({
+                step: '.Story',
                 offset: 0,
-                triggerHook: 0,
-                duration: this.wrapperHeight - screenHeight,
             })
-            .on('progress', (e) => {
-                const scaleIndex = this.getCurrentAudioId(e.progress)
-                if (scaleIndex === this.currentScaleIndex) return
+            .onStepEnter((response) => {
+                // { element, index, direction }
+                degreeRulerNavbarDOM.style.position = 'fixed'
+            })
+            .onStepExit((response) => {
+                degreeRulerNavbarDOM.style.position = 'absolute'
 
-                // set to max if overflow
-                this.currentScaleIndex =
-                    scaleIndex < scaleCount ? scaleIndex : scaleCount - 1
+                // { element, index, direction }
             })
-            .on('enter', (e) => {
-                degreeRulerDOM.style.position = 'fixed'
-            })
-            .on('leave', (e) => {
-                degreeRulerDOM.style.position = 'absolute'
-            })
-        // .addIndicators({ name: 'yearAudioScene' })
 
-        this.$scrollmagic.addScene([yearAudioScene, fixAndHoverScene])
+        // setup resize event
+        window.addEventListener('resize', scroller.resize)
     },
 }
 </script>
@@ -477,6 +467,7 @@ export default {
     &__fix_wrapper {
         padding-top: 77px;
         padding-bottom: 36px;
+        z-index: 0;
     }
 
     &__wrapper {
