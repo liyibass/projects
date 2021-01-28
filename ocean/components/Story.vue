@@ -270,6 +270,8 @@
                     生物離開，因爲牠們聆聽的「聲音」，是一全幅、具有脈絡、彼此關聯的生命景象。那是
                     Yannick 所說——
                 </div>
+
+                <div class="ArticleParagraph" :style="{ height: '40vh' }"></div>
             </div>
         </div>
     </div>

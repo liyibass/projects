@@ -147,6 +147,15 @@ export default {
                     audioUrl: '',
                     duration: 11,
                 },
+                {
+                    id: 6,
+                },
+                {
+                    id: 7,
+                },
+                {
+                    id: 8,
+                },
             ],
         }
     },
@@ -346,14 +355,49 @@ export default {
         //     212 + 18,
         // ]
 
-        // array.forEach((item, index) => {
-        //     if (index % 2 === 0) {
-        //         console.log('top : ' + (item / 528) * 100 + '%')
-        //     } else {
-        //         console.log('left : ' + (item / 320) * 100 + '%')
-        //         console.log('---------------')
-        //     }
-        // })
+        // const array = [98, 29, 181, 128, 126, 249]
+        // const array = [96, 104, 288, 200, 200, 464]
+        // const array = [157, 179, 237, 500, 140, 1074]
+        // const array = [223, 16, 209, 241, 84, 64, 292, 104, 128, 157, 358, 212]
+        const array = [
+            279,
+            180,
+            357,
+            523,
+            103,
+            309,
+            175,
+            735,
+            437,
+            844,
+            260,
+            1054,
+            248,
+            425,
+            480,
+            1167,
+            375,
+            1274,
+        ]
+        // 528 320
+        // 1024 768
+        // 810,1440
+        array.forEach((item, index) => {
+            if (index % 2 === 0) {
+                console.log(
+                    'top : ' +
+                        Math.round((item / 810) * 100 * 1000) / 1000 +
+                        '%'
+                )
+            } else {
+                console.log(
+                    'left : ' +
+                        Math.round((item / 1440) * 100 * 1000) / 1000 +
+                        '%'
+                )
+                console.log('---------------')
+            }
+        })
     },
 
     updated() {

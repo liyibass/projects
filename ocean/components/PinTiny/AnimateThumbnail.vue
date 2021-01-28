@@ -172,4 +172,22 @@ export default {
         border-radius: $pin_6_size/4;
     }
 }
+
+.pin_6,
+.pin_7,
+.pin_8 {
+    .AnimateThumbnail__ball {
+        width: $pin_null_size;
+        height: $pin_null_size;
+        border-radius: $pin_null_size/2;
+    }
+    .AnimateThumbnail__inner_ball {
+        top: $pin_null_size/4;
+        left: $pin_null_size/4;
+
+        width: $pin_null_size/2;
+        height: $pin_null_size/2;
+        border-radius: $pin_null_size/4;
+    }
+}
 </style>

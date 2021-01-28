@@ -1,6 +1,6 @@
 <template>
     <div class="PinTiny PinTiny__readyToGrow" :class="`pin_${pin.id}`">
-        <div class="PinTiny__header">
+        <div v-if="pin.name" class="PinTiny__header">
             <Wave :waveImg="pin.waveImg" class="Wave__tiny" :play="true" />
             <div class="PinTiny__header_name">{{ pin.name }}</div>
         </div>
@@ -117,28 +117,77 @@ export default {
 }
 
 .pin_0 {
-    top: 46.78%;
-    left: 5.5%;
+    top: 42.235%;
+    left: 5%;
+    @include atMedium {
+        top: 34.444%;
+        left: 12.5%;
+    }
 }
 
 .pin_1 {
-    top: 46.644%;
-    left: 74.313%;
+    top: 39.583%;
+    left: 75.313%;
+    @include atMedium {
+        top: 44.074%;
+        left: 36.319%;
+    }
 }
 .pin_2 {
-    top: 19.318%;
-    left: 18.625%;
+    top: 15.909%;
+    left: 20%;
+    @include atMedium {
+        top: 12.716%;
+        left: 21.458%;
+    }
 }
 .pin_3 {
-    top: 61.364%;
-    left: 35.5%;
+    top: 55.303%;
+    left: 32.5%;
+    @include atMedium {
+        top: 21.065%;
+        left: 51.042%;
+    }
 }
 .pin_4 {
-    top: 28.788%;
-    left: 49.563%;
+    top: 24.242%;
+    left: 49.063%;
+    @include atMedium {
+        top: 53.951%;
+        left: 58.611%;
+    }
 }
 .pin_5 {
-    top: 71.212%;
-    left: 64.875%;
+    top: 67.803%;
+    left: 66.25%;
+    @include atMedium {
+        top: 32.099%;
+        left: 73.194%;
+    }
+}
+
+.pin_6 {
+    display: none;
+    @include atMedium {
+        display: block;
+        top: 30.617%;
+        left: 29.514%;
+    }
+}
+.pin_7 {
+    display: none;
+    @include atMedium {
+        display: block;
+        top: 59.259%;
+        left: 81.042%;
+    }
+}
+.pin_8 {
+    display: none;
+    @include atMedium {
+        display: block;
+        top: 46.296%;
+        left: 88.472%;
+    }
 }
 </style>

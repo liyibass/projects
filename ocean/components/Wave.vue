@@ -97,11 +97,7 @@ export default {
         left: 0;
         width: 0px;
     }
-    50% {
-        top: 0;
-        left: 0;
-        width: 50%;
-    }
+
     100% {
         top: 0;
         left: 0;
