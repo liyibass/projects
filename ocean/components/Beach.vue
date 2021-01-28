@@ -114,8 +114,6 @@ export default {
     }
 
     &__text1 {
-        opacity: 1;
-        transition: opacity 0.5s ease;
         color: #fdffff;
 
         font-size: 16px;
@@ -134,8 +132,6 @@ export default {
     }
 
     &__text2 {
-        opacity: 1;
-        transition: opacity 0.5s ease;
         color: #4d4d4d;
         display: flex;
         flex-direction: column;

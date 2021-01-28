@@ -69,17 +69,28 @@ export default {
         }
     }
 
-    .VueCarousel-pagination {
+    .VueCarousel-dot-container {
         padding-bottom: 60px;
 
         .VueCarousel-dot {
-            width: 20px;
-            height: 1px;
-            opacity: 0.9;
-            transition: 0.3s;
-            border: none;
-            box-shadow: none;
-            border-radius: 50%;
+            margin: 0 6px !important;
+            padding: 0% !important;
+            width: 20px !important;
+            height: 2px !important;
+            border-radius: 0;
+        }
+
+        @include atSmall {
+            .VueCarousel-dot {
+                width: 24px !important;
+                margin: 0 8px !important;
+            }
+        }
+
+        @include atMedium {
+            .VueCarousel-dot {
+                width: 32px !important;
+            }
         }
     }
 }

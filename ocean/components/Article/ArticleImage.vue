@@ -5,7 +5,7 @@
             <img :src="imageUrl" :alt="comment" />
         </div>
 
-        <div class="ArticleImage__comment hide_text">
+        <div class="ArticleImage__comment" :class="{ hide_text: !isMobile }">
             {{ comment }}
         </div>
     </div>
@@ -14,8 +14,14 @@
 <script>
 export default {
     props: ['imageUrl', 'comment'],
-
-    mounted() {},
+    data() {
+        return {
+            isMobile: false,
+        }
+    },
+    mounted() {
+        this.isMobile = this.$el.clientWidth < 540 ? true : false
+    },
 }
 </script>
 
