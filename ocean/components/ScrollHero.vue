@@ -1,5 +1,6 @@
 <template>
     <div class="ScrollHero" id="ScrollHero">
+        <Logo />
         <div class="ScrollHero__background">
             <LongImage image="1" :zoom="true" />
         </div>
@@ -15,10 +16,12 @@
 
 <script>
 import LongImage from './LongImage'
+import Logo from './Logo'
 
 export default {
     components: {
         LongImage,
+        Logo,
     },
     data() {
         return {}

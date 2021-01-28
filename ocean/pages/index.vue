@@ -5,7 +5,7 @@
                 <img src="~/static/images/loading.gif" alt="" />
             </div>
         </transition>
-        <!-- <ScrollHero /> -->
+        <ScrollHero />
         <VolumeToggle />
         <!-- <Beach /> -->
         <!-- <Stage /> -->

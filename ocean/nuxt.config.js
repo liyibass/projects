@@ -5,6 +5,7 @@ import {
     SITE_OG_IMAGE,
     SITE_BASE,
     FB_APP_ID,
+    SITE_LOGO,
 } from './configs/metaConfig'
 
 export default {
@@ -55,7 +56,13 @@ export default {
                 content: FB_APP_ID,
             },
         ],
-        // link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+        link: [
+            {
+                rel: 'icon',
+                type: 'image/x-icon',
+                href: SITE_LOGO,
+            },
+        ],
         script: [
             //     {
             //         src:
