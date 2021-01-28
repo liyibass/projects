@@ -7,13 +7,13 @@
         </transition>
         <ScrollHero />
         <VolumeToggle />
-        <!-- <Beach /> -->
-        <!-- <Stage /> -->
+        <Beach />
+        <Stage />
         <Story />
         <Diving />
-        <!-- <DivingDark /> -->
-        <!-- <Video /> -->
-        <!-- <Final /> -->
+        <DivingDark />
+        <Video />
+        <Final />
     </div>
 </template>
 

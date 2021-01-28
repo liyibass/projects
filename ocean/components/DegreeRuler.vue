@@ -52,10 +52,10 @@ export default {
             scaleIndex: 0,
             railwayInterval: 100,
             isNotMobile: 1,
-            audioSrc1: '',
-            audioSrc2: '',
-            audioSrc3: '',
-            audioSrc4: '',
+            audioSrc1: require('@/static/audios/temp/1958.mp3'),
+            audioSrc2: require('@/static/audios/temp/1959.mp3'),
+            audioSrc3: require('@/static/audios/temp/1960.mp3'),
+            audioSrc4: require('@/static/audios/temp/1961.mp3'),
         }
     },
 

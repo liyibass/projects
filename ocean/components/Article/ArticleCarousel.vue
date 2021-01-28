@@ -1,74 +1,86 @@
 <template>
     <div class="ArticleCarousel">
-        <!-- <vueper-slides
-            ref="myVueperSlides"
-            autoplay
-            :pauseOnHover="true"
-            :dragging-distance="70"
-            prevent-y-scroll
-            :arrows="false"
-            :slideRatio="1 / 2"
-            lazy
-            lazy-load-on-drag
+        <carousel
+            :per-page="1"
+            centerMode
+            loop
+            autoplayTimeout="4000"
+            paginationPosition="bottom-overlay"
+            paginationActiveColor="rgba(255,255,255,1)"
+            paginationColor="rgba(255,255,255,0.6)"
         >
-            <vueper-slide
-                v-for="image in images"
-                :key="image.id"
-                :image="image.imageUrl"
-                :content="image.comment"
-            />
-        </vueper-slides> -->
-        <vueper-slides
-            lazy
-            lazy-load-on-drag
-            autoplay
-            :slideRatio="1 / 2"
-            :pauseOnHover="true"
-            :arrows="false"
-        >
-            <vueper-slide
-                v-for="(slide, i) in images"
-                :key="i"
-                :image="slide.imageUrl"
-            >
-                <template v-slot:loader>
-                    <span>Loading...</span>
-                </template>
-            </vueper-slide>
-        </vueper-slides>
+            <slide v-for="(slide, i) in images" :key="i">
+                <img :src="slide.imageUrl" alt="" />
+                <div class="comment" v-if="slide.comment">
+                    {{ slide.comment }}
+                </div>
+            </slide>
+        </carousel>
     </div>
 </template>
 
 <script>
-import { VueperSlides, VueperSlide } from 'vueperslides'
-import 'vueperslides/dist/vueperslides.css'
+import { Carousel, Slide } from 'vue-carousel'
 
 export default {
+    components: {
+        Carousel,
+        Slide,
+    },
     props: ['images'],
-    components: { VueperSlides, VueperSlide },
     data() {
         return {}
     },
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .ArticleCarousel {
     position: relative;
-    margin-bottom: 56px;
+    // margin-bottom: 56px !important;
+    padding-bottom: 32px !important;
 
-    .vueperslides__bullet .default {
-        width: 20px;
-        height: 1px;
-        background: #fdffff;
-        opacity: 0.9;
-        transition: 0.3s;
-        border: none;
-        box-shadow: none;
+    img {
+        width: 100%;
     }
 
-    .vueperslides__bullet--active .default {
-        height: 2px;
+    .comment {
+        padding: 12px 20px;
+        font-weight: 300;
+        font-size: 13px;
+        line-height: 150%;
+        /* identical to box height, or 19px */
+
+        /* Gray */
+        color: #4d4d4d;
+        opacity: 0.5;
+
+        @include atSmall {
+            padding: 12px 40px;
+        }
+        @include atMedium {
+            // width: 53.512%;
+            // max-width: none;
+
+            // padding: 0;
+            // margin: 0 40px 29px;
+            width: 83.056%;
+            margin: auto;
+        }
+    }
+
+    .VueCarousel-pagination {
+        padding-bottom: 60px;
+
+        .VueCarousel-dot {
+            width: 20px;
+            height: 1px;
+            opacity: 0.9;
+            transition: 0.3s;
+            border: none;
+            box-shadow: none;
+            border-radius: 50%;
+        }
     }
 }
 </style>

@@ -75,6 +75,7 @@ export default {
                 // in order to play audio, need to activate all audio tag
                 // play all audio player with mute state,
                 allAudio.forEach((audio) => {
+                    console.log(audio)
                     audio.volume = 0
                     audio.play()
                     audio.pause()
