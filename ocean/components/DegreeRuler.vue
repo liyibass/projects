@@ -27,10 +27,22 @@
             <div class="mobile_bar" />
         </div>
 
-        <audio class="audio degreeRulerAudio1" :src="audioSrc1" />
-        <audio class="audio degreeRulerAudio2" :src="audioSrc2" />
-        <audio class="audio degreeRulerAudio3" :src="audioSrc3" />
-        <audio class="audio degreeRulerAudio4" :src="audioSrc4" />
+        <audio
+            class="audio degreeRulerAudio1 degreeRulerAudio"
+            :src="audioSrc1"
+        />
+        <audio
+            class="audio degreeRulerAudio2 degreeRulerAudio"
+            :src="audioSrc2"
+        />
+        <audio
+            class="audio degreeRulerAudio3 degreeRulerAudio"
+            :src="audioSrc3"
+        />
+        <audio
+            class="audio degreeRulerAudio4 degreeRulerAudio"
+            :src="audioSrc4"
+        />
     </div>
 </template>
 
@@ -128,7 +140,6 @@ export default {
         )
         // change src from DOM need to reload
         await degreeRulerAudio.load()
-        degreeRulerAudio.volume = 0.2
         degreeRulerAudio.play()
     },
 }

@@ -44,15 +44,12 @@ export default {
         switch (this.focusState) {
             case 'focus':
                 audioPlayer = document.querySelector(`.audio${this.pin.id}`)
-                console.log('focus')
-                audioPlayer.volume = 1
                 audioPlayer.play()
                 break
 
             default:
                 // unFocus and other state
                 audioPlayer = document.querySelector(`.audio${this.pin.id}`)
-                audioPlayer.volume = 0
                 audioPlayer.pause()
                 break
         }

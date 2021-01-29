@@ -75,10 +75,17 @@ export default {
                 // in order to play audio, need to activate all audio tag
                 // play all audio player with mute state,
                 allAudio.forEach((audio) => {
-                    console.log(audio)
                     audio.volume = 0
                     audio.play()
                     audio.pause()
+
+                    console.log(audio.className.search('degreeRulerAudio'))
+                    // set certain audio's audio
+                    if (audio.className.search('degreeRulerAudio') !== -1) {
+                        audio.volume = 0.3
+                    } else {
+                        audio.volume = 1
+                    }
                 })
 
                 oceanAudio.volume = 1
