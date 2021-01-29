@@ -6,6 +6,7 @@
             <DegreeBlock
                 :year="yearDegreeList[scaleIndex].year"
                 :degree="yearDegreeList[scaleIndex].degree"
+                :isFocused="true"
             />
         </div>
         <div class="DegreeRuler__railway" ref="railwayRef">
@@ -19,6 +20,7 @@
                 <DegreeBlock
                     :year="yearDegreeList[index].year"
                     :degree="yearDegreeList[index].degree"
+                    :isFocused="index === scaleIndex ? true : false"
                 />
             </div>
 

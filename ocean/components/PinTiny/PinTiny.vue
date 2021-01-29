@@ -39,7 +39,7 @@ export default {
     align-items: center;
 
     // movement transition
-    transition: all 1s ease-in-out;
+    transition: all 1s ease;
 
     &__header {
         position: absolute;

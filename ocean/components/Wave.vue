@@ -66,6 +66,7 @@ export default {
         animation: play;
         animation-duration: 11s;
         animation-iteration-count: infinite;
+        animation-timing-function: linear;
     }
 
     @include atSmall {
@@ -85,9 +86,15 @@ export default {
 
 .Wave__tiny {
     width: 80px;
+    img {
+        width: 80px;
+    }
 
     @include atSmall {
         width: 120px;
+        img {
+            width: 120px;
+        }
     }
 }
 

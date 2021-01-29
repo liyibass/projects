@@ -1,5 +1,5 @@
 <template>
-    <div class="DegreeBlock">
+    <div class="DegreeBlock" :style="{opacity:isFocused?1:0.3}">
         <span>{{ year }}</span>
         <div class="normal_bar" />
         <span>{{ degree }}&#8451</span>
@@ -8,7 +8,7 @@
 
 <script>
 export default {
-    props: ['year', 'degree'],
+    props: ['year', 'degree',"isFocused"],
 
     mounted() {
         this.$el.addEventListener('transitionend', (e) => {

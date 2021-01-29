@@ -14,7 +14,7 @@
             />
         </div>
 
-        <div class="Stage__tiny_pins_container" v-if="currentAnimate !== 6">
+        <div class="Stage__tiny_pins_container">
             <PinTiny v-for="pin in tinyPinList" :key="pin.id" :pin="pin" />
         </div>
 
@@ -31,7 +31,7 @@
             </div>
         </transition>
 
-        <div>{{ animateGenerater }}</div>
+        <!-- <div>{{ animateGenerater }}</div> -->
 
         <audio
             class="audio_all audio"
@@ -159,9 +159,10 @@ export default {
             ],
         }
     },
-    computed: {
-        animateGenerater() {
-            switch (this.currentAnimate) {
+
+    watch: {
+        currentAnimate: function(newCurrentAnimate, oldCurrentAnimate) {
+            switch (newCurrentAnimate) {
                 case 0:
                     this.mainPinsGrow('off')
                     this.focusPin(-1)
@@ -210,7 +211,6 @@ export default {
                 default:
                     break
             }
-            return null
         },
     },
     methods: {
@@ -247,7 +247,7 @@ export default {
                         setTimeout(() => {
                             pin.classList.remove('PinTiny__readyToGrow')
                             pin.classList.add('animate_start')
-                        }, index * 300)
+                        }, index * 200)
                     })
                     break
 
@@ -297,7 +297,7 @@ export default {
                 triggerElement: '.Stage',
                 offset: 0,
                 triggerHook: 0,
-                duration: 5000,
+                duration: 6000,
             })
             .setPin(stageDOM)
             .on('enter', () => {
