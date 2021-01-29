@@ -4,7 +4,7 @@
             :per-page="1"
             centerMode
             loop
-            autoplayTimeout="4000"
+            :autoplayTimeout="4000"
             paginationPosition="bottom-overlay"
             paginationActiveColor="rgba(255,255,255,1)"
             paginationColor="rgba(255,255,255,0.6)"
