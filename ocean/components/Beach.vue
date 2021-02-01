@@ -59,13 +59,37 @@
 </template>
 
 <script>
+import 'intersection-observer'
+import scrollama from 'scrollama'
+
 export default {
     data() {
         return {
             wrapperHeight: 'none',
+            isPlayedAudio: false,
         }
     },
     async mounted() {
+        // when first toggle volume icon, audio wont play
+        // so here handle first play ocean audio
+        const scroller = scrollama()
+        scroller
+            .setup({
+                step: '.Beach',
+                offset: 0.5,
+            })
+            .onStepEnter((response) => {
+                // { element, index, direction }
+                if (this.isPlayedAudio === false) {
+                    const oceanAudio = document.querySelector('.oceanAudio')
+                    oceanAudio.play()
+                    this.isPlayedAudio === true
+                }
+            })
+
+        // setup resize event
+        window.addEventListener('resize', scroller.resize)
+
         // -------------------------------------------------------
         // Handle fix component,hover by next component
         // need to define data.wrapperHeight

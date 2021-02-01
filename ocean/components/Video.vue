@@ -29,14 +29,28 @@ export default {
     methods: {
         playVideo() {
             console.log('video played')
+            this.backgroundAudioPlayHandler('pause')
             this.player.playVideo()
         },
         pauseVideo() {
             console.log('video paused')
+            this.backgroundAudioPlayHandler('play')
             this.player.pauseVideo()
         },
         playing() {
             console.log('\o/ we are watching!!!')
+        },
+        backgroundAudioPlayHandler(status) {
+            const oceanAudio = document.querySelector('.oceanAudio')
+            switch (status) {
+                case 'play':
+                    oceanAudio.play()
+                    break
+
+                case 'pause':
+                    oceanAudio.pause()
+                    break
+            }
         },
     },
     computed: {

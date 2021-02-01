@@ -72,7 +72,6 @@ export default {
 
             if (this.isMuted === false) {
                 const allAudio = document.querySelectorAll('.audio')
-
                 if (this.hasPlayedOnce === false) {
                     // in order to play audio, need to activate all audio tag
                     // play all audio player with mute state,
@@ -81,27 +80,22 @@ export default {
                         audio.play()
                         audio.pause()
                         audio.muted = false
-                        console.log('unMute audio DOM')
                     })
 
-                    this.hasPlayedOnce === true
+                    this.hasPlayedOnce = true
                 } else {
                     allAudio.forEach((audio) => {
                         audio.muted = false
-                        console.log('unMute audio DOM')
                     })
                 }
 
-                console.log('==============')
-                console.log('play ocean')
-                oceanAudio.muted = false
                 oceanAudio.play()
             } else {
                 const allAudio = document.querySelectorAll('.audio')
 
                 allAudio.forEach((audio) => {
                     audio.muted = true
-                    audio.pause()
+                    // audio.pause()
                 })
             }
         },
