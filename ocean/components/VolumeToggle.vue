@@ -59,12 +59,13 @@ export default {
     data() {
         return {
             isMuted: true,
+            hasPlayedOnce: false,
             currentScene: 0,
             forceShowIcon: false,
         }
     },
     methods: {
-        isMutedToggle() {
+        async isMutedToggle() {
             this.isMuted = !this.isMuted
 
             const oceanAudio = document.querySelector('.oceanAudio')
@@ -72,29 +73,34 @@ export default {
             if (this.isMuted === false) {
                 const allAudio = document.querySelectorAll('.audio')
 
-                // in order to play audio, need to activate all audio tag
-                // play all audio player with mute state,
-                allAudio.forEach((audio) => {
-                    audio.volume = 0
-                    audio.play()
-                    audio.pause()
+                if (this.hasPlayedOnce === false) {
+                    // in order to play audio, need to activate all audio tag
+                    // play all audio player with mute state,
+                    allAudio.forEach((audio) => {
+                        audio.muted = true
+                        audio.play()
+                        audio.pause()
+                        audio.muted = false
+                        console.log('unMute audio DOM')
+                    })
 
-                    console.log(audio.className.search('degreeRulerAudio'))
-                    // set certain audio's audio
-                    if (audio.className.search('degreeRulerAudio') !== -1) {
-                        audio.volume = 0.3
-                    } else {
-                        audio.volume = 1
-                    }
-                })
+                    this.hasPlayedOnce === true
+                } else {
+                    allAudio.forEach((audio) => {
+                        audio.muted = false
+                        console.log('unMute audio DOM')
+                    })
+                }
 
-                oceanAudio.volume = 1
+                console.log('==============')
+                console.log('play ocean')
+                oceanAudio.muted = false
                 oceanAudio.play()
             } else {
                 const allAudio = document.querySelectorAll('.audio')
 
                 allAudio.forEach((audio) => {
-                    audio.volume = 0
+                    audio.muted = true
                     audio.pause()
                 })
             }
