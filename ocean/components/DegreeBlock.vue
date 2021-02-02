@@ -1,5 +1,5 @@
 <template>
-    <div class="DegreeBlock" :style="{ opacity: isFocused ? 1 : 0.3 }">
+    <div class="DegreeBlock" :class="{isFocused:isFocused}">
         <span>{{ year }}</span>
         <span class="title" v-if="isFocused">海洋平均溫度</span>
         <div class="normal_bar" />
@@ -23,8 +23,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+
 .DegreeBlock {
     position: absolute;
+    right: -150%;
+    opacity: 0.3;
+    transition: all 0.4s ease-in-out;
+
     width: 100%;
     height: 30px;
 
@@ -64,7 +70,6 @@ export default {
         line-height: 17px;
     }
 
-    transition: top 0.5s ease-in-out;
 
     @include atSmall {
         width: 52px;
@@ -97,6 +102,11 @@ export default {
     }
 }
 
+.isFocused{
+    right: 0;
+    opacity: 1;
+
+}
 .zoom {
     animation-name: zoomInOut;
     animation-duration: 0.5s;

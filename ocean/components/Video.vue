@@ -29,16 +29,9 @@ export default {
     },
     methods: {
         playVideo() {
-            const oceanAudio = document.querySelector('.oceanAudio')
-            oceanAudio.pause()
-            console.log('video played')
             this.player.playVideo()
         },
         pauseVideo() {
-            const oceanAudio = document.querySelector('.oceanAudio')
-            oceanAudio.play()
-
-            console.log('video paused')
             this.player.pauseVideo()
         },
         playing() {
@@ -60,6 +53,8 @@ export default {
         // instantiate the scrollama
         const stickyYoutubeScroller = scrollama()
         const youtubeDOM = document.querySelector('.Video__fix_wrapper_youtube')
+        const oceanAudio = document.querySelector('.oceanAudio')
+
         // setup the instance, pass callback functions
         stickyYoutubeScroller
             .setup({
@@ -68,13 +63,19 @@ export default {
             })
             .onStepEnter((response) => {
                 // { element, index, direction }
-                youtubeDOM.style.position = 'sticky'
+                youtubeDOM.style.position = 'fixed'
+
+                oceanAudio.pause()
                 this.playVideo()
             })
             .onStepExit((response) => {
                 // { element, index, direction }
                 youtubeDOM.style.position = 'absolute'
                 this.pauseVideo()
+
+                if (response.direction === 'up') {
+                    oceanAudio.play()
+                }
             })
 
         // setup resize event
@@ -137,6 +138,11 @@ export default {
             top: 0;
             width: 100%;
             height: 100vh;
+            overflow: hidden;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
     }
 }

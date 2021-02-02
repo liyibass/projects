@@ -11,8 +11,10 @@
         >
             <slide v-for="(slide, i) in images" :key="i">
                 <img :src="slide.imageUrl" alt="" />
-                <div class="comment" v-if="slide.comment">
-                    {{ slide.comment }}
+                <div class="comment">
+                    <span v-if="slide.comment">
+                        {{ slide.comment }}
+                    </span>
                 </div>
             </slide>
         </carousel>
@@ -37,8 +39,7 @@ export default {
 <style lang="scss">
 .ArticleCarousel {
     position: relative;
-    // margin-bottom: 56px !important;
-    padding-bottom: 32px !important;
+    padding-bottom: 12px !important;
 
     img {
         width: 100%;
@@ -50,6 +51,7 @@ export default {
         font-size: 13px;
         line-height: 150%;
         /* identical to box height, or 19px */
+        height: 43px;
 
         /* Gray */
         color: #4d4d4d;

@@ -76,8 +76,6 @@ export default {
     },
     methods: {
         checkIfFocus(index) {
-            if (index === 0) return true
-
             if (index === this.scaleIndex) {
                 return true
             } else {
@@ -110,7 +108,7 @@ export default {
             .onStepEnter((response) => {
                 // { element, index, direction }
                 this.scaleIndex = response.index
-                response.element.lastChild.style.right = '0px'
+                // response.element.lastChild.style.right = '0px'
             })
             .onStepExit((response) => {
                 // { element, index, direction }
@@ -120,7 +118,7 @@ export default {
                         response.index - 1 < 0 ? 0 : response.index - 1
 
                     if (response.index > 0) {
-                        response.element.lastChild.style.right = '-150%'
+                        // response.element.lastChild.style.right = '-150%'
                     }
                 }
             })
@@ -167,13 +165,12 @@ export default {
 .DegreeRuler {
     position: absolute;
     height: 100%;
-    width: 100%;
     right: 0;
     z-index: 1;
 
     &__navbar {
         height: 30px;
-        width: 100%;
+        width: 100vw;
         position: absolute;
         background: white;
         top: 0;
@@ -228,6 +225,7 @@ export default {
     }
 
     @include atSmall {
+        width: initial;
         &__navbar {
             display: none !important;
         }
@@ -261,10 +259,6 @@ export default {
                 opacity: 0.5;
             }
 
-            .DegreeBlock {
-                right: -150%;
-                transition: right 0.4s ease-in-out;
-            }
             // background: gold;
         }
     }

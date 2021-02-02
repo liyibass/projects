@@ -45,6 +45,7 @@ export default {
 .ArticleImage {
     position: relative;
     margin-bottom: 24px;
+    margin-top: 32px;
     &__image {
         img {
             width: 100%;
