@@ -321,17 +321,17 @@ export default {
             })
 
             .on('progress', (e) => {
-                if (e.progress > 0.01 && e.progress < 0.2) {
+                if (e.progress > 0.01 && e.progress < 0.1) {
                     this.currentAnimate = 1
-                } else if (e.progress > 0.2 && e.progress < 0.35) {
+                } else if (e.progress > 0.1 && e.progress < 0.25) {
                     this.currentAnimate = 2
-                } else if (e.progress > 0.35 && e.progress < 0.5) {
+                } else if (e.progress > 0.25 && e.progress < 0.4) {
                     this.currentAnimate = 3
-                } else if (e.progress > 0.5 && e.progress < 0.65) {
+                } else if (e.progress > 0.4 && e.progress < 0.55) {
                     this.currentAnimate = 4
-                } else if (e.progress > 0.65 && e.progress < 0.85) {
+                } else if (e.progress > 0.55 && e.progress < 0.75) {
                     this.currentAnimate = 5
-                } else if (e.progress > 0.85 && e.progress < 1) {
+                } else if (e.progress > 0.75 && e.progress < 1) {
                     this.currentAnimate = 6
                 } else if (e.progress === 1) {
                     this.currentAnimate = 7

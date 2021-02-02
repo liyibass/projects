@@ -53,7 +53,7 @@ export default {
 
         /* Gray */
         color: #4d4d4d;
-        opacity: 0.5;
+        opacity: 0.87;
 
         @include atSmall {
             padding: 12px 40px;

@@ -46,7 +46,7 @@ export default {
 
         /* Gray */
         color: #4d4d4d;
-        opacity: 0.66;
+        opacity: 0.87;
         transition: opacity 0.5s ease;
 
         margin: 12px 20px 24px;
