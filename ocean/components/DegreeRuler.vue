@@ -7,6 +7,8 @@
                 :year="yearDegreeList[scaleIndex].year"
                 :degree="yearDegreeList[scaleIndex].degree"
                 :isFocused="true"
+                :showText="scaleIndex === 0"
+                :enableZoomAnimate="false"
             />
 
             <div class="DegreeRuler__navbar_mobile_line"></div>
@@ -23,6 +25,8 @@
                     :year="yearDegreeList[index].year"
                     :degree="yearDegreeList[index].degree"
                     :isFocused="checkIfFocus(index)"
+                    :showText="index === 0"
+                    :enableZoomAnimate="true"
                 />
             </div>
 

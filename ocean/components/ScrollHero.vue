@@ -7,7 +7,7 @@
 
         <div class="ScrollHero__title">
             <div class="ScrollHero__title_text">
-                珊瑚礁的寂聲終章
+                寂聲終章
             </div>
             <div class="ScrollHero__title_wave">
                 <img src="@/static/images/mainWave.svg" alt="" />
@@ -50,7 +50,7 @@ export default {
                 // {0,0.5,1} - animations starts from {top,center,end} of window
                 triggerHook: 1,
                 // Duration of animation
-                duration: 500,
+                duration: 250,
             })
             .on('progress', (e) => {
                 // this.maskOpacity = e.progress
@@ -93,6 +93,7 @@ export default {
         z-index: 1;
         position: fixed;
         top: 50%;
+        transform: translateY(-50%);
 
         width: 100%;
 
@@ -131,7 +132,7 @@ export default {
 
     &__anchor {
         position: absolute;
-        bottom: 500px;
+        bottom: 250px;
         // background: gold;
         width: 100%;
         height: 10px;

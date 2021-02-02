@@ -287,8 +287,7 @@ export default {
         const screenHeight = window.innerHeight
         const backgroundImageHeight = this.$refs.stageBackgroundRef.clientHeight
         const translateRatio =
-            ((backgroundImageHeight - screenHeight) / backgroundImageHeight) *
-            100
+            ((backgroundImageHeight - screenHeight) / backgroundImageHeight) * 100
         this.translateRatio = translateRatio
         stageBackgroundDOM.style.transform = `translate(0%,-20%)`
 

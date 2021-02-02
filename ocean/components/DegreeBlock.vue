@@ -1,7 +1,9 @@
 <template>
     <div class="DegreeBlock" :class="{isFocused:isFocused}">
         <span>{{ year }}</span>
-        <span class="title" v-if="isFocused">海洋平均溫度</span>
+        <transition name="fade">
+            <span class="title" v-if="showText && isFocused ">海洋平均溫度</span>
+        </transition>
         <div class="normal_bar" />
         <span>{{ degree }}&#8451</span>
     </div>
@@ -9,15 +11,17 @@
 
 <script>
 export default {
-    props: ['year', 'degree', 'isFocused'],
+    props: ['year', 'degree', 'isFocused','showText','enableZoomAnimate'],
 
     mounted() {
-        this.$el.addEventListener('transitionend', (e) => {
+       if(this.enableZoomAnimate){
+            this.$el.addEventListener('transitionend', (e) => {
             e.target.classList.add('zoom')
             setTimeout(() => {
                 e.target.classList.remove('zoom')
             }, 500)
         })
+       }
     },
 }
 </script>
@@ -44,9 +48,9 @@ export default {
     .title {
         display: block;
         position: absolute;
-        top: 50%;
+        
         right: 50%;
-        transform: translate(50%, -50%);
+        transform: translate(50%, 0%);
         font-weight: normal;
         font-size: 12px;
         line-height: 17px;

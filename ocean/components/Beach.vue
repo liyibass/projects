@@ -1,24 +1,12 @@
 <template>
-    <div
-        class="Beach"
-        id="Beach"
-        ref="beachRef"
-        :style="{ height: `${wrapperHeight}px` }"
-    >
+    <div class="Beach" id="Beach" ref="beachRef" :style="{ height: `${wrapperHeight}px` }">
         <div class="Beach__fix_wrapper">
             <div class="Beach__background">
                 <picture>
-                    <source
-                        media="(min-width:760px)"
-                        srcset="../static/images/3.jpg"
-                        alt="ocean"
-                    />
+                    <source media="(min-width:760px)" srcset="../static/images/3.jpg" alt="ocean" />
                     <source
                         media="(min-width:480px)"
-                        srcset="
-                            ../static/images/pad/3@1x.png 1x,
-                            ../static/images/pad/3@2x.png 2x
-                        "
+                        srcset="../static/images/pad/3@1x.png 1x, ../static/images/pad/3@2x.png 2x"
                         alt="ocean"
                     />
 
@@ -34,8 +22,7 @@
             </div>
 
             <div class="Beach__text1 hide_text">
-                「妳注意過電影如何呈現人類在水下聽見的聲音嗎？」聲音藝術家Yannick
-                Dauby
+                「妳注意過電影如何呈現人類在水下聽見的聲音嗎？」聲音藝術家 Yannick Dauby
                 說：「總是咕嚕咕嚕。」但那是不正確的，「咕嚕咕嚕是人背著氣瓶下水時發出的呼息，而非海洋的聲音。」
             </div>
             <div class="Beach__text2">
@@ -106,9 +93,7 @@ export default {
                 duration: 1000,
             })
             .on('enter', (e) => {
-                fixWrapperDOM = document.querySelector(
-                    currentComponentWrapperClass
-                )
+                fixWrapperDOM = document.querySelector(currentComponentWrapperClass)
                 // get wrapper's height,then assign to parient
                 this.wrapperHeight = fixWrapperDOM.clientHeight
                 // fix css
