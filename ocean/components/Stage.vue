@@ -344,10 +344,8 @@ export default {
     updated() {
         const audioAllDOM = document.querySelector('.audio_all')
         if (this.currentAnimate === 5) {
-            console.log('start audio all')
             audioAllDOM.play()
         } else {
-            console.log('stop audio all')
             audioAllDOM.pause()
         }
     },

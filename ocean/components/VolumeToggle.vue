@@ -84,8 +84,10 @@ export default {
 
                         audio.muted = true
                         audio.play()
-                        audio.pause()
-                        audio.muted = false
+                        setTimeout(() => {
+                            audio.pause()
+                            audio.muted = false
+                        }, 2000)
                     })
                     this.hasPlayedOnce = true
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="VolumeIcon" @click="volumeHandler">
+    <div class="VolumeIcon" @click.stop="volumeHandler">
         <img
             v-if="isMuted"
             class="VolumeIcon__icon"

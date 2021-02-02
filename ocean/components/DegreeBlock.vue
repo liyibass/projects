@@ -36,6 +36,11 @@ export default {
     padding: 0 8px;
 
     .title {
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 50%;
+        transform: translate(50%, -50%);
         font-weight: normal;
         font-size: 12px;
         line-height: 17px;
@@ -70,6 +75,8 @@ export default {
         padding: 0;
 
         .title {
+            transform: translate(0%, 0%);
+
             opacity: 0.5;
             position: absolute;
             width: 80px;
