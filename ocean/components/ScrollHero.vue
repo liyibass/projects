@@ -38,9 +38,9 @@ export default {
                 // Where to start trigger from element top
                 offset: 0,
                 // {0,0.5,1} - animations starts from {top,center,end} of window
-                triggerHook: 0.9,
+                triggerHook: 1,
                 // Duration of animation
-                duration: 100,
+                duration: 500,
             })
             .on('progress', (e) => {
                 // this.maskOpacity = e.progress
@@ -52,9 +52,9 @@ export default {
             .scene({
                 triggerElement: '.ScrollHero__anchor',
                 offset: 0,
-                triggerHook: 0.5,
+                triggerHook: 0.2,
                 // Duration of animation
-                duration: 200,
+                duration: 300,
             })
             .on('progress', (e) => {
                 ScrollHeroTitleDOM.style.opacity = -e.progress + 1
@@ -109,7 +109,7 @@ export default {
 
     &__anchor {
         position: absolute;
-        top: 100vh;
+        bottom: 500px;
         // background: gold;
         width: 100%;
         height: 10px;

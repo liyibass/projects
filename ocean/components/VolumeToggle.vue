@@ -67,35 +67,39 @@ export default {
     methods: {
         async isMutedToggle() {
             this.isMuted = !this.isMuted
-
             const oceanAudio = document.querySelector('.oceanAudio')
 
+            // in unmute situation
             if (this.isMuted === false) {
+                oceanAudio.muted = false
+                oceanAudio.play()
+
+                // need to activate all audio tag at first time
+                // play all audio player with mute state,
                 const allAudio = document.querySelectorAll('.audio')
                 if (this.hasPlayedOnce === false) {
-                    // in order to play audio, need to activate all audio tag
-                    // play all audio player with mute state,
                     allAudio.forEach((audio) => {
+                        // if audio is ocean audio, then no needed to take care with it
+                        if (audio.className.search('oceanAudio') !== -1) return
+
                         audio.muted = true
                         audio.play()
                         audio.pause()
                         audio.muted = false
                     })
-
                     this.hasPlayedOnce = true
+
+                    // at the second unmute, just unmute all
                 } else {
                     allAudio.forEach((audio) => {
                         audio.muted = false
                     })
                 }
-
-                oceanAudio.play()
             } else {
+                // in mute situation, just mute all
                 const allAudio = document.querySelectorAll('.audio')
-
                 allAudio.forEach((audio) => {
                     audio.muted = true
-                    // audio.pause()
                 })
             }
         },

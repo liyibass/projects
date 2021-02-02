@@ -2,13 +2,13 @@
     <div class="Video" ref="videoRef" :style="{ height: `${wrapperHeight}px` }">
         <div class="Video__fix_wrapper">
             <div class="Video__fix_wrapper_youtube">
-                <youtube
+                <!-- <youtube
                     :video-id="videoId"
                     ref="youtube"
                     :fitParent="true"
                     :resize="true"
                     width="360"
-                ></youtube>
+                ></youtube> -->
             </div>
         </div>
     </div>
@@ -29,28 +29,14 @@ export default {
     methods: {
         playVideo() {
             console.log('video played')
-            this.backgroundAudioPlayHandler('pause')
             this.player.playVideo()
         },
         pauseVideo() {
             console.log('video paused')
-            this.backgroundAudioPlayHandler('play')
             this.player.pauseVideo()
         },
         playing() {
             console.log('\o/ we are watching!!!')
-        },
-        backgroundAudioPlayHandler(status) {
-            const oceanAudio = document.querySelector('.oceanAudio')
-            switch (status) {
-                case 'play':
-                    oceanAudio.play()
-                    break
-
-                case 'pause':
-                    oceanAudio.pause()
-                    break
-            }
         },
     },
     computed: {
@@ -65,44 +51,44 @@ export default {
             this.isMobile = true
         }
 
-        // -------------------------------------------------------
-        // Handle fix component,hover by next component
-        // need to define data.wrapperHeight
-        // and assign it to parent's height
-        let fixWrapperDOM
-        const nextComponentClass = '.Final'
-        const currentComponentWrapperClass = '.Video__fix_wrapper'
+        // // -------------------------------------------------------
+        // // Handle fix component,hover by next component
+        // // need to define data.wrapperHeight
+        // // and assign it to parent's height
+        // let fixWrapperDOM
+        // const nextComponentClass = '.Final'
+        // const currentComponentWrapperClass = '.Video__fix_wrapper'
 
-        const fixAndHoverScene = this.$scrollmagic
-            .scene({
-                triggerElement: nextComponentClass,
-                offset: 0,
-                triggerHook: 1,
-                duration: 1000,
-            })
-            .on('enter', (e) => {
-                fixWrapperDOM = document.querySelector(
-                    currentComponentWrapperClass
-                )
-                // get wrapper's height,then assign to parient
-                this.wrapperHeight = fixWrapperDOM.clientHeight
-                // fix css
-                fixWrapperDOM.style.position = 'fixed'
-                fixWrapperDOM.style.width = '100%'
-                fixWrapperDOM.style.bottom = '0px'
+        // const fixAndHoverScene = this.$scrollmagic
+        //     .scene({
+        //         triggerElement: nextComponentClass,
+        //         offset: 0,
+        //         triggerHook: 1,
+        //         duration: 1000,
+        //     })
+        //     .on('enter', (e) => {
+        //         fixWrapperDOM = document.querySelector(
+        //             currentComponentWrapperClass
+        //         )
+        //         // get wrapper's height,then assign to parient
+        //         this.wrapperHeight = fixWrapperDOM.clientHeight
+        //         // fix css
+        //         fixWrapperDOM.style.position = 'fixed'
+        //         fixWrapperDOM.style.width = '100%'
+        //         fixWrapperDOM.style.bottom = '0px'
 
-                this.playVideo()
-            })
-            .on('leave', (e) => {
-                // unfix css
-                fixWrapperDOM.style.position = 'relative'
-                this.pauseVideo()
-            })
-        // .addIndicators({ name: 'fixStoryScene' })
+        //         this.playVideo()
+        //     })
+        //     .on('leave', (e) => {
+        //         // unfix css
+        //         fixWrapperDOM.style.position = 'relative'
+        //         this.pauseVideo()
+        //     })
+        // // .addIndicators({ name: 'fixStoryScene' })
 
-        // -------------------------------------------------------
+        // // -------------------------------------------------------
 
-        this.$scrollmagic.addScene([fixAndHoverScene])
+        // this.$scrollmagic.addScene([fixAndHoverScene])
     },
 }
 </script>
