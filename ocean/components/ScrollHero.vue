@@ -6,7 +6,12 @@
         </div>
 
         <div class="ScrollHero__title">
-            珊瑚礁的寂聲終章
+            <div class="ScrollHero__title_text">
+                珊瑚礁的寂聲終章
+            </div>
+            <div class="ScrollHero__title_wave">
+                <img src="@/static/images/mainWave.svg" alt="" />
+            </div>
         </div>
         <div class="ScrollHero__mask" />
 
@@ -28,7 +33,12 @@ export default {
     },
     mounted() {
         const ScrollHeroMaskDOM = document.querySelector('.ScrollHero__mask')
-        const ScrollHeroTitleDOM = document.querySelector('.ScrollHero__title')
+        const ScrollHeroTitleTextDOM = document.querySelector(
+            '.ScrollHero__title_text'
+        )
+        const ScrollHeroTitleWaveDOM = document.querySelector(
+            '.ScrollHero__title_wave'
+        )
 
         // Declare Scene
         const backgroundDarkScene = this.$scrollmagic
@@ -45,6 +55,7 @@ export default {
             .on('progress', (e) => {
                 // this.maskOpacity = e.progress
                 ScrollHeroMaskDOM.style.opacity = e.progress
+                ScrollHeroTitleWaveDOM.style.opacity = -e.progress + 1
             })
         // .addIndicators({ name: 'backgroundDarkScene' })
 
@@ -57,7 +68,7 @@ export default {
                 duration: 300,
             })
             .on('progress', (e) => {
-                ScrollHeroTitleDOM.style.opacity = -e.progress + 1
+                ScrollHeroTitleTextDOM.style.opacity = -e.progress + 1
             })
             .on('enter', (e) => {
                 // ScrollHeroTitleDOM.style.zIndex = 1
@@ -85,6 +96,10 @@ export default {
 
         width: 100%;
 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
         font-size: 2rem;
         line-height: 150%;
         /* identical to box height, or 48px */
@@ -94,6 +109,13 @@ export default {
         color: #ffffff;
 
         text-shadow: 0px 6px 8px rgba(0, 0, 0, 0.6);
+
+        &_wave {
+            width: 280px;
+            img {
+                width: 100%;
+            }
+        }
     }
 
     &__mask {
