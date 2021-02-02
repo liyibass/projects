@@ -1,6 +1,7 @@
 //先針對media queries的width設為變數
 
 $atSmall: 480px;
+$atMediumSmall: 620px;
 $atMedium: 760px;
 $atLarge: 960px;
 $atSuperLarge: 1200px;
@@ -12,6 +13,13 @@ $atUltraLarge: 1800px;
 //手機
 @mixin atSmall() {
     @media all and (min-width: $atSmall) {
+        @content;
+    }
+}
+
+//平板
+@mixin atMediumSmall() {
+    @media all and (min-width: $atMediumSmall) {
         @content;
     }
 }

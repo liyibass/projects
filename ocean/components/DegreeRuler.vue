@@ -8,6 +8,8 @@
                 :degree="yearDegreeList[scaleIndex].degree"
                 :isFocused="true"
             />
+
+            <div class="DegreeRuler__navbar_mobile_line"></div>
         </div>
         <div class="DegreeRuler__railway" ref="railwayRef">
             <div
@@ -20,7 +22,7 @@
                 <DegreeBlock
                     :year="yearDegreeList[index].year"
                     :degree="yearDegreeList[index].degree"
-                    :isFocused="index === scaleIndex ? true : false"
+                    :isFocused="checkIfFocus(index)"
                 />
             </div>
 
@@ -72,6 +74,17 @@ export default {
             audioSrc4: require('@/static/audios/temp/1961.mp3'),
         }
     },
+    methods: {
+        checkIfFocus(index) {
+            if (index === 0) return true
+
+            if (index === this.scaleIndex) {
+                return true
+            } else {
+                return false
+            }
+        },
+    },
 
     mounted() {
         const railwayLength = this.$refs.railwayRef.clientHeight
@@ -103,7 +116,12 @@ export default {
                 // { element, index, direction }
 
                 if (response.direction === 'up') {
-                    response.element.lastChild.style.right = '-150%'
+                    this.scaleIndex =
+                        response.index - 1 < 0 ? 0 : response.index - 1
+
+                    if (response.index > 0) {
+                        response.element.lastChild.style.right = '-150%'
+                    }
                 }
             })
 
@@ -147,6 +165,12 @@ export default {
 
 <style lang="scss" scoped>
 .DegreeRuler {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    z-index: 1;
+
     &__navbar {
         height: 30px;
         width: 100%;
@@ -156,6 +180,19 @@ export default {
         right: 0;
         z-index: 888;
         box-shadow: 0px 2px 4px -2px rgba(0, 0, 0, 0.1);
+
+        &_mobile_line {
+            position: absolute;
+            width: 136px;
+            height: 0px;
+            left: 0px;
+            top: 30px;
+
+            /* Gray */
+            background: #4d4d4d;
+            /* Gray_Line */
+            border: 1px solid #b3b3b3;
+        }
     }
 
     &__railway {
@@ -165,16 +202,11 @@ export default {
         // width: 52px;
         height: 100%;
         overflow: hidden;
-        // margin-right: -100px;
-
-        // background: greenyellow;
-        // background: chocolate;
 
         display: flex;
         flex-direction: column;
         align-items: flex-end;
         justify-content: space-between;
-        // display: none;
     }
 
     .mobile_bar {
@@ -201,6 +233,7 @@ export default {
         }
 
         &__railway {
+            overflow: visible;
             width: 60px;
             height: 100%;
             margin-left: -60px;

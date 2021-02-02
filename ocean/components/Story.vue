@@ -459,6 +459,7 @@ export default {
 
 <style lang="scss" scoped>
 .Story {
+    overflow: hidden;
     z-index: 105;
     position: relative;
     background: white;

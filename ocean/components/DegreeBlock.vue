@@ -1,6 +1,7 @@
 <template>
-    <div class="DegreeBlock" :style="{opacity:isFocused?1:0.3}">
+    <div class="DegreeBlock" :style="{ opacity: isFocused ? 1 : 0.3 }">
         <span>{{ year }}</span>
+        <span class="title" v-if="isFocused">海洋平均溫度</span>
         <div class="normal_bar" />
         <span>{{ degree }}&#8451</span>
     </div>
@@ -8,7 +9,7 @@
 
 <script>
 export default {
-    props: ['year', 'degree',"isFocused"],
+    props: ['year', 'degree', 'isFocused'],
 
     mounted() {
         this.$el.addEventListener('transitionend', (e) => {
@@ -34,6 +35,18 @@ export default {
 
     padding: 0 8px;
 
+    .title {
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 17px;
+        display: flex;
+        align-items: center;
+        text-align: right;
+
+        /* Gray */
+        color: #4d4d4d;
+    }
+
     .normal_bar {
         display: none;
         height: 1px;
@@ -56,32 +69,43 @@ export default {
         justify-content: center;
         padding: 0;
 
+        .title {
+            opacity: 0.5;
+            position: absolute;
+            width: 80px;
+            top: -8.5px;
+            right: 0%;
+        }
+
         .normal_bar {
             display: block;
         }
     }
+    @include atMediumSmall {
+        .title {
+            opacity: 0.5;
+            top: 8.5px;
+            right: 100%;
+        }
+    }
 }
 
-.zoom{
+.zoom {
     animation-name: zoomInOut;
     animation-duration: 0.5s;
 }
 
-@keyframes zoomInOut{
-    0%{
+@keyframes zoomInOut {
+    0% {
         transform: scale(1);
     }
 
-    20%{
+    20% {
         transform: scale(1.3);
-
     }
 
-    100%{
+    100% {
         transform: scale(1);
-
     }
 }
-
-
 </style>
