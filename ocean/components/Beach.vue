@@ -2,8 +2,9 @@
     <div class="Beach" id="Beach" ref="beachRef" :style="{ height: `${wrapperHeight}px` }">
         <div class="Beach__fix_wrapper">
             <div class="Beach__background">
-                <picture>
-                    <source media="(min-width:760px)" srcset="../static/images/3.jpg" alt="ocean" />
+                <LongImage image="3" :zoom="false" />
+                <!-- <picture>
+                    <source media="(min-width:760px)" srcset="../static/images/3.png" alt="ocean" />
                     <source
                         media="(min-width:480px)"
                         srcset="../static/images/pad/3@1x.png 1x, ../static/images/pad/3@2x.png 2x"
@@ -18,38 +19,26 @@
                         "
                         alt="ocean"
                     />
-                </picture>
+                </picture> -->
             </div>
 
             <div class="Beach__text1 hide_text">
-                「妳注意過電影如何呈現人類在水下聽見的聲音嗎？」聲音藝術家 Yannick Dauby
-                說：「總是咕嚕咕嚕。」但那是不正確的，「咕嚕咕嚕是人背著氣瓶下水時發出的呼息，而非海洋的聲音。」
+                「因為有光，所以我們能看見東西。聲音是光。我所聽的是『聲音』——在聲音裡我聽到孩子玩耍、聽到冰箱馬達震動、兔子奔跑。聲音是光。我不是在聽這個東西的『聲音』。我是在聲音裡面聆聽。」
             </div>
-            <div class="Beach__text2">
-                <div class="Beach__text2_line">
-                    <img src="@/static/images/divider.png" alt="" />
-                </div>
-
-                <div class="Beach__text2_content hide_text">
-                    Yannick
-                    領我走進書房，點開電腦中的音檔，房間隨後環繞一塊油脂豐滿的三層肉在鍋裡煎熬的劈啪聲響。然那並非油花彈跳，而是他利用特製水下錄音器材捕捉到的槍蝦聲音。
-                </div>
-
-                <div class="Beach__text2_line">
-                    <img src="@/static/images/divider.png" alt="" />
-                </div>
-            </div>
-
-            <div class="Beach__blenk" />
         </div>
     </div>
 </template>
 
 <script>
+import LongImage from './LongImage'
+
 import 'intersection-observer'
 import scrollama from 'scrollama'
 
 export default {
+    components: {
+        LongImage,
+    },
     data() {
         return {
             wrapperHeight: 'none',
@@ -77,39 +66,39 @@ export default {
         // setup resize event
         window.addEventListener('resize', scroller.resize)
 
-        // -------------------------------------------------------
-        // Handle fix component,hover by next component
-        // need to define data.wrapperHeight
-        // and assign it to parent's height
-        let fixWrapperDOM
-        const nextComponentClass = '.Stage'
-        const currentComponentWrapperClass = '.Beach__fix_wrapper'
+        // // -------------------------------------------------------
+        // // Handle fix component,hover by next component
+        // // need to define data.wrapperHeight
+        // // and assign it to parent's height
+        // let fixWrapperDOM
+        // const nextComponentClass = '.Diving'
+        // const currentComponentWrapperClass = '.Beach__fix_wrapper'
 
-        const fixAndHoverScene = this.$scrollmagic
-            .scene({
-                triggerElement: nextComponentClass,
-                offset: 0,
-                triggerHook: 1,
-                duration: 1000,
-            })
-            .on('enter', (e) => {
-                fixWrapperDOM = document.querySelector(currentComponentWrapperClass)
-                // get wrapper's height,then assign to parient
-                this.wrapperHeight = fixWrapperDOM.clientHeight
-                // fix css
-                fixWrapperDOM.style.position = 'fixed'
-                fixWrapperDOM.style.width = '100%'
-                fixWrapperDOM.style.bottom = '0px'
-            })
-            .on('leave', (e) => {
-                // unfix css
-                fixWrapperDOM.style.position = 'relative'
-            })
-        // .addIndicators({ name: 'fixStoryScene' })
+        // const fixAndHoverScene = this.$scrollmagic
+        //     .scene({
+        //         triggerElement: nextComponentClass,
+        //         offset: 0,
+        //         triggerHook: 1,
+        //         duration: 1000,
+        //     })
+        //     .on('enter', (e) => {
+        //         fixWrapperDOM = document.querySelector(currentComponentWrapperClass)
+        //         // get wrapper's height,then assign to parient
+        //         this.wrapperHeight = fixWrapperDOM.clientHeight
+        //         // fix css
+        //         fixWrapperDOM.style.position = 'fixed'
+        //         fixWrapperDOM.style.width = '100%'
+        //         fixWrapperDOM.style.bottom = '0px'
+        //     })
+        //     .on('leave', (e) => {
+        //         // unfix css
+        //         fixWrapperDOM.style.position = 'relative'
+        //     })
+        // // .addIndicators({ name: 'fixStoryScene' })
 
-        // -------------------------------------------------------
+        // // -------------------------------------------------------
 
-        this.$scrollmagic.addScene([fixAndHoverScene])
+        // this.$scrollmagic.addScene([fixAndHoverScene])
     },
 }
 </script>
@@ -125,12 +114,11 @@ export default {
     text-align: justify;
 
     &__background {
-        img {
-            width: 100%;
-        }
+        height: 100vh;
     }
 
     &__text1 {
+        transition: opacity 0.5s ease;
         color: #fdffff;
 
         font-size: 16px;
@@ -148,41 +136,8 @@ export default {
         width: 240px;
     }
 
-    &__text2 {
-        color: #4d4d4d;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        // border-top: 2px solid rgb(214, 214, 214);
-        // border-bottom: 2px solid rgb(214, 214, 214);
-        padding: 1rem 4px;
-        margin: 32px 20px 0px;
-
-        width: auto;
-
-        &_line {
-            img {
-                width: 100%;
-                height: 3px;
-                display: block;
-            }
-        }
-
-        &_content {
-            width: 100%;
-            padding: 16px 0;
-        }
-    }
-
-    &__blenk {
-        background: white;
-        width: 100%;
-        height: 30vh;
-    }
-
     &__fix_wrapper {
-        padding-bottom: 32px;
+        // padding-bottom: 32px;
     }
 
     @include atSmall {
@@ -193,15 +148,8 @@ export default {
             width: 400px;
         }
 
-        &__text2 {
-            color: #4d4d4d;
-
-            padding: 24px 60px;
-            margin: 48px 84px 0px;
-        }
-
         &__fix_wrapper {
-            padding-bottom: 48px;
+            // padding-bottom: 48px;
         }
     }
 
@@ -211,17 +159,6 @@ export default {
             left: 9.098%;
 
             width: 427px;
-        }
-
-        &__text2 {
-            color: #4d4d4d;
-
-            padding: 24px 60px;
-            margin: 48px auto;
-            max-width: 840px;
-            &_content {
-                width: 654px;
-            }
         }
     }
 }

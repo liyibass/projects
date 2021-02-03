@@ -1,11 +1,6 @@
 <template>
     <div class="VolumeToggle" id="VolumeToggle">
-        <audio
-            class="oceanAudio audio"
-            :src="require('@/static/audios/ocean.mp3')"
-            :isMuted="isMuted"
-            loop
-        >
+        <audio class="oceanAudio audio" :src="require('@/static/audios/ocean.mp3')" :isMuted="isMuted" loop>
             Your browser does not support the <code>audio</code> element.
         </audio>
 
@@ -13,13 +8,12 @@
             <div class="VolumeToggle__content" v-if="currentScene === 1">
                 <div class="VolumeToggle__content_icon">
                     <!-- <img src="~/static/images/icon_mute_120x120.svg" alt="" /> -->
-                    <VolumeIcon
-                        :isMuted="isMuted"
-                        :isMutedToggle="isMutedToggle"
-                    />
+                    <VolumeIcon :isMuted="isMuted" :isMutedToggle="isMutedToggle" />
                 </div>
 
                 <div class="VolumeToggle__content_text">
+                    此專題有海洋生物錄音<br />
+                    與水溫年度變化電子音<br />
                     請點擊圖示開啟聲音<br />
                     獲得最佳閱讀體驗
                 </div>
@@ -27,14 +21,8 @@
         </transition>
 
         <transition name="fade">
-            <div
-                class="VolumeToggle__content"
-                id="VolumeToggle__content"
-                v-if="currentScene === 2"
-            >
-                <div class="VolumeToggle__content_text">
-                    閱讀過程中<br />點選圖示可關閉聲音
-                </div>
+            <div class="VolumeToggle__content" id="VolumeToggle__content" v-if="currentScene === 2">
+                <div class="VolumeToggle__content_text">閱讀過程中<br />點選圖示可關閉聲音</div>
             </div>
         </transition>
 

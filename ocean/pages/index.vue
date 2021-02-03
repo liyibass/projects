@@ -8,9 +8,10 @@
         <ScrollHero />
         <VolumeToggle />
         <Beach />
+        <Diving />
         <Stage />
         <Story />
-        <Diving />
+
         <DivingDark />
         <Video />
         <Final />
@@ -70,10 +71,14 @@ export default {
             })
             .onStepEnter((response) => {
                 // { element, index, direction }
-                response.element.classList.remove('hide_text')
+                // response.element.classList.remove('hide_text')
+                response.element.style.opacity = 1
             })
             .onStepExit((response) => {
                 // { element, index, direction }
+                if (response.direction === 'up') {
+                    response.element.style.opacity = 0
+                }
             })
 
         // setup resize event

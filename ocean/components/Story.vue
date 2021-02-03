@@ -249,9 +249,9 @@
                     種魚類。根據研究，珊瑚覆蓋度最高的地方，槍蝦及魚類發出聲音次數、頻率和聲音強度也高。生態聲學專家、中研院生物多樣性研究中心助研究員林子皓說，目前已知珊瑚白化後，珊瑚礁的聲音已經產生變化，「至於海洋是否會變得寂靜無聲尚待觀察，畢竟白化是漸進的，珊瑚死亡，礁體還是會提供棲息空間。」但科學家曾試圖在白化珊瑚礁播放健康珊瑚礁聲音吸引生物前往棲息，「生物有來，但棲地沒有恢復，牠們依舊離開。」
                 </div>
 
-                <div class="ArticleParagraph">
+                <!-- <div class="ArticleParagraph">
                     生物離開，因爲牠們聆聽的「聲音」，是一全幅、具有脈絡、彼此關聯的生命景象。那是 Yannick 所說——
-                </div>
+                </div> -->
 
                 <div class="ArticleParagraph" :style="{ height: '40vh' }"></div>
             </div>
@@ -382,7 +382,7 @@ export default {
         // need to define data.wrapperHeight
         // and assign it to parent's height
         let fixWrapperDOM
-        const nextComponentClass = '.Diving'
+        const nextComponentClass = '.DivingDark'
         const currentComponentWrapperClass = '.Story__fix_wrapper'
 
         const fixAndHoverScene = this.$scrollmagic
