@@ -22,23 +22,24 @@
 <script>
 import LongImage from './LongImage'
 import Logo from './Logo'
+import gaMixin from '~/mixins/gaMixin'
 
 export default {
     components: {
         LongImage,
         Logo,
     },
+    mixins: [gaMixin],
+
     data() {
         return {}
     },
     mounted() {
+        this.gaScrollHandler('page view')
+
         const ScrollHeroMaskDOM = document.querySelector('.ScrollHero__mask')
-        const ScrollHeroTitleTextDOM = document.querySelector(
-            '.ScrollHero__title_text'
-        )
-        const ScrollHeroTitleWaveDOM = document.querySelector(
-            '.ScrollHero__title_wave'
-        )
+        const ScrollHeroTitleTextDOM = document.querySelector('.ScrollHero__title_text')
+        const ScrollHeroTitleWaveDOM = document.querySelector('.ScrollHero__title_wave')
 
         // Declare Scene
         const backgroundDarkScene = this.$scrollmagic

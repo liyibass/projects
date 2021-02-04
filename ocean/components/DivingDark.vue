@@ -5,7 +5,7 @@
                 <div class="DivingDark__fix_wrapper_content_text">
                     <div class="DivingDark__fix_wrapper_content_text_bar" />
                     <span>
-                        生物離開，因爲牠們聆聽的「聲音」，是一全幅、具有脈絡、彼此關聯的生命景象。那是 Yannick 所說——
+                        生物離開，因爲牠們聆聽的「聲音」，是一全幅、具有脈絡、彼此關聯的生命景象。
                     </span>
                     <br />
                     <br />
